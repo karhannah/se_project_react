@@ -1,4 +1,6 @@
 import ItemModal from "../ItemModal/ItemModal";
+import currentDate from "../Date/Date";
+// import location from "../Location/Location";
 import "./App.css";
 // image imports
 import headerLogo from "../images/headerLogo.svg";
@@ -12,7 +14,7 @@ function App() {
           <div>
             <img src={headerLogo} alt="Logo" />
           </div>
-          <div>Date</div>
+          <div id="location">{currentDate}</div>
         </div>
         <div className="header__avatar-logo">
           <div>
