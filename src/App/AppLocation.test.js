@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+
+const APIkey = "039e78b473a24e26b14a84073cc259b5";
+
 const [location, setLocation] = useState();
 const [data, setData] = useState([]);
 
@@ -9,7 +13,6 @@ function getLocationInfo(latitude, longitude) {
       // console.log(data);
       setData(data);
       if (data.status.code === 200) {
-        console.log("results:", data.results);
         setLocation(data.results[0].formatted);
       } else {
         console.log("Reverse geolocation request failed.");
@@ -38,9 +41,9 @@ useEffect(() => {
     navigator.permissions
       .query({ name: "geolocation" })
       .then(function (result) {
-        setData(result.state);
         console.log(result);
         if (result.state === "granted") {
+          // setData(result.state); change this
           navigator.geolocation.getCurrentPosition(success, errors, options);
         } else if (result.state === "prompt") {
           navigator.geolocation.getCurrentPosition(success, errors, options);
@@ -51,4 +54,3 @@ useEffect(() => {
     console.log("Geolocation is not supported by this browser.");
   }
 }, []);
-return <div>state is: {state}</div>;
