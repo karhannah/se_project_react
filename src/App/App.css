@@ -1,3 +1,7 @@
-.WeatherImage {
+.weather {
   position: relative;
+}
+
+.weather_info {
+  position: absolute;
 }
