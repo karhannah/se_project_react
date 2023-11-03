@@ -22,13 +22,10 @@ function App() {
   return (
     <div>
       <Header />
-      <main>
+      <main className="main">
         <section className="weather" id="weather">
-          weather
           <div className="weather_info">75F</div>
-          <div>
-            <img src={WeatherSunny} />
-          </div>
+          <img src={WeatherSunny} className="weather_image" />
         </section>
         <section id="card-section">Card section</section>
       </main>

@@ -3,13 +3,23 @@
   align-items: center;
   justify-content: space-between;
   min-height: 60px;
-  padding: 0 20px;
+  padding: 32px 40px 0;
 }
 
 .header__logo {
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+.header__date {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  height: 24px;
 }
 
 .header__avatar-logo {
@@ -21,4 +31,21 @@
 .header__button-add-clothes {
   background-color: transparent;
   border: none;
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  height: 24px;
+}
+
+.header__user-name {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  height: 25px;
 }

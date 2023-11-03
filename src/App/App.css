@@ -4,4 +4,20 @@
 
 .weather_info {
   position: absolute;
+  top: 20px;
+  left: 16px;
+  color: #fff;
+  font-family: Cabinet Grotesk;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.weather_image {
+  width: 100%;
+}
+
+.main {
+  padding: 0 40px 0;
 }
