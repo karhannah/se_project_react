@@ -1,5 +1,4 @@
 import currentDate from "../Date/Date";
-import headerLogo from "../images/headerLogo.svg";
 import AvatarLogo from "../images/headerAvatar.svg";
 import "./Header.css";
 
@@ -9,7 +8,7 @@ const Header = () => {
       <header className="header">
         <div className="header__logo">
           <div>
-            <img src={headerLogo} alt="Logo" />
+            <img src={require("../images/headerLogo.svg").default} alt="Logo" />
           </div>
           <div className="header__date">{currentDate}</div>
           {/* <div>state is: {state}</div> */}
