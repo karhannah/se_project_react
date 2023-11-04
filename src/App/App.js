@@ -1,67 +1,62 @@
-import ItemModal from "../ItemModal/ItemModal";
 import Header from "../Header/Header";
-import WeatherCard from "../WeatherCard/WeatherCard";
-import ItemCard from "../Itemcard/ItemCard";
-import Weather from "../Utils/WeatherApi";
-// CSS Imports
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
 import "./App.css";
-import "../Main/Main.css";
-
-const defaultClothingItems = [
-  {
-    _id: 0,
-    name: "Cap",
-    weather: "hot",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
-  },
-  {
-    _id: 1,
-    name: "Hoodie",
-    weather: "warm",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
-  },
-  {
-    _id: 2,
-    name: "Jacket",
-    weather: "cold",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad",
-  },
-  {
-    _id: 3,
-    name: "Sneakers",
-    weather: "cold",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
-  },
-  {
-    _id: 4,
-    name: "T-Shirt",
-    weather: "hot",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
-  },
-  {
-    _id: 5,
-    name: "Winter coat",
-    weather: "cold",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
-  },
-];
+import { useState } from "react";
 
 function App() {
+  const weatherTemp = "75°F";
+  const [activeModal, setActiveModal] = useState("");
+  const [selectedcard, setSelectedCard] = useState({});
+
+  const handleCreateModal = () => {
+    setActiveModal("create");
+  };
+  const handleCloseModal = () => {
+    setActiveModal("");
+  };
+
+  const handleSelectedCard = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
   return (
     <div>
-      <Header />
-      <main className="main">
-        <Weather />
-        <WeatherCard day={false} type="Moon" />
-        <section id="card-section" className="card_section">
-          <div>Today is 75° F / You may want to wear:</div>
-          <div className="card_items">
-            {defaultClothingItems.map((item) => (
-              <ItemCard item={item} />
-            ))}
+      <Header onCreate={handleCreateModal} />
+      <Main weatherTemp={weatherTemp} onSelectCard={handleSelectedCard} />
+      <Footer />
+      {activeModal === "create" && (
+        <ModalWithForm title="New garment" onClose={handleCloseModal}>
+          <label>
+            Name
+            <input type="text" name="name" minLength="2" maxLength="30" />
+          </label>
+          <label>
+            Image
+            <input type="url" name="link" minLength="2" maxLength="30" />
+          </label>
+          <p>select weather type:</p>
+          <div>
+            <div>
+              <input type="radio" id="hot" value="hot" />
+              <label>Hot</label>
+            </div>
+            <div>
+              <input type="radio" id="warm" value="warm" />
+              <label>Warm</label>
+            </div>
+            <div>
+              <input type="radio" id="cold" value="cold" />
+              <label>Cold</label>
+            </div>
           </div>
-        </section>
-      </main>
+        </ModalWithForm>
+      )}
+      {activeModal === "preview" && (
+        <ItemModal selectedCard={selectedcard} onClose={handleCloseModal} />
+      )}
     </div>
   );
 }

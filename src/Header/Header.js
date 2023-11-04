@@ -2,7 +2,7 @@ import currentDate from "../Date/Date";
 import AvatarLogo from "../images/headerAvatar.svg";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ onCreate }) => {
   return (
     <div>
       <header className="header">
@@ -15,7 +15,11 @@ const Header = () => {
         </div>
         <div className="header__avatar-logo">
           <div>
-            <button className="header__button-add-clothes" type="button">
+            <button
+              className="header__button-add-clothes"
+              onClick={onCreate}
+              type="button"
+            >
               + Add Clothes
             </button>
           </div>

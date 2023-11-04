@@ -10,7 +10,6 @@ function getLocationInfo(latitude, longitude) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
       setData(data);
       if (data.status.code === 200) {
         setLocation(data.results[0].formatted);
@@ -43,7 +42,6 @@ useEffect(() => {
       .then(function (result) {
         console.log(result);
         if (result.state === "granted") {
-          // setData(result.state); change this
           navigator.geolocation.getCurrentPosition(success, errors, options);
         } else if (result.state === "prompt") {
           navigator.geolocation.getCurrentPosition(success, errors, options);

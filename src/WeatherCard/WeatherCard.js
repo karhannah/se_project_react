@@ -1,4 +1,6 @@
 import "./WeatherCard.css";
+import Weather from "../Utils/WeatherApi";
+
 const weatherOptions = [
   {
     url: require("../images/day/WeatherSunny.svg").default,
@@ -63,7 +65,7 @@ const weatherOptions = [
   },
 ];
 
-const WeatherCard = ({ day = true, type = "Sunny", weatherTemp = 0 }) => {
+const WeatherCard = ({ day = true, type = "Sunny", weatherTemp = "" }) => {
   const imageSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
   });
