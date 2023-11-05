@@ -1,29 +1,24 @@
-import React from "react";
-import WeatherAPIEndPoint from "./WeatherApi";
-import WeatherAPIKey from "./WeatherApi";
-import axios from "axios";
+// import React from "react";
 
-function Weather() {
-  const [latitude, setLat] = React.useState("");
-  const [longitude, setLong] = React.useState("");
-  const [city, setCity] = React.useState("");
-  React.useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
+const latitude = 44.34;
+const longitude = 10.99;
+const APIkey = "9dfcab643e58a2694dca1758a11cf0e1";
 
-    let WeatherFinalAPIEndPoint = `${WeatherAPIEndPoint}lat=${latitude}&lon=${longitude}&appid=${WeatherAPIKey}`;
+export const getWeather = () => {
+  const weatherAPI = fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+  ).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
+    }
+  });
+  return weatherAPI;
+};
 
-    axios.get(WeatherFinalAPIEndPoint).then((response) => {
-      setCity(city.data);
-    });
-  }, []);
-  return (
-    <div>
-      <h1>{setCity.name}</h1>
-    </div>
-  );
-}
-
-export default Weather;
+export const parseWeatherData = (data) => {
+  const main = data.main;
+  const temperature = main && main.temp;
+  return Math.ceil(temperature);
+};
