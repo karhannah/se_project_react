@@ -23,7 +23,7 @@ export const parseWeatherData = (data) => {
 };
 
 export const locationData = (data) => {
-  const sys = data.sys;
-  const country = sys && sys.country;
-  return country;
+  const name = data.name;
+  const city = name;
+  return city;
 };
