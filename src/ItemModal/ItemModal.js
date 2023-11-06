@@ -1,9 +1,9 @@
-const ItemModal = ({ selectedCard, onClose }) => {
+const ItemModal = ({ selectedCard, onClose, onKeyDown }) => {
   console.log("item modal");
   return (
     <div className={`modal`}>
       <div className="modal__content">
-        <button type="button" onClick={onClose}>
+        <button type="button" onClick={onClose} onKeyDown={onKeyDown}>
           Close
         </button>
         <img src={selectedCard.link}></img>

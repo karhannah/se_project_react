@@ -1,5 +1,3 @@
-// import React from "react";
-
 const latitude = 44.34;
 const longitude = 10.99;
 const APIkey = "9dfcab643e58a2694dca1758a11cf0e1";
