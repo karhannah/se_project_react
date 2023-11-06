@@ -20,11 +20,18 @@ function App() {
     setActiveModal("");
   };
 
-  const handleEscapeClose = (e) => {
-    if (e.key === "Escape") {
-      console.log("User pressed:", e.key);
-    }
-  };
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
@@ -46,11 +53,7 @@ function App() {
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
-        <ModalWithForm
-          title="New garment"
-          onClose={handleCloseModal}
-          onKeyDown={handleEscapeClose}
-        >
+        <ModalWithForm title="New garment" onClose={handleCloseModal}>
           <label>
             Name
             <input type="text" name="name" minLength="2" maxLength="30" />
@@ -77,11 +80,7 @@ function App() {
         </ModalWithForm>
       )}
       {activeModal === "preview" && (
-        <ItemModal
-          selectedCard={selectedcard}
-          onClose={handleCloseModal}
-          onKeyDown={handleEscapeClose}
-        />
+        <ItemModal selectedCard={selectedcard} onClose={handleCloseModal} />
       )}
     </div>
   );
