@@ -1,9 +1,22 @@
 import currentDate from "../Date/Date";
 import AvatarLogo from "../images/headerAvatar.svg";
-
+import { getWeatherAndLocation } from "../Utils/WeatherApi";
+import { useEffect, useState } from "react";
 import "./Header.css";
 
 const Header = ({ onCreate }) => {
+  const [city, setCity] = useState("");
+  const locationData = (data) => {
+    const name = data.name;
+    const city = name;
+    return city;
+  };
+  useEffect(() => {
+    getWeatherAndLocation().then((data) => {
+      const city = locationData(data);
+      setCity(city);
+    });
+  });
   return (
     <div>
       <header className="header">
@@ -12,7 +25,7 @@ const Header = ({ onCreate }) => {
             <img src={require("../images/headerLogo.svg").default} alt="Logo" />
           </div>
           <div className="header__date">{currentDate}</div>
-          <div className="header__location">city name</div>
+          <div className="header__location">{city}</div>
         </div>
         <div className="header__avatar-logo">
           <div>
