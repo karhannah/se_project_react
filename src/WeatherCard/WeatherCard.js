@@ -1,5 +1,4 @@
 import "./WeatherCard.css";
-import { getWeather } from "../Utils/WeatherApi";
 
 const weatherOptions = [
   {

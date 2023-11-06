@@ -3,13 +3,12 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import "./App.css";
 import { useEffect, useState } from "react";
-import { getWeather, parseWeatherData } from "../Utils/WeatherApi";
+import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
 import { locationData } from "../Utils/WeatherApi";
+import "./App.css";
 
 function App() {
-  const weatherTemp = "30";
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
@@ -41,7 +40,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather().then((data) => {
+    getWeatherAndLocation().then((data) => {
       console.log(data);
       const temperature = parseWeatherData(data);
       const city = locationData(data);

@@ -2,7 +2,7 @@ import { APIkey } from "./Constants";
 import { latitude } from "./Constants";
 import { longitude } from "./Constants";
 
-export const getWeather = () => {
+export const getWeatherAndLocation = () => {
   const weatherAPI = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
