@@ -6,12 +6,14 @@ import ItemModal from "../ItemModal/ItemModal";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { getWeather, parseWeatherData } from "../Utils/WeatherApi";
+import { locationData } from "../Utils/WeatherApi";
 
 function App() {
   const weatherTemp = "30";
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [country, setCountry] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -42,10 +44,12 @@ function App() {
     getWeather().then((data) => {
       console.log(data);
       const temperature = parseWeatherData(data);
+      const country = locationData(data);
+      setCountry(country);
       setTemp(temperature);
     });
   }, []);
-  console.log(temp);
+  console.log(country);
 
   return (
     <div>

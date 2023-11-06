@@ -11,7 +11,7 @@ const Header = ({ onCreate }) => {
             <img src={require("../images/headerLogo.svg").default} alt="Logo" />
           </div>
           <div className="header__date">{currentDate}</div>
-          {/* <div>state is: {state}</div> */}
+          <div className="header__location">florida</div>
         </div>
         <div className="header__avatar-logo">
           <div>
