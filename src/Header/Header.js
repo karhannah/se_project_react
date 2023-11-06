@@ -1,5 +1,6 @@
 import currentDate from "../Date/Date";
 import AvatarLogo from "../images/headerAvatar.svg";
+
 import "./Header.css";
 
 const Header = ({ onCreate }) => {
@@ -11,7 +12,7 @@ const Header = ({ onCreate }) => {
             <img src={require("../images/headerLogo.svg").default} alt="Logo" />
           </div>
           <div className="header__date">{currentDate}</div>
-          <div className="header__location">florida</div>
+          <div className="header__location">city name</div>
         </div>
         <div className="header__avatar-logo">
           <div>

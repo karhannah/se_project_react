@@ -3,7 +3,7 @@ import { latitude } from "./Constants";
 import { longitude } from "./Constants";
 
 export const getWeatherAndLocation = () => {
-  const weatherAPI = fetch(
+  const API = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
     if (res.ok) {
@@ -13,7 +13,7 @@ export const getWeatherAndLocation = () => {
       return Promise.reject(`Error: ${res.status}`);
     }
   });
-  return weatherAPI;
+  return API;
 };
 
 export const parseWeatherData = (data) => {

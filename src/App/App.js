@@ -4,8 +4,11 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { useEffect, useState } from "react";
-import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
-import { locationData } from "../Utils/WeatherApi";
+import {
+  getWeatherAndLocation,
+  parseWeatherData,
+  locationData,
+} from "../Utils/WeatherApi";
 import "./App.css";
 
 function App() {
