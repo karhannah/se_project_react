@@ -24,8 +24,10 @@ const Header = ({ onCreate }) => {
           <div>
             <img src={require("../images/headerLogo.svg").default} alt="Logo" />
           </div>
-          <div className="header__date">{currentDate}</div>
-          <div className="header__location">{city}</div>
+          <div className="header__date-and-location">
+            <div className="header__date">{currentDate},</div>
+            <div className="header__location">{city}</div>
+          </div>
         </div>
         <div className="header__avatar-logo">
           <div>

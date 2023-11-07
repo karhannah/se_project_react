@@ -49,3 +49,18 @@
   line-height: normal;
   height: 25px;
 }
+
+.header__location {
+  color: #000;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.header__date-and-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
