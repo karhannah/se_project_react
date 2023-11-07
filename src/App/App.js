@@ -5,6 +5,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { useEffect, useState } from "react";
 import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
+
 import "./App.css";
 
 function App() {
@@ -51,28 +52,34 @@ function App() {
       <Footer />
       {activeModal === "create" && (
         <ModalWithForm title="New garment" onClose={handleCloseModal}>
-          Name
-          <label>
-            <input
-              required
-              type="text"
-              name="name"
-              minLength="2"
-              maxLength="30"
-            />
-          </label>
-          Image
-          <label>
-            <input
-              required
-              type="url"
-              name="link"
-              minLength="2"
-              maxLength="30"
-            />
-          </label>
-          <p>select weather type:</p>
-          <div>
+          <div className="modal__input-container">
+            <p className="modal__input-title">Name</p>
+            <label className="modal__label">
+              <input
+                className="modal__input"
+                required
+                type="text"
+                name="name"
+                minLength="2"
+                maxLength="30"
+                placeholder="Name"
+              />
+            </label>
+            <p className="modal__input-title">Image</p>
+            <label className="modal__label">
+              <input
+                className="modal__input"
+                required
+                type="url"
+                name="link"
+                minLength="2"
+                maxLength="30"
+                placeholder="Image URL"
+              />
+            </label>
+          </div>
+          <p className="modal__radio-title">select weather type:</p>
+          <div className="modal__radio-buttons">
             <div>
               <input type="radio" id="hot" value="hot" />
               <label>Hot</label>

@@ -3,7 +3,16 @@
 }
 
 .card_name {
-  text-align: center;
+  display: inline-block;
+  padding: 2px 12px;
+  position: relative;
+  bottom: 90%;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 4px;
 }
 
 .card_image {
@@ -18,4 +27,5 @@
   gap: 17px;
   justify-content: center;
   margin-top: 20px;
+  text-align: center;
 }
