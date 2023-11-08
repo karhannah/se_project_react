@@ -3,16 +3,32 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
 
 import "./App.css";
+let useClickOutside = (handler) => {
+  const domNode = useRef();
+  useEffect(() => {
+    let maybeHandler = (e) => {
+      if (!domNode.current?.contains(e.target)) {
+        handler();
+      }
+    };
+    document.addEventListener("mousedown", maybeHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", maybeHandler);
+    };
+  });
+  return domNode;
+};
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  const [modalShown, toggleModal] = React.useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -20,19 +36,10 @@ function App() {
   const handleCloseModal = () => {
     setActiveModal("");
   };
-  const handleOverlayClick = () => {
-    if (!activeModal) {
-      document.addEventListener("click", HandleOutsideClick, false);
-    } else {
-      document.removeEventListener("click", HandleOutsideClick, false);
-    }
-    const setState = (prevState) => ({
-      modalShown: !prevState.modalShown,
-    });
-    const HandleOutsideClick = (e) => {
-      if (!activeModal.contains(e.target).then(handleOverlayClick));
-    };
-  };
+
+  const domNode = useClickOutside(() => {
+    setActiveModal("");
+  });
 
   useEffect(() => {
     if (!activeModal) return;
@@ -65,7 +72,12 @@ function App() {
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
-        <ModalWithForm title="New garment" onClose={handleCloseModal}>
+        <ModalWithForm
+          ref={domNode}
+          title="New garment"
+          onClose={handleCloseModal}
+          setActiveModal={setActiveModal}
+        >
           <div className="modal__input-container">
             <p className="modal__input-title">Name</p>
             <label className="modal__label">

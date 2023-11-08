@@ -7,6 +7,7 @@ const ModalWithForm = ({
   title,
   onClose,
   name,
+
   state = { disabled: true },
 }) => {
   return (
