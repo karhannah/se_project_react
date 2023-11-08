@@ -3,21 +3,35 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import React from "react";
 import { useEffect, useState } from "react";
 import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
 
 import "./App.css";
-
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [modalShown, toggleModal] = React.useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
   };
   const handleCloseModal = () => {
     setActiveModal("");
+  };
+  const handleOverlayClick = () => {
+    if (!activeModal) {
+      document.addEventListener("click", HandleOutsideClick, false);
+    } else {
+      document.removeEventListener("click", HandleOutsideClick, false);
+    }
+    const setState = (prevState) => ({
+      modalShown: !prevState.modalShown,
+    });
+    const HandleOutsideClick = (e) => {
+      if (!activeModal.contains(e.target).then(handleOverlayClick));
+    };
   };
 
   useEffect(() => {

@@ -11,8 +11,7 @@
 }
 
 .modal__title {
-  /* margin: 28px 0 24px 0; */
-  margin-bottom: 24px;
+  margin: 8px 0 24px 0;
 }
 
 .modal__content {
@@ -22,7 +21,6 @@
   height: 436px;
   border-radius: 20px;
   padding: 0 28px 36px 28px;
-  color: #000;
   font-family: Cabinet Grotesk;
   font-size: 16px;
   font-style: normal;
@@ -36,15 +34,16 @@
   z-index: -2;
   width: 498px;
   height: 610px;
+  padding: 36px 36px;
 }
 
 .modal__image {
   width: 568px;
   position: relative;
-  bottom: calc(10% - 0.5px);
+  bottom: calc(13% + 0.5px);
   z-index: -1;
   display: flex;
-  right: calc(7% + 1px);
+  right: calc(6% + 6px);
   border-radius: 20px 20px 0 0;
 }
 
@@ -57,9 +56,9 @@
   height: 20px;
   background-repeat: no-repeat;
   background-size: contain;
+  margin: 20px 0 0 448px;
   position: relative;
-  left: calc(95% + 5px);
-  top: calc(4% + 5px);
+  left: 28px;
   color: #0000004d;
   opacity: 1;
 }
@@ -68,7 +67,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  bottom: 5%;
+  bottom: 10%;
   gap: 10px;
   font-family: Cabinet Grotesk;
   font-size: 20px;
@@ -79,6 +78,8 @@
 
 .modal__close-button_image {
   background-image: url("../images/white-x-button.svg");
+  margin: 20px 0 0 454px;
+  bottom: 5%;
 }
 
 .modal__add-form {
