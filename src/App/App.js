@@ -3,43 +3,39 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import React, { useRef } from "react";
-import { useEffect, useState } from "react";
-import { getWeatherAndLocation, parseWeatherData } from "../Utils/WeatherApi";
+import React, { useEffect, useState, useRef } from "react";
+import {
+  getWeatherAndLocation,
+  locationData,
+  parseWeatherData,
+} from "../Utils/WeatherApi";
 
 import "./App.css";
-let useClickOutside = (handler) => {
-  const domNode = useRef();
-  useEffect(() => {
-    let maybeHandler = (e) => {
-      if (!domNode.current?.contains(e.target)) {
-        handler();
-      }
-    };
-    document.addEventListener("mousedown", maybeHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", maybeHandler);
-    };
-  });
-  return domNode;
-};
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-
+  const [city, setCity] = useState("");
   const handleCreateModal = () => {
     setActiveModal("create");
   };
   const handleCloseModal = () => {
     setActiveModal("");
   };
+  const handleSelectedCard = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+  // const menuRef = useRef();
 
-  const domNode = useClickOutside(() => {
-    setActiveModal("");
-  });
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", (e) => {
+  //     if (!menuRef.current?.contains(e.target)) {
+  //       handleCloseModal();
+  //     }
+  //   });
+  // });
 
   useEffect(() => {
     if (!activeModal) return;
@@ -48,32 +44,39 @@ function App() {
         handleCloseModal();
       }
     };
+    const handleOverlayClick = (e) => {
+      console.log(e.target.classList.contains("modal"));
+      if (e.target.classList.contains("modal")) {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("mousedown", handleOverlayClick);
     document.addEventListener("keydown", handleEscClose);
     return () => {
       document.removeEventListener("keydown", handleEscClose);
+      document.removeEventListener("mousedown", handleOverlayClick);
     };
   }, [activeModal]);
-
-  const handleSelectedCard = (card) => {
-    setActiveModal("preview");
-    setSelectedCard(card);
-  };
 
   useEffect(() => {
     getWeatherAndLocation().then((data) => {
       const temperature = parseWeatherData(data);
+      console.log(data);
+      const city = locationData(data);
       setTemp(temperature);
+      setCity(city);
+      // setType(parseWeatherTYpe(data))
+      // setTime(Date.now())
     });
   }, []);
 
   return (
     <div>
-      <Header onCreate={handleCreateModal} />
+      <Header onCreate={handleCreateModal} city={city} />
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
         <ModalWithForm
-          ref={domNode}
           title="New garment"
           onClose={handleCloseModal}
           setActiveModal={setActiveModal}
@@ -107,15 +110,15 @@ function App() {
           <p className="modal__radio-title">select weather type:</p>
           <div className="modal__radio-buttons">
             <div>
-              <input type="radio" id="hot" value="hot" />
+              <input type="radio" name="weatherType" id="hot" value="hot" />
               <label>Hot</label>
             </div>
             <div>
-              <input type="radio" id="warm" value="warm" />
+              <input type="radio" name="weatherType" id="warm" value="warm" />
               <label>Warm</label>
             </div>
             <div>
-              <input type="radio" id="cold" value="cold" />
+              <input type="radio" name="weatherType" id="cold" value="cold" />
               <label>Cold</label>
             </div>
           </div>

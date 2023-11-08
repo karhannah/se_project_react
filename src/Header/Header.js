@@ -4,19 +4,19 @@ import { getWeatherAndLocation } from "../Utils/WeatherApi";
 import { useEffect, useState } from "react";
 import "./Header.css";
 
-const Header = ({ onCreate }) => {
-  const [city, setCity] = useState("");
-  const locationData = (data) => {
-    const name = data.name;
-    const city = name;
-    return city;
-  };
-  useEffect(() => {
-    getWeatherAndLocation().then((data) => {
-      const city = locationData(data);
-      setCity(city);
-    });
-  });
+const Header = ({ onCreate, city }) => {
+  // const [city, setCity] = useState("");
+  // const locationData = (data) => {
+  //   const name = data.name;
+  //   const city = name;
+  //   return city;
+  // };
+  // useEffect(() => {
+  //   getWeatherAndLocation().then((data) => {
+  //     const city = locationData(data);
+  //     setCity(city);
+  //   });
+  // });
   return (
     <div>
       <header className="header">
