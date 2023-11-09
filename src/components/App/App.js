@@ -40,7 +40,6 @@ function App() {
       }
     };
     const handleOverlayClick = (e) => {
-      console.log(e.target.classList.contains("modal"));
       if (e.target.classList.contains("modal")) {
         handleCloseModal();
       }
@@ -57,7 +56,6 @@ function App() {
     getWeatherAndLocation()
       .then((data) => {
         const temperature = parseWeatherData(data);
-        console.log(data);
         const city = locationData(data);
         setTemp(temperature);
         setCity(city);

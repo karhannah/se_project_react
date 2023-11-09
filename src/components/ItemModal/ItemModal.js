@@ -1,5 +1,4 @@
 const ItemModal = ({ selectedCard, onClose }) => {
-  console.log("item modal");
   return (
     <div className="modal__overlay">
       <div className={`modal`}>
