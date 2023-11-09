@@ -8,7 +8,7 @@ import {
   getWeatherAndLocation,
   locationData,
   parseWeatherData,
-} from "../../Utils/WeatherApi";
+} from "../../utils/WeatherApi";
 
 import "./App.css";
 
