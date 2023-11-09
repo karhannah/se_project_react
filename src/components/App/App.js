@@ -27,6 +27,10 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+  const handleCurrentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   useEffect(() => {
     if (!activeModal) return;
@@ -63,7 +67,7 @@ function App() {
 
   return (
     <div>
-      <Header onCreate={handleCreateModal} city={city} />
+      <Header onCreate={handleCreateModal} city={city} currentDate={handleCurrentDate}/>
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
