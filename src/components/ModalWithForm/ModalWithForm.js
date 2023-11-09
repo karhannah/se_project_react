@@ -2,7 +2,7 @@ import "./ModalWithForm.css";
 
 const ModalWithForm = ({
   children,
-  buttonText = "Add garment",
+  buttonText,
   title,
   onClose,
   name,
@@ -27,7 +27,7 @@ const ModalWithForm = ({
               disabled={state}
               type="submit"
             >
-              {buttonText}
+              {(buttonText = "Add garment")}
             </button>
           </form>
         </div>
