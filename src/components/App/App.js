@@ -65,7 +65,7 @@ function App() {
         // setTime(Date.now())
       })
       .catch((error) => {
-        console.error("Error: An error occurred", error);
+        console.log("Error: An error occurred", error);
       });
   }, []);
 
