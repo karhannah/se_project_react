@@ -27,7 +27,7 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  const handleCurrentDate = new Date().toLocaleString("default", {
+  const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
@@ -54,20 +54,28 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    getWeatherAndLocation().then((data) => {
-      const temperature = parseWeatherData(data);
-      console.log(data);
-      const city = locationData(data);
-      setTemp(temperature);
-      setCity(city);
-      // setType(parseWeatherTYpe(data))
-      // setTime(Date.now())
-    });
+    getWeatherAndLocation()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        console.log(data);
+        const city = locationData(data);
+        setTemp(temperature);
+        setCity(city);
+        // setType(parseWeatherTYpe(data))
+        // setTime(Date.now())
+      })
+      .catch((error) => {
+        console.error("Error: An error occurred", error);
+      });
   }, []);
 
   return (
     <div>
-      <Header onCreate={handleCreateModal} city={city} currentDate={handleCurrentDate}/>
+      <Header
+        onCreate={handleCreateModal}
+        city={city}
+        currentDate={currentDate}
+      />
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (

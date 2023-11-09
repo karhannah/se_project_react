@@ -40,6 +40,10 @@
   height: 24px;
 }
 
+.header__button-add-clothes:hover {
+  cursor: pointer;
+}
+
 .header__user-name {
   color: #000;
   font-family: Cabinet Grotesk;
