@@ -1,7 +1,5 @@
 import currentDate from "../Date/Date";
 import AvatarLogo from "../images/headerAvatar.svg";
-import { getWeatherAndLocation } from "../Utils/WeatherApi";
-import { useEffect, useState } from "react";
 import "./Header.css";
 
 const Header = ({ onCreate, city }) => {
