@@ -3,12 +3,12 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getWeatherAndLocation,
   locationData,
   parseWeatherData,
-} from "../Utils/WeatherApi";
+} from "../../Utils/WeatherApi";
 
 import "./App.css";
 

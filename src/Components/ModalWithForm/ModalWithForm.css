@@ -60,7 +60,7 @@
 }
 
 .modal__close-button {
-  background-image: url("../images/grey-x-button.svg");
+  background-image: url("../../images/grey-x-button.svg");
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -89,7 +89,7 @@
 }
 
 .modal__close-button_image {
-  background-image: url("../images/white-x-button.svg");
+  background-image: url("../../images/white-x-button.svg");
   margin: 20px 0 0 454px;
   bottom: 5%;
 }
