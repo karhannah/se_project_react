@@ -27,15 +27,6 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  // const menuRef = useRef();
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", (e) => {
-  //     if (!menuRef.current?.contains(e.target)) {
-  //       handleCloseModal();
-  //     }
-  //   });
-  // });
 
   useEffect(() => {
     if (!activeModal) return;
