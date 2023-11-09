@@ -1,6 +1,4 @@
-import { APIkey } from "./Constants";
-import { latitude } from "./Constants";
-import { longitude } from "./Constants";
+import { APIkey, latitude, longitude } from "./Constants";
 
 export const getWeatherAndLocation = () => {
   const API = fetch(
