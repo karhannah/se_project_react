@@ -1,4 +1,4 @@
-import currentDate from "../Date/Date";
+import CurrentDate from "../Date/Date";
 import AvatarLogo from "../../images/headerAvatar.svg";
 import "./Header.css";
 
@@ -14,7 +14,7 @@ const Header = ({ onCreate, city }) => {
             />
           </div>
           <div className="header__date-and-location">
-            <div className="header__date">{currentDate},</div>
+            <div className="header__date">{CurrentDate},</div>
             <div className="header__location">{city}</div>
           </div>
         </div>
