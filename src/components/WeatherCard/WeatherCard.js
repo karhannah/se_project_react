@@ -2,11 +2,11 @@ import { weatherOptions } from "../../utils/Constants";
 import "./WeatherCard.css";
 
 const WeatherCard = ({ day = true, type = "Sunny", weatherTemp = "" }) => {
-  const weatherOption = weatherOptions.filter((item) => {
+  const weatherOption = weatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
 
-  const imageSrcUrl = weatherOption[0].url || "";
+  const imageSrcUrl = weatherOption.url || "";
 
   return (
     <section className="weather" id="weather">
