@@ -2,8 +2,8 @@ import { weatherOptions } from "../../utils/Constants";
 import "./WeatherCard.css";
 
 const WeatherCard = ({ day = true, type = "Sunny", weatherTemp = "" }) => {
-  const weatherOption = weatherOptions.filter((i) => {
-    return i.day === day && i.type === type;
+  const weatherOption = weatherOptions.filter((item) => {
+    return item.day === day && item.type === type;
   });
 
   const imageSrcUrl = weatherOption[0].url || "";
