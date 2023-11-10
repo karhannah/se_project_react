@@ -23,33 +23,61 @@ This file contains clear and concise function names to help you understand the f
 
 This folder contains the creator's name(My name), as well as the copyright located in the (Footer.js) file, as well as it's corresponding css file (Footer.css).
 
+## Screen shot:
+
+![Footer Image](FooterSS.png)
+
 ## Header:
 
 This folder is everything that corresponds to the Header, such as (Header.js) file, which is where the HTML that has all of the images linked to the header is stored. This file also contains Prop drilling, and is where the current date is stored. The (Header.css) file contains flex-box(display: flex) which is what is used to position everything in the header.
+
+## Screen shot:
+
+![Header image](HeaderSS.png)
 
 ## ItemCard:
 
 This is where the item cards are stored(ItemCard.js).This file is very easy to comprehend, and to understand what is exactly is happening here.(ItemCard.css) is where the cards are styled, using(display: inline-block), as well as (position: relative) in order to keep elements exactly as they are when the page is re-sized. When using media queryies this component becomes just as easy to change while keeping everything in place.
 
+## Screen shot:
+
+![Item card image](ItemCardSS.png)
+
 ## ItemModal:
 
 (ItemModal.js) adds more functionality to the ItemCards, as well having a responsive design when the temperature changes.
+
+## Screen shot:
+
+link is provided as ItemCardSS.png
 
 ## Main:
 
 (Main.js) this is where all of the cards are filtered to select the cards that correspond to the given temperature values. This is also where the temperatures are connected through the {weatherTemp} Prop.
 (Main.css) is where the padding is applied so the content never touches the edge of the screen.
 
+## Screen shot:
+
+![Main image](MainSS.png)
+
 ## ModalWithForm:
 
 (ModalWithForm.js) is a general layout where any forms that I may want to add in the future could use as a template.
 (ModalWithForm.css) this is how the modal is positioned, styled, and overlay is added, so that users can have a better UI/UX experience.
+
+## Screen shot:
+
+![Modal with form image](ModalWithFormSS.png)
 
 ## WeatherCard:
 
 This folder contains the corresponding JS(WeatherCard.js) file and css(WeatherCard.css) file.
 Inside of the of the (WeatherCard.js) file, is where you can find the function that filters through each image to display the corresponding image to the corresponding value you. Currently day=true and type="Sunny" so the weather image that is displayed, has those corresponding values. It also stores the {weatherTemp} on the image that is displayed.
 The (WeatherCard.css) is where the image is positioned, using both (position: relative) and (position: absolute).
+
+## Screen shot:
+
+![Weather card image](WeatherCardSS.png)
 
 ## utils
 
