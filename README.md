@@ -1,6 +1,66 @@
+## Project name: se_project_react
+
+## This project contains the following:
+
+The index.css and index.js files.
+The index.html file is stored in the public folder.
+CSS files with styles for corresponding componenets.
+
+A components directory, which contains the following components:
+App.js, Footer.js, Header.js, ItemCard.js, ItemModal.js, Main.js, ModalWithForm.js, and
+WeatherCard.js.
+
+This project also contains Prop drilling, Prop drilling is the process of passing down data or state through multiple layers of a component hierarchy.
+
+## App.js:
+
+This is where all of the other JS files are imported to.
+It contains functions such as, useEffect, UseState, and React.
+Other functions include handling all other operations of the page.
+This file contains clear and concise function names to help you understand the functions and the actions they preform at first glance.
+
+## Footer:
+
+This folder contains the creator's name(My name), as well as the copyright located in the (Footer.js) file, as well as it's corresponding css file (Footer.css).
+
+## Header:
+
+This folder is everything that corresponds to the Header, such as (Header.js) file, which is where the HTML that has all of the images linked to the header is stored. This file also contains Prop drilling, and is where the current date is stored. The (Header.css) file contains flex-box(display: flex) which is what is used to position everything in the header.
+
+## ItemCard:
+
+This is where the item cards are stored(ItemCard.js).This file is very easy to comprehend, and to understand what is exactly is happening here.(ItemCard.css) is where the cards are styled, using(display: inline-block), as well as (position: relative) in order to keep elements exactly as they are when the page is re-sized. When using media queryies this component becomes just as easy to change while keeping everything in place.
+
+## ItemModal:
+
+(ItemModal.js) adds more functionality to the ItemCards, as well having a responsive design when the temperature changes.
+
+## Main:
+
+(Main.js) this is where all of the cards are filtered to select the cards that correspond to the given temperature values. This is also where the temperatures are connected through the {weatherTemp} Prop.
+(Main.css) is where the padding is applied so the content never touches the edge of the screen.
+
+## ModalWithForm:
+
+(ModalWithForm.js) is a general layout where any forms that I may want to add in the future could use as a template.
+(ModalWithForm.css) this is how the modal is positioned, styled, and overlay is added, so that users can have a better UI/UX experience.
+
+## WeatherCard:
+
+This folder contains the corresponding JS(WeatherCard.js) file and css(WeatherCard.css) file.
+Inside of the of the (WeatherCard.js) file, is where you can find the function that filters through each image to display the corresponding image to the corresponding value you. Currently day=true and type="Sunny" so the weather image that is displayed, has those corresponding values. It also stores the {weatherTemp} on the image that is displayed.
+The (WeatherCard.css) is where the image is positioned, using both (position: relative) and (position: absolute).
+
+## utils
+
+This folder contains the (Constants.js) file and the (WeatherApi.js) file.
+(Constants.js) is where all of the const variables are stored, so that they can be exported, and then imported into any file.
+(WeatherApi.js) is where I created a fetch function to retrieve all data that corresponds to the weather, as well as the location.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was made with the following approach: HTML, JS and CSS files are located together inside of folders, grouped by component, making it easy to navigate.
 
 ## Available Scripts
 
