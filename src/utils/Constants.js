@@ -104,10 +104,3 @@ export const weatherOptions = [
     type: "Stormy Night",
   },
 ];
-
-export const processServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};

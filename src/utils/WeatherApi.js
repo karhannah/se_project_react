@@ -1,5 +1,5 @@
 import { APIkey, latitude, longitude } from "./Constants";
-import { processServerResponse } from "./Constants";
+import { processServerResponse } from "./utils";
 
 export const getWeatherAndLocation = () => {
   const Api = fetch(
