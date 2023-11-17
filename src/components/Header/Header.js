@@ -1,3 +1,4 @@
+import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
 import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
 import "./Header.css";
@@ -16,6 +17,7 @@ const Header = ({ onCreate, city, currentDate }) => {
           </div>
         </div>
         <div className="header__avatar-logo">
+          <ToggleSwitch />
           <div>
             <button
               className="header__button-add-clothes"

@@ -9,6 +9,7 @@ import {
   locationData,
   parseWeatherData,
 } from "../../utils/WeatherApi";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
 
@@ -17,6 +18,8 @@ function App() {
   const [selectedcard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [city, setCity] = useState("");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
   const handleCreateModal = () => {
     setActiveModal("create");
   };
@@ -26,6 +29,10 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+  const handleToggleSwitchChange = () => {
+    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -66,68 +73,72 @@ function App() {
         console.log("Error: An error occurred", error);
       });
   }, []);
-
+  console.log(currentTemperatureUnit);
   return (
     <div>
-      <Header
-        onCreate={handleCreateModal}
-        city={city}
-        currentDate={currentDate}
-      />
-      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
-      <Footer />
-      {activeModal === "create" && (
-        <ModalWithForm
-          title="New garment"
-          onClose={handleCloseModal}
-          setActiveModal={setActiveModal}
-        >
-          <div className="modal__input-container">
-            <p className="modal__input-title">Name</p>
-            <label className="modal__label">
-              <input
-                className="modal__input"
-                required
-                type="text"
-                name="name"
-                minLength="2"
-                maxLength="30"
-                placeholder="Name"
-              />
-            </label>
-            <p className="modal__input-title">Image</p>
-            <label className="modal__label">
-              <input
-                className="modal__input"
-                required
-                type="url"
-                name="link"
-                minLength="2"
-                maxLength="30"
-                placeholder="Image URL"
-              />
-            </label>
-          </div>
-          <p className="modal__radio-title">select weather type:</p>
-          <div className="modal__radio-buttons">
-            <div>
-              <input type="radio" name="weatherType" id="hot" value="hot" />
-              <label>Hot</label>
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
+        <Header
+          onCreate={handleCreateModal}
+          city={city}
+          currentDate={currentDate}
+        />
+        <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+        <Footer />
+        {activeModal === "create" && (
+          <ModalWithForm
+            title="New garment"
+            onClose={handleCloseModal}
+            setActiveModal={setActiveModal}
+          >
+            <div className="modal__input-container">
+              <p className="modal__input-title">Name</p>
+              <label className="modal__label">
+                <input
+                  className="modal__input"
+                  required
+                  type="text"
+                  name="name"
+                  minLength="2"
+                  maxLength="30"
+                  placeholder="Name"
+                />
+              </label>
+              <p className="modal__input-title">Image</p>
+              <label className="modal__label">
+                <input
+                  className="modal__input"
+                  required
+                  type="url"
+                  name="link"
+                  minLength="2"
+                  maxLength="30"
+                  placeholder="Image URL"
+                />
+              </label>
             </div>
-            <div>
-              <input type="radio" name="weatherType" id="warm" value="warm" />
-              <label>Warm</label>
+            <p className="modal__radio-title">select weather type:</p>
+            <div className="modal__radio-buttons">
+              <div>
+                <input type="radio" name="weatherType" id="hot" value="hot" />
+                <label>Hot</label>
+              </div>
+              <div>
+                <input type="radio" name="weatherType" id="warm" value="warm" />
+                <label>Warm</label>
+              </div>
+              <div>
+                <input type="radio" name="weatherType" id="cold" value="cold" />
+                <label>Cold</label>
+              </div>
             </div>
-            <div>
-              <input type="radio" name="weatherType" id="cold" value="cold" />
-              <label>Cold</label>
-            </div>
-          </div>
-        </ModalWithForm>
-      )}
-      {activeModal === "preview" && (
-        <ItemModal selectedCard={selectedcard} onClose={handleCloseModal} />
-      )}
+          </ModalWithForm>
+        )}
+        {activeModal === "preview" && (
+          <ItemModal selectedCard={selectedcard} onClose={handleCloseModal} />
+        )}
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
