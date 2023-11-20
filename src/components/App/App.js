@@ -14,6 +14,7 @@ import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUni
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import AddItemModal from "../../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -93,7 +94,9 @@ function App() {
           <Route exact path="/">
             <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
           </Route>
-          <Route path="/profile">profile</Route>
+          <Route path="/profile">
+            <Profile></Profile>
+          </Route>
         </Switch>
 
         <Footer />

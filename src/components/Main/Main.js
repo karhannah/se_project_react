@@ -52,22 +52,3 @@ function Main({ weatherTemp, onSelectCard }) {
 }
 
 export default Main;
-
-// if (currentTemperatureUnit === "F") {
-//   if (temp >= `${86}°F`) {
-//     return "hot";
-//   } else if (temp >= `${66}°F` && temp <= `${85}°F`) {
-//     return "warm";
-//   } else if (temp <= `${65}°F`) {
-//     return "cold";
-//   }
-// }
-// else {
-//   if (temp >= `${30}°C`) {
-//     return "hot";
-//   } else if (temp >= `${18}°C` && weatherTemp <= `${29}°C`) {
-//     return "warm";
-//   } else if (temp <= `${18}°C`) {
-//     return "cold";
-//   }
-// }
