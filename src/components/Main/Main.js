@@ -8,15 +8,24 @@ import "./Main.css";
 function Main({ weatherTemp, onSelectCard }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 85;
-  console.log(currentTemperatureUnit);
-  const getWeatherType = (temp) => {
+  const getWeatherType = () => {
     if (currentTemperatureUnit === "F") {
       if (temp >= 86) {
         return "hot";
-      } else if (temp >= 66 && weatherTemp <= 85) {
+      } else if (temp >= 66 && temp <= 85) {
         return "warm";
       } else if (temp <= 65) {
         return "cold";
+      }
+    } else {
+      if (currentTemperatureUnit === "C") {
+        if (temp >= 30) {
+          return "hot";
+        } else if (temp >= 18 && temp <= 29) {
+          return "warm";
+        } else if (temp <= 17) {
+          return "cold";
+        }
       }
     }
   };
@@ -29,7 +38,9 @@ function Main({ weatherTemp, onSelectCard }) {
     <main className="main">
       <WeatherCard day={true} type="Cloudy" weatherTemp={temp} />
       <section id="card-section" className="card_section">
-        <div>Today is {temp}°F/ You may want to wear:</div>
+        <div>
+          Today is {temp}°{currentTemperatureUnit} : You may want to wear:
+        </div>
         <div className="card_items">
           {filteredCards.map((item) => (
             <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
@@ -42,6 +53,15 @@ function Main({ weatherTemp, onSelectCard }) {
 
 export default Main;
 
+// if (currentTemperatureUnit === "F") {
+//   if (temp >= `${86}°F`) {
+//     return "hot";
+//   } else if (temp >= `${66}°F` && temp <= `${85}°F`) {
+//     return "warm";
+//   } else if (temp <= `${65}°F`) {
+//     return "cold";
+//   }
+// }
 // else {
 //   if (temp >= `${30}°C`) {
 //     return "hot";
