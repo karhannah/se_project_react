@@ -9,13 +9,15 @@ function Main({ weatherTemp, onSelectCard }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 85;
   console.log(currentTemperatureUnit);
-  const getWeatherType = () => {
-    if (temp >= 86) {
-      return "hot";
-    } else if (temp >= 66 && weatherTemp <= 85) {
-      return "warm";
-    } else if (temp <= 65) {
-      return "cold";
+  const getWeatherType = (temp) => {
+    if (currentTemperatureUnit === "F") {
+      if (temp >= 86) {
+        return "hot";
+      } else if (temp >= 66 && weatherTemp <= 85) {
+        return "warm";
+      } else if (temp <= 65) {
+        return "cold";
+      }
     }
   };
   const weatherType = getWeatherType();
@@ -39,3 +41,13 @@ function Main({ weatherTemp, onSelectCard }) {
 }
 
 export default Main;
+
+// else {
+//   if (temp >= `${30}°C`) {
+//     return "hot";
+//   } else if (temp >= `${18}°C` && weatherTemp <= `${29}°C`) {
+//     return "warm";
+//   } else if (temp <= `${18}°C`) {
+//     return "cold";
+//   }
+// }

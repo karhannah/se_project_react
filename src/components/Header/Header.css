@@ -52,6 +52,7 @@
   font-weight: 700;
   line-height: normal;
   height: 25px;
+  text-decoration: none;
 }
 
 .header__location {

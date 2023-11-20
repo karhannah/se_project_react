@@ -8,6 +8,8 @@ const ModalWithForm = ({
   name,
   state = { disabled: true },
   ref,
+  setActiveModal,
+  onSubmit,
 }) => {
   return (
     <div className="modal__overlay" ref={ref}>
@@ -20,11 +22,11 @@ const ModalWithForm = ({
           ></button>
           <h3 className="modal__title">{title}</h3>
 
-          <form className="modal__add-form">
+          <form className="modal__add-form" onSubmit={onSubmit}>
             {children}
             <button
               className="modal__add-form_button"
-              disabled={state}
+              // disabled={state}
               type="submit"
             >
               {(buttonText = "Add garment")}

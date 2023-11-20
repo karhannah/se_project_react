@@ -1,6 +1,7 @@
 import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
 import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ onCreate, city, currentDate }) => {
@@ -9,7 +10,9 @@ const Header = ({ onCreate, city, currentDate }) => {
       <header className="header">
         <div className="header__logo">
           <div>
-            <img src={avatarImage} alt="Logo" />
+            <Link to="/">
+              <img src={avatarImage} alt="Logo" />
+            </Link>
           </div>
           <div className="header__date-and-location">
             <div className="header__date">{currentDate},</div>
@@ -27,7 +30,9 @@ const Header = ({ onCreate, city, currentDate }) => {
               + Add Clothes
             </button>
           </div>
-          <div className="header__user-name">Terrence Tegegne</div>
+          <Link to="/profile" className="header__user-name">
+            Terrence Tegegne
+          </Link>
           <div>
             <img src={AvatarLogo} alt="Avatar" />
           </div>

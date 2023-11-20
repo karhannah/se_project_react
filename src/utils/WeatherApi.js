@@ -10,14 +10,14 @@ export const getWeatherAndLocation = () => {
 
 export const parseWeatherData = (data) => {
   const main = data.main;
+  console.log(data.main);
   const temperature = main && main.temp;
   const weather = {
     temperature: {
-      F: Math.round(temperature),
-      C: Math.round(((temperature - 32) * 5) / 9),
+      F: `${Math.round(temperature)}°F`,
+      C: `${Math.round(((temperature - 32) * 5) / 9)}°C`,
     },
   };
-  console.log(weather);
   return weather;
 };
 
