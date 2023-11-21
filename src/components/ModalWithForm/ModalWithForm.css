@@ -175,3 +175,21 @@
   font-weight: 700;
   line-height: 20px;
 }
+
+.modal__delete-button_container {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: 118px;
+}
+
+.modal__delete-button {
+  color: #ff4d00;
+  background: none;
+  border: none;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+}

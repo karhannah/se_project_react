@@ -1,7 +1,6 @@
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import React, { useEffect, useState } from "react";
 import {
@@ -15,6 +14,7 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import AddItemModal from "../../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
+import DeleteItemModal from "../../DeleteItemModal/DeleteItemModal";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -95,7 +95,7 @@ function App() {
             <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
           </Route>
           <Route path="/profile">
-            <Profile></Profile>
+            <Profile onSelectCard={handleSelectedCard}></Profile>
           </Route>
         </Switch>
 
