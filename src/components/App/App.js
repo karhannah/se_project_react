@@ -22,6 +22,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  // const [deleteCard, removeDeletedCard] = useState({});
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -32,6 +33,14 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+  const handleDeleteOpenModal = () => {
+    setActiveModal("delete");
+  };
+  const handleDeleteCard = (id) => {
+    console.log(selectedcard);
+    // const newList = selectedcard.filter((l) => l.id !== id);
+    // setSelectedCard(newList);
   };
   const onAddItem = (values) => {
     console.log(values);
@@ -108,7 +117,17 @@ function App() {
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedcard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedcard}
+            onClose={handleCloseModal}
+            onClick={handleDeleteOpenModal}
+          />
+        )}
+        {activeModal === "delete" && (
+          <DeleteItemModal
+            onClose={handleCloseModal}
+            deleteCard={handleDeleteCard}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

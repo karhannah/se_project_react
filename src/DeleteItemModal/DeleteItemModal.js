@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import ModalWithForm from "../components/ModalWithForm/ModalWithForm";
-import "./DeleteItemModal.css";
-
-const DeleteItemModal = ({ children }) => {
-  const [deleteItem, setDeleteItem] = useState("");
-
-  const handleDeleteItem = () => {
-    console.log("Handle delete fired");
-  };
+import closeButton from "../images/grey-x-button.svg";
+import "../components/ModalWithForm/ModalWithForm.css";
+const DeleteItemModal = ({ onClose, deleteCard }) => {
   return (
     <div className="delete__modal-container">
-      <div className="delete__modal">
-        <div className="delete__modal-header"></div>
-        <button className="delete__modal-close">&times;</button>
-        <div className="delete__modal-content">
-          <p>{children}</p>
-        </div>
-        <div className="delete__modal-footer">
-          <button className="delete_btn delete_btn-confirm">
-            Yes, delete item
-          </button>
-          <button className="delete_btn delete_btn-cancel">Cancel</button>
+      <div className={`modal`}>
+        <div className="delete__modal">
+          <div className="delete__modal-header">
+            <button className="delete__modal-close">
+              <img src={closeButton} onClick={onClose}></img>
+            </button>
+          </div>
+
+          <div className="delete__modal-content">
+            <p className="delete__modal-text">
+              Are you sure you want to delete this item?
+            </p>
+            <p className="delete__modal-text">This action is irreversible.</p>
+          </div>
+          <div className="delete__modal-footer">
+            <button
+              className="delete_btn delete_btn-confirm"
+              onClick={onClose && deleteCard}
+            >
+              Yes, delete item
+            </button>
+            <button className="delete_btn delete_btn-cancel" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
