@@ -15,6 +15,7 @@ import { Route, Switch } from "react-router-dom";
 import AddItemModal from "../../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../../DeleteItemModal/DeleteItemModal";
+import { getItems, postItems, deleteItems } from "../../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -22,6 +23,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
   // const [deleteCard, removeDeletedCard] = useState({});
 
   const handleCreateModal = () => {
@@ -42,8 +44,15 @@ function App() {
     // const newList = selectedcard.filter((l) => l.id !== id);
     // setSelectedCard(newList);
   };
-  const onAddItem = (values) => {
+  const onAddItemSubmit = (values) => {
     console.log(values);
+    function requestAddItems() {
+      return postItems().then((res) => {
+        if (res && res.data) {
+          setClothingItems((previousItems) => [res.data, ...previousItems]);
+        }
+      });
+    }
     // add functionality to this to make the new cards render to the page
   };
   const handleToggleSwitchChange = () => {
@@ -89,6 +98,15 @@ function App() {
         console.log("Error: An error occurred", error);
       });
   }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((items) => {
+        console.log("values for items retrieved", items);
+      })
+      .catch(console.error);
+  });
+
   return (
     <div>
       <CurrentTemperatureUnitContext.Provider
@@ -113,7 +131,8 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             setActiveModal={activeModal === "create"}
-            onAddItem={onAddItem}
+            onAddItem={onAddItemSubmit}
+            lol={clothingItems}
           />
         )}
         {activeModal === "preview" && (

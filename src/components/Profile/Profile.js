@@ -1,5 +1,7 @@
 import AvatarLogo from "../../images/headerAvatar.svg";
 import { defaultClothingItems } from "../../utils/Constants";
+import { getItems } from "../../utils/api";
+
 import ItemCard from "../ItemCard/ItemCard";
 import "./Profile.css";
 const Profile = ({ onCreate, onSelectCard }) => {

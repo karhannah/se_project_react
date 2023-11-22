@@ -1,4 +1,6 @@
 import "./ItemCard.css";
+import { postItems } from "../../utils/api";
+
 const ItemCard = ({ item, onSelectCard }) => {
   return (
     <div>
