@@ -13,7 +13,7 @@ export function getItems() {
       "Content-Type": "application/json",
       // Authorization: `Bearer ${localStorage.getItem("")}
     },
-  });
+  }).then(processServerResponse);
 }
 
 // POST https://localhost:3001/items
@@ -24,7 +24,7 @@ export function postItems() {
     headers: {
       "Content-Type": "application/json",
     },
-  });
+  }).then(processServerResponse);
 }
 // DELETE https://localhost:3001/items/:id
 
@@ -34,5 +34,5 @@ export function deleteItems() {
     headers: {
       "Content-Type": "application/json",
     },
-  });
+  }).then(processServerResponse);
 }

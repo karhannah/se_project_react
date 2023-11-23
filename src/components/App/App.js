@@ -96,11 +96,13 @@ function App() {
       .catch((error) => {
         console.log("Error: An error occurred", error);
       });
-    getItems().then((response) => {
-      console.log(response);
-      setClothingItems(response);
-    });
   }, []);
+
+  useEffect(() => {
+    getItems().then((items) => {
+      setClothingItems(items);
+    });
+  });
 
   return (
     <div>
@@ -114,10 +116,17 @@ function App() {
         />
         <Switch>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              setClothingItems={clothingItems}
+            />
           </Route>
           <Route path="/profile">
-            <Profile onSelectCard={handleSelectedCard}></Profile>
+            <Profile
+              onSelectCard={handleSelectedCard}
+              setClothingItems={clothingItems}
+            ></Profile>
           </Route>
         </Switch>
 

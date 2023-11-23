@@ -1,12 +1,11 @@
 import "./ItemCard.css";
-import { postItems } from "../../utils/api";
 
 const ItemCard = ({ item, onSelectCard }) => {
   return (
     <div>
       <div>
         <img
-          src={item.link}
+          src={item.imageUrl}
           className="card_image"
           onClick={() => onSelectCard(item)}
         />

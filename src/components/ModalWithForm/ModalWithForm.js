@@ -28,6 +28,7 @@ const ModalWithForm = ({
               className="modal__add-form_button"
               // disabled={state}
               type="submit"
+              onSubmit={onClose}
             >
               {(buttonText = "Add garment")}
             </button>

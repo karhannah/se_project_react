@@ -1,12 +1,10 @@
 import AvatarLogo from "../../images/headerAvatar.svg";
-import { defaultClothingItems } from "../../utils/Constants";
-import { getItems } from "../../utils/api";
 
 import ItemCard from "../ItemCard/ItemCard";
 import "./Profile.css";
-const Profile = ({ onCreate, onSelectCard }) => {
-  const filteredCards = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase();
+const Profile = ({ onCreate, onSelectCard, setClothingItems }) => {
+  const filteredCards = setClothingItems.filter((item) => {
+    return item.weather;
   });
   return (
     <div>

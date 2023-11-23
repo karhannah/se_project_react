@@ -1,6 +1,5 @@
 import { defaultClothingItems } from "../../utils/Constants";
 // replace the hard coded list above ^^ with an api that retrieves the list from server
-import { getItems } from "../../utils/api";
 
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
@@ -8,7 +7,7 @@ import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUni
 import { useContext } from "react";
 import "./Main.css";
 
-function Main({ weatherTemp, onSelectCard }) {
+function Main({ weatherTemp, onSelectCard, setClothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 85;
   const getWeatherType = () => {
@@ -34,8 +33,8 @@ function Main({ weatherTemp, onSelectCard }) {
   };
   const weatherType = getWeatherType();
 
-  const filteredCards = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+  const filteredCards = setClothingItems.filter((item) => {
+    return item.weather === weatherType;
   });
 
   return (
@@ -47,7 +46,12 @@ function Main({ weatherTemp, onSelectCard }) {
         </div>
         <div className="card_items">
           {filteredCards.map((item) => (
-            <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
+            <ItemCard
+              item={item}
+              img={item.imageUrl}
+              onSelectCard={onSelectCard}
+              key={item._id}
+            />
           ))}
         </div>
       </section>
