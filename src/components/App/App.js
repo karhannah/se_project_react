@@ -24,7 +24,7 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  // const [deleteCard, removeDeletedCard] = useState({});
+  const [postClothingItem, setPostClothingItem] = useState([]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -100,9 +100,15 @@ function App() {
 
   useEffect(() => {
     getItems().then((items) => {
-      setClothingItems(items);
+      // setClothingItems(items);
     });
   });
+
+  // useEffect(() => {
+  //   postItems().then((items) => {
+  //     setPostClothingItem(items[0]);
+  //   });
+  // });
 
   return (
     <div>
@@ -137,6 +143,7 @@ function App() {
             setActiveModal={activeModal === "create"}
             onAddItem={onAddItem}
             clothingItems={clothingItems}
+            setPostClothingItem={postClothingItem}
           />
         )}
         {activeModal === "preview" && (
