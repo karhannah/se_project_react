@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import ModalWithForm from "../components/ModalWithForm/ModalWithForm";
-const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
+const AddItemModal = ({
+  handleCloseModal,
+  setActiveModal,
+  onAddItem,
+  clothingItems,
+}) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);

@@ -10,7 +10,6 @@ export const getWeatherAndLocation = () => {
 
 export const parseWeatherData = (data) => {
   const main = data.main;
-  console.log(data.main);
   const temperature = main && main.temp;
   const weather = {
     temperature: {

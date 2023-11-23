@@ -41,10 +41,9 @@ function App() {
   };
   const handleDeleteCard = (id) => {
     console.log(selectedcard);
-    // const newList = selectedcard.filter((l) => l.id !== id);
-    // setSelectedCard(newList);
   };
-  const onAddItemSubmit = (values) => {
+
+  const onAddItem = (values) => {
     console.log(values);
     function requestAddItems() {
       return postItems().then((res) => {
@@ -97,15 +96,11 @@ function App() {
       .catch((error) => {
         console.log("Error: An error occurred", error);
       });
+    getItems().then((response) => {
+      console.log(response);
+      setClothingItems(response);
+    });
   }, []);
-
-  useEffect(() => {
-    getItems()
-      .then((items) => {
-        console.log("values for items retrieved", items);
-      })
-      .catch(console.error);
-  });
 
   return (
     <div>
@@ -131,8 +126,8 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             setActiveModal={activeModal === "create"}
-            onAddItem={onAddItemSubmit}
-            lol={clothingItems}
+            onAddItem={onAddItem}
+            clothingItems={clothingItems}
           />
         )}
         {activeModal === "preview" && (

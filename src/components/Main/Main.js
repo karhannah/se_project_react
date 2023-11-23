@@ -1,4 +1,7 @@
 import { defaultClothingItems } from "../../utils/Constants";
+// replace the hard coded list above ^^ with an api that retrieves the list from server
+import { getItems } from "../../utils/api";
+
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
@@ -34,6 +37,7 @@ function Main({ weatherTemp, onSelectCard }) {
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
+
   return (
     <main className="main">
       <WeatherCard day={true} type="Cloudy" weatherTemp={temp} />
