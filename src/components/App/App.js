@@ -45,13 +45,14 @@ function App() {
   const onAddItem = (values) => {
     console.log(values);
     function requestAddItems() {
-      return postItems().then((res) => {
+      return postItems(values).then((res) => {
         if (res && res.data) {
           setClothingItems((previousItems) => [res.data, ...previousItems]);
         }
       });
     }
     // add functionality to this to make the new cards render to the page
+    requestAddItems();
   };
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -89,7 +90,7 @@ function App() {
         const city = locationData(data);
         setTemp(temperature);
         setCity(city);
-        // setType(parseWeatherTYpe(data))
+        // setType(parseWeatherType(data))
         // setTime(Date.now())
       })
       .catch((error) => {
@@ -154,5 +155,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

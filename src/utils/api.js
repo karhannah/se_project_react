@@ -18,12 +18,13 @@ export function getItems() {
 
 // POST https://localhost:3001/items
 
-export function postItems() {
+export function postItems(values) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(values),
   }).then(processServerResponse);
 }
 // DELETE https://localhost:3001/items/:id
