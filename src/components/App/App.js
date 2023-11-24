@@ -46,13 +46,15 @@ function App() {
     console.log(values);
     function requestAddItems() {
       return postItems(values).then((res) => {
-        if (res && res.data) {
-          setClothingItems((previousItems) => [res.data, ...previousItems]);
+        console.log(res);
+        if (res && values) {
+          setClothingItems((previousItems) => [values, ...previousItems]);
         }
       });
     }
     // add functionality to this to make the new cards render to the page
     requestAddItems();
+    // handleCloseModal("");
   };
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");

@@ -21,7 +21,7 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link, radio });
+    onAddItem({ id: 99, name, link, radio });
   };
   return (
     <ModalWithForm
@@ -53,7 +53,6 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
             type="url"
             name="link"
             minLength="2"
-            maxLength="30"
             placeholder="Image URL"
             value={link}
             onChange={handleUrlChange}
