@@ -40,6 +40,13 @@ function App() {
   };
   const handleDeleteCard = (id) => {
     console.log(selectedcard);
+    function deleteItem() {
+      console.log("deleteing...");
+      deleteItems().then(() => {
+        window.location.reload();
+      });
+    }
+    deleteItem();
   };
 
   const onAddItem = (values) => {
@@ -47,14 +54,12 @@ function App() {
     function requestAddItems() {
       return postItems(values).then((res) => {
         console.log(res);
-        if (res && values) {
-          setClothingItems((previousItems) => [values, ...previousItems]);
-        }
+        setClothingItems((previousItems) => [values, ...previousItems]);
       });
     }
     // add functionality to this to make the new cards render to the page
     requestAddItems();
-    // handleCloseModal("");
+    handleCloseModal("");
   };
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");

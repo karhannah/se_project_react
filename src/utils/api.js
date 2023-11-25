@@ -27,6 +27,7 @@ export function postItems(values) {
     body: JSON.stringify(values),
   }).then(processServerResponse);
 }
+
 // DELETE https://localhost:3001/items/:id
 
 export function deleteItems() {
@@ -37,3 +38,5 @@ export function deleteItems() {
     },
   }).then(processServerResponse);
 }
+
+// start db.json with this > json-server --watch db.json --id _id --port 3001

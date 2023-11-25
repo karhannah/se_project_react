@@ -21,7 +21,7 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ id: 99, name, link, radio });
+    onAddItem({ id: Date.now(), name, imageUrl: link, weather: radio });
   };
   return (
     <ModalWithForm
