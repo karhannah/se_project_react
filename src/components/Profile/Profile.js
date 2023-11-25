@@ -14,17 +14,18 @@ const Profile = ({ onCreate, onSelectCard, setClothingItems }) => {
           <div className="profile__user-name">Terrence Tegegne</div>
         </div>
         {/*  */}
-        <div className="profile__items-text">
-          Your Items
-          <button
-            className="profile__add-button"
-            onClick={onCreate}
-            type="button"
-          >
-            + add new
-          </button>
-        </div>
-        <div>
+
+        <div className="profile__items-container">
+          <div className="profile__items-text">
+            Your Items
+            <button
+              className="profile__add-button"
+              onClick={onCreate}
+              type="button"
+            >
+              + add new
+            </button>
+          </div>
           <div className="profile__card-items">
             {filteredCards.map((item) => (
               <ItemCard

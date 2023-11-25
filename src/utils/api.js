@@ -30,13 +30,13 @@ export function postItems(values) {
 
 // DELETE https://localhost:3001/items/:id
 
-export function deleteItems() {
-  return fetch(`${baseUrl}/items/:id`, {
+export function deleteItems(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(processServerResponse);
+  });
 }
 
 // start db.json with this > json-server --watch db.json --id _id --port 3001

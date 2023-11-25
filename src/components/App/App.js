@@ -42,8 +42,9 @@ function App() {
     console.log(selectedcard);
     function deleteItem() {
       console.log("deleteing...");
-      deleteItems().then(() => {
-        window.location.reload();
+      deleteItems(id).then(() => {
+        console.log(id);
+        // window.location.reload();
       });
     }
     deleteItem();

@@ -1,7 +1,6 @@
 .profile {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  align-items: start;
   min-height: 60px;
   padding: 32px 40px 0;
   color: #000;
@@ -9,12 +8,19 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  gap: 30px;
+}
+
+.profile__items-container {
+  position: relative;
+  top: 15px;
 }
 
 .profile__logo {
   display: flex;
   align-items: center;
   gap: 20px;
+  min-width: 229px;
 }
 
 .profile__user-name {
@@ -29,7 +35,7 @@
 }
 
 .profile__items-text {
-  margin: 0 0 0 20px;
+  margin: 0 auto;
   line-height: 25px;
   font-size: 20px;
 }
@@ -47,10 +53,10 @@
 .profile__card-items {
   display: flex;
   flex-wrap: wrap;
-  gap: 17px;
+  gap: 15px;
+  row-gap: 0px;
   justify-content: center;
   margin-top: 20px;
   text-align: center;
   position: relative;
-  /* left: 70px; */
 }
