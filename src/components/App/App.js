@@ -38,13 +38,13 @@ function App() {
   const handleDeleteOpenModal = () => {
     setActiveModal("delete");
   };
-  const handleDeleteCard = (id) => {
+  const handleDeleteCard = () => {
     console.log(selectedcard);
     function deleteItem() {
       console.log("deleteing...");
-      deleteItems(id).then(() => {
-        console.log(id);
-        // window.location.reload();
+      deleteItems(selectedcard._id).then(() => {
+        console.log(selectedcard._id);
+        window.location.reload();
       });
     }
     deleteItem();
@@ -134,6 +134,7 @@ function App() {
             <Profile
               onSelectCard={handleSelectedCard}
               setClothingItems={clothingItems}
+              onCreate={handleCreateModal}
             ></Profile>
           </Route>
         </Switch>

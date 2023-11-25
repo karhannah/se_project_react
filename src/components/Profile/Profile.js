@@ -23,7 +23,7 @@ const Profile = ({ onCreate, onSelectCard, setClothingItems }) => {
               onClick={onCreate}
               type="button"
             >
-              + add new
+              + Add new
             </button>
           </div>
           <div className="profile__card-items">
