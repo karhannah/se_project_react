@@ -1,5 +1,7 @@
 ## Project name: se_project_react
 
+<a href="https://xdro.github.io/se_project_react/">Click here to view my webiste!</a>
+
 ## This project contains the following:
 
 The index.css and index.js files.
