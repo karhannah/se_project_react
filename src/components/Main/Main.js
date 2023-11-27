@@ -1,6 +1,3 @@
-import { defaultClothingItems } from "../../utils/Constants";
-// replace the hard coded list above ^^ with an api that retrieves the list from server
-
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
