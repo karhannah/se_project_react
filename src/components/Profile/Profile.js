@@ -1,18 +1,11 @@
-import AvatarLogo from "../../images/headerAvatar.svg";
-
-import ItemCard from "../ItemCard/ItemCard";
+import SideBar from "./SideBar";
+import ClothesSection from "./ClothesSection";
 import "./Profile.css";
-const Profile = ({ onCreate, onSelectCard, setClothingItems }) => {
-  const filteredCards = setClothingItems.filter((item) => {
-    return item.weather;
-  });
+const Profile = ({ onCreate }) => {
   return (
     <div>
       <div className="profile">
-        <div className="profile__logo">
-          <img className="profile__avatar-logo" src={AvatarLogo} alt="Avatar" />
-          <div className="profile__user-name">Terrence Tegegne</div>
-        </div>
+        <SideBar />
         {/*  */}
 
         <div className="profile__items-container">
@@ -26,15 +19,7 @@ const Profile = ({ onCreate, onSelectCard, setClothingItems }) => {
               + Add new
             </button>
           </div>
-          <div className="profile__card-items">
-            {filteredCards.map((item) => (
-              <ItemCard
-                item={item}
-                onSelectCard={onSelectCard}
-                key={item._id}
-              />
-            ))}
-          </div>
+          <ClothesSection />
         </div>
       </div>
     </div>

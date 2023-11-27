@@ -1,4 +1,4 @@
-import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
 import { Link } from "react-router-dom";
