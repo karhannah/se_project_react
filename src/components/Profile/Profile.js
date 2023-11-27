@@ -1,7 +1,7 @@
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import "./Profile.css";
-const Profile = ({ onCreate, clothingItems }) => {
+const Profile = ({ onCreate, clothingItems, onSelectCard }) => {
   return (
     <div>
       <div className="profile">
@@ -17,7 +17,10 @@ const Profile = ({ onCreate, clothingItems }) => {
               + Add new
             </button>
           </div>
-          <ClothesSection clothingItems={clothingItems} />
+          <ClothesSection
+            clothingItems={clothingItems}
+            onSelectCard={onSelectCard}
+          />
         </div>
       </div>
     </div>

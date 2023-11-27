@@ -1,5 +1,4 @@
 import ItemCard from "../ItemCard/ItemCard";
-import { useState } from "react";
 
 const ClothesSection = ({ onSelectCard, clothingItems }) => {
   const filteredCards = clothingItems.filter((item) => {
