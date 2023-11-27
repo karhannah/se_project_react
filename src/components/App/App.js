@@ -8,7 +8,7 @@ import {
   locationData,
   parseWeatherData,
 } from "../../utils/WeatherApi";
-import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
