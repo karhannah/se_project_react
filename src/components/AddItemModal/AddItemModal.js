@@ -32,7 +32,7 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem({
-      id: generateUniqueId(),
+      _id: generateUniqueId(),
       name,
       imageUrl: link,
       weather: weatherType,
