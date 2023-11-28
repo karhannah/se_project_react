@@ -16,6 +16,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import { getItems, postItems, deleteItems } from "../../utils/api";
+import { processServerResponse } from "../../utils/utils";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -24,6 +25,8 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  // const [isLoading, setIsLoading] = React.useState(false);
+  // ^^ add later for better code
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -38,36 +41,48 @@ function App() {
   const handleDeleteOpenModal = () => {
     setActiveModal("delete");
   };
-  const handleDeleteCard = () => {
+  const handleDeleteCard = async () => {
     const deleteItem = async () => {
       try {
         await deleteItems(selectedcard._id);
         console.log(selectedcard._id);
-
         // Update the state to remove the deleted item
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== selectedcard._id)
         );
       } catch (error) {
-        console.error("Error deleting item:", error);
+        console.error("Error deleting item:", processServerResponse, error);
       }
     };
-    deleteItem();
-    handleCloseModal("");
+    await deleteItem().then(handleCloseModal(""));
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-    function requestAddItems() {
-      return postItems(values).then((res) => {
-        console.log(res);
-        setClothingItems((previousItems) => [values, ...previousItems]);
-      });
-    }
-    // add functionality to this to make the new cards render to the page
-    requestAddItems();
-    handleCloseModal("");
+  // const onAddItem = (values) => {
+  //   function requestAddItems() {
+  //     return postItems(values).then((res) => {
+  //       console.log(res);
+  //       setClothingItems((previousItems) => [values, ...previousItems]);
+  //     });
+  //   }
+  //   requestAddItems();
+  //   handleCloseModal("");
+  // };
+
+  const onAddItem = async (values) => {
+    const requestAddItems = async () => {
+      try {
+        await postItems();
+        return postItems(values).then((res) => {
+          console.log(res);
+          setClothingItems((previousItems) => [values, ...previousItems]);
+        });
+      } catch (error) {
+        console.error("Error on add item:", processServerResponse, error);
+      }
+    };
+    await requestAddItems().then(handleCloseModal(""));
   };
+
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -119,55 +134,53 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <Header
-          onCreate={handleCreateModal}
-          city={city}
-          currentDate={currentDate}
-        />
-        <Switch>
-          <Route exact path="/">
-            <Main
-              weatherTemp={temp}
-              onSelectCard={handleSelectedCard}
-              setClothingItems={clothingItems}
-            />
-          </Route>
-          <Route path="/profile">
-            <Profile
-              onSelectCard={handleSelectedCard}
-              clothingItems={clothingItems}
-              onCreate={handleCreateModal}
-            ></Profile>
-          </Route>
-        </Switch>
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <Header
+        onCreate={handleCreateModal}
+        city={city}
+        currentDate={currentDate}
+      />
+      <Switch>
+        <Route exact path="/">
+          <Main
+            weatherTemp={temp}
+            onSelectCard={handleSelectedCard}
+            setClothingItems={clothingItems}
+          />
+        </Route>
+        <Route path="/profile">
+          <Profile
+            onSelectCard={handleSelectedCard}
+            clothingItems={clothingItems}
+            onCreate={handleCreateModal}
+          ></Profile>
+        </Route>
+      </Switch>
 
-        <Footer />
-        {activeModal === "create" && (
-          <AddItemModal
-            handleCloseModal={handleCloseModal}
-            setActiveModal={activeModal === "create"}
-            onAddItem={onAddItem}
-          />
-        )}
-        {activeModal === "preview" && (
-          <ItemModal
-            selectedCard={selectedcard}
-            onClose={handleCloseModal}
-            onClick={handleDeleteOpenModal}
-          />
-        )}
-        {activeModal === "delete" && (
-          <DeleteItemModal
-            onClose={handleCloseModal}
-            deleteCard={handleDeleteCard}
-          />
-        )}
-      </CurrentTemperatureUnitContext.Provider>
-    </div>
+      <Footer />
+      {activeModal === "create" && (
+        <AddItemModal
+          handleCloseModal={handleCloseModal}
+          setActiveModal={activeModal === "create"}
+          onAddItem={onAddItem}
+        />
+      )}
+      {activeModal === "preview" && (
+        <ItemModal
+          selectedCard={selectedcard}
+          onClose={handleCloseModal}
+          onClick={handleDeleteOpenModal}
+        />
+      )}
+      {activeModal === "delete" && (
+        <DeleteItemModal
+          onClose={handleCloseModal}
+          deleteCard={handleDeleteCard}
+        />
+      )}
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 export default App;
