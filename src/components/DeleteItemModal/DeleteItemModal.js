@@ -2,12 +2,12 @@ import closeButton from "../../images/grey-x-button.svg";
 import "../ModalWithForm/ModalWithForm.css";
 const DeleteItemModal = ({ onClose, deleteCard }) => {
   return (
-    <div className="delete__modal-container">
-      <div className={`modal`}>
+    <div className={`modal delete-modal`}>
+      <div className="delete__modal-container">
         <div className="delete__modal">
           <div className="delete__modal-header">
             <button className="delete__modal-close">
-              <img src={closeButton} onClick={onClose}></img>
+              <img src={closeButton} onClick={onClose} alt="Close Button"></img>
             </button>
           </div>
 

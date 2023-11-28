@@ -105,13 +105,6 @@
       "_id": 18
     },
     {
-      "id": "1701138522083-rd71d6",
-      "name": "test",
-      "imageUrl": "https://images.unsplash.com/photo-1534215754734-18e55d13e346?q=80&w=2608&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "weather": "hot",
-      "_id": 21
-    },
-    {
       "id": "1701177219397-nckkxw",
       "name": "test",
       "imageUrl": "https://images.unsplash.com/photo-1534215754734-18e55d13e346?q=80&w=2608&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -198,21 +191,7 @@
       "_id": 43
     },
     {
-      "id": "1701203423816-682oq2",
-      "name": "test",
-      "imageUrl": "https://images.unsplash.com/photo-1534215754734-18e55d13e346?q=80&w=2608&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "weather": "hot",
-      "_id": 44
-    },
-    {
       "_id": 45
-    },
-    {
-      "id": "1701203582820-8fqrrw",
-      "name": "test",
-      "imageUrl": "https://images.unsplash.com/photo-1694501898581-49fd192e65fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
-      "weather": "hot",
-      "_id": 46
     },
     {
       "_id": 47
