@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import closeButton from "../images/grey-x-button.svg";
 import "../components/ModalWithForm/ModalWithForm.css";
 const DeleteItemModal = ({ onClose, deleteCard }) => {

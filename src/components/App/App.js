@@ -39,14 +39,20 @@ function App() {
     setActiveModal("delete");
   };
   const handleDeleteCard = () => {
-    console.log(selectedcard);
-    function deleteItem() {
-      console.log("deleteing...");
-      deleteItems(selectedcard._id).then(() => {
+    const deleteItem = async () => {
+      try {
+        await deleteItems(selectedcard._id);
         console.log(selectedcard._id);
-        window.location.reload();
-      });
-    }
+
+        // Update the state to remove the deleted item
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedcard._id)
+        );
+      } catch (error) {
+        console.error("Error deleting item:", error);
+      }
+    };
+
     deleteItem();
   };
 
