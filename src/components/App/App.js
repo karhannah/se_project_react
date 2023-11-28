@@ -52,8 +52,8 @@ function App() {
         console.error("Error deleting item:", error);
       }
     };
-
     deleteItem();
+    handleCloseModal("");
   };
 
   const onAddItem = (values) => {

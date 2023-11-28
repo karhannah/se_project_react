@@ -21,7 +21,7 @@ const DeleteItemModal = ({ onClose, deleteCard }) => {
           <div className="delete__modal-footer">
             <button
               className="delete_btn delete_btn-confirm"
-              onClick={onClose && deleteCard}
+              onClick={deleteCard}
             >
               Yes, delete item
             </button>
