@@ -1,6 +1,6 @@
 import React from "react";
-import closeButton from "../images/grey-x-button.svg";
-import "../components/ModalWithForm/ModalWithForm.css";
+import closeButton from "../../images/grey-x-button.svg";
+import "../ModalWithForm/ModalWithForm.css";
 const DeleteItemModal = ({ onClose, deleteCard }) => {
   return (
     <div className="delete__modal-container">

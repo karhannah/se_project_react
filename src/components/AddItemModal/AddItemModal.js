@@ -13,10 +13,10 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
     setUrl(e.target.value);
   };
 
-  const [radio, setRadio] = useState("");
+  const [weatherType, setWeatherType] = useState("");
   const handleRadioChange = (e) => {
     console.log(e.target.value);
-    setRadio(e.target.value);
+    setWeatherType(e.target.value);
   };
   const generateUniqueId = () => {
     const timestamp = new Date().getTime();
@@ -27,7 +27,12 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ id: generateUniqueId(), name, imageUrl: link, weather: radio });
+    onAddItem({
+      id: generateUniqueId(),
+      name,
+      imageUrl: link,
+      weather: weatherType,
+    });
   };
   return (
     <ModalWithForm
@@ -37,8 +42,8 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
       onSubmit={handleSubmit}
     >
       <div className="modal__input-container">
-        <p className="modal__input-title">Name</p>
         <label className="modal__label">
+          <p className="modal__input-title">Name</p>
           <input
             className="modal__input"
             required
@@ -51,8 +56,9 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
             onChange={handleNameChange}
           />
         </label>
-        <p className="modal__input-title">Image</p>
+
         <label className="modal__label">
+          <p className="modal__input-title">Image</p>
           <input
             className="modal__input"
             required
@@ -68,34 +74,40 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
       <p className="modal__radio-title">select weather type:</p>
       <div className="modal__radio-buttons">
         <div>
-          <input
-            type="radio"
-            name="weatherType"
-            id="hot"
-            value="hot"
-            onChange={handleRadioChange}
-          />
-          <label>Hot</label>
+          <label>
+            <input
+              type="radio"
+              name="weatherType"
+              id="hot"
+              value="hot"
+              onChange={handleRadioChange}
+            />
+            Hot
+          </label>
         </div>
         <div>
-          <input
-            type="radio"
-            name="weatherType"
-            id="warm"
-            value="warm"
-            onChange={handleRadioChange}
-          />
-          <label>Warm</label>
+          <label>
+            <input
+              type="radio"
+              name="weatherType"
+              id="warm"
+              value="warm"
+              onChange={handleRadioChange}
+            />
+            Warm
+          </label>
         </div>
         <div>
-          <input
-            type="radio"
-            name="weatherType"
-            id="cold"
-            value="cold"
-            onChange={handleRadioChange}
-          />
-          <label>Cold</label>
+          <label>
+            <input
+              type="radio"
+              name="weatherType"
+              id="cold"
+              value="cold"
+              onChange={handleRadioChange}
+            />
+            Cold
+          </label>
         </div>
       </div>
     </ModalWithForm>

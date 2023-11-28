@@ -14,7 +14,7 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import DeleteItemModal from "../../DeleteItemModal/DeleteItemModal";
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import { getItems, postItems, deleteItems } from "../../utils/api";
 
 function App() {

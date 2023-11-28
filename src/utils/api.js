@@ -36,7 +36,7 @@ export function deleteItems(id) {
     headers: {
       "Content-Type": "application/json",
     },
-  });
+  }).then(processServerResponse);
 }
 
 // start db.json with this > json-server --watch db.json --id _id --port 3001
