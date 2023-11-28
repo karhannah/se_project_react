@@ -18,10 +18,16 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
     console.log(e.target.value);
     setRadio(e.target.value);
   };
+  const generateUniqueId = () => {
+    const timestamp = new Date().getTime();
+    const randomNum = Math.random().toString(36).substring(2, 8);
+
+    return `${timestamp}-${randomNum}`;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ id: Date.now(), name, imageUrl: link, weather: radio });
+    onAddItem({ id: generateUniqueId(), name, imageUrl: link, weather: radio });
   };
   return (
     <ModalWithForm
