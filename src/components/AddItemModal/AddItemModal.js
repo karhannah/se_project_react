@@ -36,7 +36,7 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
       name,
       imageUrl: link,
       weather: weatherType,
-    });
+    }).then(handleCloseModal);
   };
   return (
     <ModalWithForm
