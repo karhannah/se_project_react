@@ -57,17 +57,6 @@ function App() {
     await deleteItem().then(handleCloseModal(""));
   };
 
-  // const onAddItem = (values) => {
-  //   function requestAddItems() {
-  //     return postItems(values).then((res) => {
-  //       console.log(res);
-  //       setClothingItems((previousItems) => [values, ...previousItems]);
-  //     });
-  //   }
-  //   requestAddItems();
-  //   handleCloseModal("");
-  // };
-
   const onAddItem = async (values) => {
     const requestAddItems = async () => {
       try {
@@ -80,7 +69,7 @@ function App() {
         console.error("Error on add item:", processServerResponse, error);
       }
     };
-    await requestAddItems().then(handleCloseModal(""));
+    await requestAddItems().then(() => handleCloseModal(""));
   };
 
   const handleToggleSwitchChange = () => {
