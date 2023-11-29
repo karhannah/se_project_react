@@ -60,7 +60,6 @@ function App() {
   const onAddItem = async (values) => {
     const requestAddItems = async () => {
       try {
-        // await postItems();
         return postItems(values).then((res) => {
           console.log(res);
           setClothingItems((previousItems) => [values, ...previousItems]);
