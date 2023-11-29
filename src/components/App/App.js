@@ -62,11 +62,10 @@ function App() {
           console.log(res);
           setClothingItems((previousItems) => [values, ...previousItems]);
         })
-        .then(() => handleCloseModal()); // moved her ebecause it was not working on line 71
+        .then(handleCloseModal());
     } catch (error) {
       console.error("Error on add item:", processServerResponse, error);
     }
-    await onAddItem();
   };
 
   const handleToggleSwitchChange = () => {
@@ -109,14 +108,18 @@ function App() {
         // setTime(Date.now())
       })
       .catch((error) => {
-        console.log("Error: An error occurred", error);
+        console.log("Error: An error occurred", processServerResponse, error);
       });
   }, []);
 
   useEffect(() => {
-    getItems().then((items) => {
-      setClothingItems(items);
-    });
+    getItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((error) => {
+        console.error("Error: An error occurred", processServerResponse, error);
+      });
   }, []);
 
   return (
