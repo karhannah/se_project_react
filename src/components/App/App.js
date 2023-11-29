@@ -42,31 +42,31 @@ function App() {
     setActiveModal("delete");
   };
   const handleDeleteCard = async () => {
-    const deleteItem = async () => {
-      try {
-        await deleteItems(selectedcard._id);
-        console.log(selectedcard._id);
-        // Update the state to remove the deleted item
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => item._id !== selectedcard._id)
-        );
-      } catch (error) {
-        console.error("Error deleting item:", processServerResponse, error);
-      }
-    };
-    await deleteItem().then(() => handleCloseModal(""));
+    try {
+      await deleteItems(selectedcard._id);
+      console.log(selectedcard._id);
+      // Update the state to remove the deleted item
+      setClothingItems((prevItems) =>
+        prevItems.filter((item) => item._id !== selectedcard._id)
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error deleting item:", processServerResponse, error);
+    }
   };
 
   const onAddItem = async (values) => {
     try {
-      return postItems(values).then((res) => {
-        console.log(res);
-        setClothingItems((previousItems) => [values, ...previousItems]);
-      });
+      return postItems(values)
+        .then((res) => {
+          console.log(res);
+          setClothingItems((previousItems) => [values, ...previousItems]);
+        })
+        .then(() => handleCloseModal()); // moved her ebecause it was not working on line 71
     } catch (error) {
       console.error("Error on add item:", processServerResponse, error);
     }
-    await onAddItem().then(() => handleCloseModal(""));
+    await onAddItem();
   };
 
   const handleToggleSwitchChange = () => {
