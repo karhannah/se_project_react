@@ -54,13 +54,13 @@ function App() {
         console.error("Error deleting item:", processServerResponse, error);
       }
     };
-    await deleteItem().then(handleCloseModal(""));
+    await deleteItem().then(() => handleCloseModal(""));
   };
 
   const onAddItem = async (values) => {
     const requestAddItems = async () => {
       try {
-        await postItems();
+        // await postItems();
         return postItems(values).then((res) => {
           console.log(res);
           setClothingItems((previousItems) => [values, ...previousItems]);

@@ -197,13 +197,6 @@
       "_id": 47
     },
     {
-      "id": "1701203690865-kh5o63",
-      "name": "test",
-      "imageUrl": "https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGF0c3xlbnwwfHwwfHx8MA%3D%3D",
-      "weather": "hot",
-      "_id": 48
-    },
-    {
       "_id": 49
     },
     {
@@ -268,12 +261,6 @@
     },
     {
       "_id": 58
-    },
-    {
-      "_id": "1701273864809-sg4ext",
-      "name": "test",
-      "imageUrl": "https://unsplash.com/photos/assorted-color-cowboy-hat-lot-vU2MmvDCmUo",
-      "weather": "hot"
     },
     {
       "_id": 59
