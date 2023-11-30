@@ -16,7 +16,6 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import { getItems, postItems, deleteItems } from "../../utils/api";
-import { processServerResponse } from "../../utils/utils";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -106,7 +105,7 @@ function App() {
         // setTime(Date.now())
       })
       .catch((error) => {
-        console.log("Error: An error occurred", processServerResponse, error);
+        console.error("Error: An error occurred", error);
       });
   }, []);
 
