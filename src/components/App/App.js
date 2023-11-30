@@ -51,7 +51,7 @@ function App() {
       );
       handleCloseModal();
     } catch (error) {
-      console.error("Error deleting item:", processServerResponse, error);
+      console.error("Error deleting item:", error);
     }
   };
 
@@ -62,7 +62,7 @@ function App() {
       setClothingItems((prevItems) => [values, ...prevItems]);
       handleCloseModal();
     } catch (error) {
-      console.error("Error on add item:", processServerResponse, error);
+      console.error("Error on add item:", error);
     }
   };
 
@@ -116,7 +116,7 @@ function App() {
         setClothingItems(items);
       })
       .catch((error) => {
-        console.error("Error: An error occurred", processServerResponse, error);
+        console.error("Error: An error occurred", error);
       });
   }, []);
 
