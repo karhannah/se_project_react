@@ -57,12 +57,10 @@ function App() {
 
   const onAddItem = async (values) => {
     try {
-      return postItems(values)
-        .then((res) => {
-          console.log(res);
-          setClothingItems((previousItems) => [values, ...previousItems]);
-        })
-        .then(handleCloseModal());
+      const res = await postItems(values);
+      console.log(res);
+      setClothingItems((prevItems) => [values, ...prevItems]);
+      handleCloseModal();
     } catch (error) {
       console.error("Error on add item:", processServerResponse, error);
     }
