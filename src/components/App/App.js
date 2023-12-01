@@ -58,7 +58,8 @@ function App() {
     try {
       const res = await postItems(values);
       console.log(res);
-      setClothingItems((prevItems) => [values, ...prevItems]);
+      setClothingItems((prevItems) => [res, ...prevItems]);
+      console.log(res);
       handleCloseModal();
     } catch (error) {
       console.error("Error on add item:", error);
