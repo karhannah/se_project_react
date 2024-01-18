@@ -15,7 +15,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
-import { getItems, postItems, deleteItems } from "../../utils/api";
+import {
+  getItems,
+  postItems,
+  deleteItems,
+  getCurrentUser,
+} from "../../utils/api";
 
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
@@ -30,8 +35,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setLoggedIn] = React.useState(false);
-  // const [isLoading, setIsLoading] = React.useState(false);
-  // ^^ add later for better code
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -74,6 +77,9 @@ function App() {
       console.error("Error on add item:", error);
     }
   };
+
+  // work on function below to get the current user id
+  const currentUserId = async () => {};
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -133,6 +139,7 @@ function App() {
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
+      {/* <CurrentUserContext.Provider isLoggedIn={isLoggedIn} path="/profile"> */}
       <Header
         onCreate={handleCreateModal}
         city={city}
@@ -142,16 +149,13 @@ function App() {
         <Route path="/register">
           <Register onClose={handleCloseModal} onClick={handleRegisterModal} />
         </Route>
-        {/* <Route path="/profile">
+        <Route path="/profile">
           <Profile
             onSelectCard={handleSelectedCard}
             clothingItems={clothingItems}
             onCreate={handleCreateModal}
           ></Profile>
-        </Route> */}
-        <CurrentUserContext.Provider value={currentUser} />
-        {/* moved root route from top to bottom of switch component */}
-        {/* exact removed from route path="/" */}
+        </Route>
         <Route path="/">
           <Main
             weatherTemp={temp}
@@ -182,11 +186,11 @@ function App() {
           deleteCard={handleDeleteCard}
         />
       )}
+      {/* </CurrentUserContext.Provider> */}
     </CurrentTemperatureUnitContext.Provider>
   );
 }
 export default App;
 
-// add this path somewhere
-//  <Route path="/">
-// </Route>
+// const [isLoading, setIsLoading] = React.useState(false);
+// ^^ add later for better code

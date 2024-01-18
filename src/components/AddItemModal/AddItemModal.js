@@ -22,6 +22,7 @@ const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
     console.log(e.target.value);
     setWeatherType(e.target.value);
   };
+
   const generateUniqueId = () => {
     const timestamp = new Date().getTime();
     const randomNum = Math.random().toString(36).substring(2, 8);

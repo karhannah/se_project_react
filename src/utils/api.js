@@ -40,5 +40,10 @@ export function deleteItems(id) {
 }
 
 // create function for getting the current user
+export function getCurrentUser(userId) {
+  return fetch(`${baseUrl}/users/me${userId}`, {
+    method: "GET",
+  }).then(processServerResponse);
+}
 
 // start db.json with this > json-server --watch db.json --id _id --port 3001
