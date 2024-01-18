@@ -39,4 +39,6 @@ export function deleteItems(id) {
   }).then(processServerResponse);
 }
 
+// create function for getting the current user
+
 // start db.json with this > json-server --watch db.json --id _id --port 3001

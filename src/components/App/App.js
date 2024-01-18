@@ -20,8 +20,7 @@ import { getItems, postItems, deleteItems } from "../../utils/api";
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-// import get current user from express
-import { getCurrentUser as currentUser } from "../../../../se_project_express/controllers/user";
+// create request ot get current user
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
