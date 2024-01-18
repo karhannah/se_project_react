@@ -17,6 +17,8 @@ import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import { getItems, postItems, deleteItems } from "../../utils/api";
 
+// import login and register modals here
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
