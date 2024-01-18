@@ -20,7 +20,7 @@ export const register = (name, avatar, email, password) => {
 
 // project 14 login
 export const authorize = (email, password) => {
-  return fetch(`${baseUrl}/signing`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",

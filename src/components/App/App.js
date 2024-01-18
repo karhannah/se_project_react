@@ -24,7 +24,9 @@ import {
 
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+// import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
 // create request ot get current user
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setLoggedIn] = React.useState(false);
+  const [currentUserId, setCurrentUserId] = React.useState({});
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -79,7 +82,14 @@ function App() {
   };
 
   // work on function below to get the current user id
-  const currentUserId = async () => {};
+  const getCurrentUserId = async () => {
+    try {
+      const userId = await getCurrentUser(currentUserId._id);
+      console.log(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -139,7 +149,11 @@ function App() {
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
-      {/* <CurrentUserContext.Provider isLoggedIn={isLoggedIn} path="/profile"> */}
+      {/* <CurrentUserContext.Provider
+        value={{ currentUserId, getCurrentUserId }}
+        isLoggedIn={isLoggedIn}
+        // path="/profile"
+      > */}
       <Header
         onCreate={handleCreateModal}
         city={city}
@@ -149,13 +163,13 @@ function App() {
         <Route path="/register">
           <Register onClose={handleCloseModal} onClick={handleRegisterModal} />
         </Route>
-        <Route path="/profile">
+        <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
           <Profile
             onSelectCard={handleSelectedCard}
             clothingItems={clothingItems}
             onCreate={handleCreateModal}
           ></Profile>
-        </Route>
+        </ProtectedRoute>
         <Route path="/">
           <Main
             weatherTemp={temp}

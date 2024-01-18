@@ -41,8 +41,9 @@ export function deleteItems(id) {
 
 // create function for getting the current user
 export function getCurrentUser(userId) {
-  return fetch(`${baseUrl}/users/me${userId}`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
+    body: JSON.stringify(userId),
   }).then(processServerResponse);
 }
 
