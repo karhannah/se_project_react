@@ -7,7 +7,7 @@ import * as auth from "../../utils/auth";
 // if i can't seem to do that export it normally
 
 // pass in arguments for events in register = ()
-const Register = () => {
+const Register = ({ handleCloseModal, onClick, onRegister }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +36,11 @@ const Register = () => {
   };
   return (
     // add events to the form inside of the <> on ModalWithForm
-    <ModalWithForm title="Register">
+    <ModalWithForm
+      title="Register"
+      onClose={handleCloseModal}
+      onClick={onClick}
+    >
       <div className="register">
         <p className="register__welcome">Please register.</p>
         <form className="register__form">

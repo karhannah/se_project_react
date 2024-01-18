@@ -11,7 +11,7 @@ import {
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
@@ -19,6 +19,9 @@ import { getItems, postItems, deleteItems } from "../../utils/api";
 
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+// import get current user from express
+import { getCurrentUser as currentUser } from "../../../../se_project_express/controllers/user";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -27,6 +30,7 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
   // const [isLoading, setIsLoading] = React.useState(false);
   // ^^ add later for better code
 
@@ -42,6 +46,9 @@ function App() {
   };
   const handleDeleteOpenModal = () => {
     setActiveModal("delete");
+  };
+  const handleRegisterModal = () => {
+    setActiveModal("register");
   };
   const handleDeleteCard = async () => {
     try {
@@ -133,19 +140,25 @@ function App() {
         currentDate={currentDate}
       />
       <Switch>
-        <Route exact path="/">
-          <Main
-            weatherTemp={temp}
-            onSelectCard={handleSelectedCard}
-            setClothingItems={clothingItems}
-          />
+        <Route path="/register">
+          <Register onClose={handleCloseModal} onClick={handleRegisterModal} />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
           <Profile
             onSelectCard={handleSelectedCard}
             clothingItems={clothingItems}
             onCreate={handleCreateModal}
           ></Profile>
+        </Route> */}
+        <CurrentUserContext.Provider value={currentUser} />
+        {/* moved root route from top to bottom of switch component */}
+        {/* exact removed from route path="/" */}
+        <Route path="/">
+          <Main
+            weatherTemp={temp}
+            onSelectCard={handleSelectedCard}
+            setClothingItems={clothingItems}
+          />
         </Route>
       </Switch>
 
@@ -174,3 +187,7 @@ function App() {
   );
 }
 export default App;
+
+// add this path somewhere
+//  <Route path="/">
+// </Route>
