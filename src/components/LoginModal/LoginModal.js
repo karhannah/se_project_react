@@ -30,7 +30,7 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
   return (
     <ModalWithForm title="Login" onClose={handleCloseModal} onClick={onClick}>
       <div className="login">
-        <p className="login__welcome">Please login</p>
+        <p className="login__welcome"></p>
         <form className="login__form" onSubmit={handleSubmit}>
           <label for="email">Email:</label>
           <input

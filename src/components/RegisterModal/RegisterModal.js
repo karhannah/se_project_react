@@ -13,15 +13,23 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // here I am trying to handle all changes at once instead
-  // of creating separate funcitons for the change evt
-  // if it doesn't work seperate them as done in addItemModal.js
-
-  const handleInputChanges = (e) => {
+  const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    console.log(e.target.value);
     setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    console.log(e.target.value);
     setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    console.log(e.target.value);
     setConfirmPassword(e.target.value);
   };
 
@@ -40,6 +48,7 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
       title="Register"
       onClose={handleCloseModal}
       onClick={onClick}
+      // onSubmit={handleSubmit}
     >
       <div className="register">
         <p className="register__welcome">Please register.</p>
@@ -49,28 +58,28 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
             name="username"
             type="text"
             value={name}
-            onChange={handleInputChanges}
+            onChange={handleNameChange}
           />
           <label>Email:</label>
           <input
             name="email"
             type="email"
             value={email}
-            onChange={handleInputChanges}
+            onChange={handleEmailChange}
           />
           <label>Password:</label>
           <input
             name="password"
             type="password"
             value={password}
-            onChange={handleInputChanges}
+            onChange={handlePasswordChange}
           />
           <label>Confirm Password:</label>
           <input
             name="confirm-password"
             type="password"
             value={confirmPassword}
-            onChange={handleInputChanges}
+            onChange={handleConfirmPasswordChange}
           />
         </form>
         <div className="register__button-container">

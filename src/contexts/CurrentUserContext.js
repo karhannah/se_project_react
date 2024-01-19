@@ -2,7 +2,7 @@ import React from "react";
 
 const CurrentUserContext = React.createContext({
   currentUserId: "",
-  handleUserIdChange: () => {},
+  isLoggedIn: () => {},
 });
 
-export default CurrentUserContext;
+export { CurrentUserContext }; // errors
