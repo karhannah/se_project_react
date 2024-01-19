@@ -1,14 +1,14 @@
 import { processServerResponse } from "./utils";
 import { baseUrl } from "./api";
 // project 14 registration
-export const register = (name, avatar, email, password) => {
+export const register = (name, password, email) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ name, password, email }),
     // not sure if I have to put the arguments above ins specific order
   })
     .then(processServerResponse)
