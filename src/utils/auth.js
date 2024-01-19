@@ -11,7 +11,6 @@ export const register = ({ name, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, email, password }),
-    // not sure if I have to put the arguments above ins specific order
   })
     .then((res) => res.json())
     .then((data) => console.log(data))
