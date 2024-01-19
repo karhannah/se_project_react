@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as auth from "../../utils/auth";
-
+import { processServerResponse } from "../../utils/utils";
 // here I want to export it in the same line it was made
 // if i can't seem to do that export it normally
 
@@ -23,12 +23,13 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (values.password === values.confirmPassword) {
-      auth
-        .register(values.name, values.email, values.password)
-        .then((res) => console.log(res))
-        .catch(console.log);
+      auth.register(values);
     }
   };
+  // removed from handle submit
+  // .then((res) => res.json())
+  // .then((data) => console.log(data))
+  // .catch(console.log);
 
   return (
     // add events to the form inside of the <> on ModalWithForm
