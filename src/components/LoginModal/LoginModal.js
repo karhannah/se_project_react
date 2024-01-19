@@ -4,23 +4,24 @@ import { Link } from "react-router-dom";
 import * as auth from "../../utils/auth";
 
 const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
   // experimental
-  const handleInputChanges = (e) => {
+  const handleChange = (e) => {
     console.log(e.target.value);
-    setEmail(e.target.value);
-    setPassword(e.target.value);
+    setValues(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!values.email || !values.password) {
       return;
     }
     auth
-      .authorize(email, password)
+      .authorize(values.email, values.password)
       .then((res) => {
         console.log(res);
         setIsLoggedIn(true);
@@ -32,20 +33,19 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
       <div className="login">
         <p className="login__welcome"></p>
         <form className="login__form" onSubmit={handleSubmit}>
-          <label for="email">Email:</label>
-          <input
-            id="email"
-            required
-            name="email"
-            onChange={handleInputChanges}
-          />
-          <label for="password">Password:</label>
-          <input
-            id="password"
-            required
-            name="password"
-            onChange={handleInputChanges}
-          />
+          <label for="email">
+            {"Email: "}
+            <input id="email" required name="email" onChange={handleChange} />
+          </label>
+          <label for="password">
+            {"Password: "}
+            <input
+              id="password"
+              required
+              name="password"
+              onChange={handleChange}
+            />
+          </label>
           <div className="login__button-container">
             <button type="submit" className="login__link">
               Log in

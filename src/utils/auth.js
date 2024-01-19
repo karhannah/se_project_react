@@ -1,5 +1,6 @@
 import { processServerResponse } from "./utils";
 import { baseUrl } from "./api";
+
 // project 14 registration
 export const register = (name, password, email) => {
   return fetch(`${baseUrl}/signup`, {

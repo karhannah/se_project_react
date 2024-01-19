@@ -8,40 +8,37 @@ import * as auth from "../../utils/auth";
 
 // pass in arguments for events in register = ()
 const Register = ({ handleCloseModal, onClick, onRegister }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const handleNameChange = (e) => {
+  const handleChange = (e) => {
     console.log(e.target.value);
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    console.log(e.target.value);
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    console.log(e.target.value);
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    console.log(e.target.value);
-    setConfirmPassword(e.target.value);
+    setValues(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
+    if (values.password === values.confirmPassword) {
       auth
-        .register(name, email, password)
+        .register(values)
         .then((res) => console.log(res))
         .catch(console.log);
     }
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (password === confirmPassword) {
+  //     auth
+  //       .register(name, email, password)
+  //       .then((res) => console.log(res))
+  //       .catch(console.log);
+  //   }
+  // };
   return (
     // add events to the form inside of the <> on ModalWithForm
     <ModalWithForm
@@ -53,34 +50,42 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
       <div className="register">
         <p className="register__welcome">Please register.</p>
         <form className="register__form">
-          <label>Username:</label>
-          <input
-            name="username"
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <label>Email:</label>
-          <input
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <label>Password:</label>
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <label>Confirm Password:</label>
-          <input
-            name="confirm-password"
-            type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-          />
+          <label>
+            {"Name: "}
+            <input
+              name="username"
+              type="text"
+              value={values.name}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            {"Email: "}
+            <input
+              name="email"
+              type="email"
+              value={values.email}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            {"Password: "}
+            <input
+              name="password"
+              type="password"
+              value={values.password}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            {"Confirm Password: "}
+            <input
+              name="confirm-password"
+              type="password"
+              value={values.confirmPassword}
+              onChange={handleChange}
+            />
+          </label>
         </form>
         <div className="register__button-container">
           <button onClick={handleSubmit} className="register__link">
