@@ -24,21 +24,12 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
     e.preventDefault();
     if (values.password === values.confirmPassword) {
       auth
-        .register(values)
+        .register(values.name, values.email, values.password)
         .then((res) => console.log(res))
         .catch(console.log);
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (password === confirmPassword) {
-  //     auth
-  //       .register(name, email, password)
-  //       .then((res) => console.log(res))
-  //       .catch(console.log);
-  //   }
-  // };
   return (
     // add events to the form inside of the <> on ModalWithForm
     <ModalWithForm
@@ -104,3 +95,13 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
 };
 
 export default Register;
+
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+//   if (password === confirmPassword) {
+//     auth
+//       .register(name, email, password)
+//       .then((res) => console.log(res))
+//       .catch(console.log);
+//   }
+// };
