@@ -11,8 +11,8 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
 
   // experimental
   const handleChange = (e) => {
-    console.log(e.target.value);
-    setValues(e.target.value);
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -35,15 +35,22 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
         <form className="login__form" onSubmit={handleSubmit}>
           <label for="email">
             {"Email: "}
-            <input id="email" required name="email" onChange={handleChange} />
+            <input
+              name="email"
+              id="email"
+              required
+              onChange={handleChange}
+              value={values.email}
+            />
           </label>
           <label for="password">
             {"Password: "}
             <input
+              name="password"
               id="password"
               required
-              name="password"
               onChange={handleChange}
+              value={values.password}
             />
           </label>
           <div className="login__button-container">

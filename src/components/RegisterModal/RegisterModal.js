@@ -16,8 +16,8 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value);
-    setValues(e.target.value);
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -42,9 +42,9 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
         <p className="register__welcome">Please register.</p>
         <form className="register__form">
           <label>
-            {"Name: "}
+            {"UserName: "}
             <input
-              name="username"
+              name="name"
               type="text"
               value={values.name}
               onChange={handleChange}
@@ -71,7 +71,7 @@ const Register = ({ handleCloseModal, onClick, onRegister }) => {
           <label>
             {"Confirm Password: "}
             <input
-              name="confirm-password"
+              name="confirmPassword"
               type="password"
               value={values.confirmPassword}
               onChange={handleChange}
