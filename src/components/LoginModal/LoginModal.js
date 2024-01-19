@@ -2,8 +2,9 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as auth from "../../utils/auth";
+import "./LoginModal.css";
 
-const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
+const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -15,6 +16,10 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
     setValues({ ...values, [name]: value });
   };
 
+  const setIsLoggedIn = (e) => {
+    setLoggedIn(true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!values.email || !values.password) {
@@ -23,46 +28,51 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
     auth
       .authorize(values.email, values.password)
       .then((res) => {
-        console.log(res);
-        setIsLoggedIn(true);
+        // console.log(res);
+        setIsLoggedIn(res);
       })
       .catch(console.log);
   };
   return (
-    <ModalWithForm title="Login" onClose={handleCloseModal} onClick={onClick}>
+    <ModalWithForm
+      title="Log in"
+      onClose={handleCloseModal}
+      onClick={onClick}
+      buttonText={
+        <Link
+          to="profile"
+          onClick={handleSubmit}
+          className="login__button-login"
+        >
+          Log in
+        </Link>
+      }
+    >
       <div className="login">
-        <p className="login__welcome"></p>
-        <form className="login__form" onSubmit={handleSubmit}>
-          <label for="email">
-            {"Email: "}
-            <input
-              name="email"
-              id="email"
-              required
-              onChange={handleChange}
-              value={values.email}
-            />
-          </label>
-          <label for="password">
-            {"Password: "}
-            <input
-              name="password"
-              id="password"
-              required
-              onChange={handleChange}
-              value={values.password}
-            />
-          </label>
-          <div className="login__button-container">
-            <button type="submit" className="login__link">
-              Log in
-            </button>
-          </div>
-        </form>
+        <div className="login__form" onSubmit={handleSubmit}>
+          <label>{"Email "}</label>
+          <input
+            className="login__form-input"
+            name="email"
+            id="email"
+            required
+            onChange={handleChange}
+            value={values.email}
+          />
+          <label>{"Password "}</label>
+          <input
+            className="login__form-input"
+            name="password"
+            id="password"
+            required
+            onChange={handleChange}
+            value={values.password}
+          />
+          <div className="login__button-container"></div>
+        </div>
         <div className="login__signup">
-          <p>Not a member yet?</p>
           <Link to="/register" className="signup__link">
-            Sign up here
+            or Register
           </Link>
         </div>
       </div>
@@ -71,3 +81,9 @@ const Login = ({ setIsLoggedIn, handleCloseModal, onClick }) => {
 };
 
 export default Login;
+
+{
+  /* <button type="submit" className="login__link">
+              Log in
+            </button> */
+}

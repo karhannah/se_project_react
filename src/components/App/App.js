@@ -27,6 +27,7 @@ import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { authorize, register } from "../../utils/auth";
 
 // create request ot get current user
 
@@ -74,9 +75,9 @@ function App() {
   const onAddItem = async (values) => {
     try {
       const res = await postItems(values);
-      console.log(res);
+      // console.log(res);
       setClothingItems((prevItems) => [res, ...prevItems]);
-      console.log(res);
+      // console.log(res);
       handleCloseModal();
     } catch (error) {
       console.error("Error on add item:", error);
@@ -84,14 +85,21 @@ function App() {
   };
 
   // work on function below to get the current user id
-  const getCurrentUserId = async () => {
-    try {
-      const userId = await getCurrentUser(currentUser._id);
-      console.log(userId);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // for login
+  // const getCurrentUserId = async () => {
+  //   try {
+  //     const userId = await getCurrentUser(currentUser._id);
+  //     console.log(userId);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // for registration
+  // const onRegister = async (values) => {
+  //   register(values);
+  //   handleCloseModal();
+  // };
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -165,10 +173,14 @@ function App() {
             <Register
               onClose={handleCloseModal}
               onClick={handleRegisterModal}
+              // onRegister={onRegister}
             />
           </Route>
           <Route path="/login">
-            <Login handleCloseModal={handleCloseModal}></Login>
+            <Login
+              handleCloseModal={handleCloseModal}
+              setLoggedIn={true}
+            ></Login>
           </Route>
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
             <Profile
@@ -215,3 +227,17 @@ export default App;
 
 // const [isLoading, setIsLoading] = React.useState(false);
 // ^^ add later for better code
+
+// old code for register
+// register(values).then(setCurrentUser(currentUser));
+
+// try {
+//   const res = await register(values);
+// } catch (error) {
+//   console.log(error);
+// }
+// .then(() => {
+//   setCurrentUser(currentUser);
+// });
+// .then(setLoggedIn(true));
+// console.log(res); // undefined

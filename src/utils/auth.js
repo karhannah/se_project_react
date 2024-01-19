@@ -1,20 +1,24 @@
 import { processServerResponse } from "./utils";
 import { baseUrl } from "./api";
-const BASE_URL = "https://register.localhost:3001";
+// const BASE_URL = "https://register.localhost:3001";
 
 // project 14 registration
-export const register = ({ name, email, password }) => {
+export const register = ({ name, email, password, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({ name, email, password, avatar }),
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
+    .then((data) => {
+      if (data.message) {
+        throw new Error(data.message);
+      }
+      console.log(data.message);
+    });
 };
 
 // project 14 login

@@ -1,93 +1,93 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import "./RegisterModal.css";
 import * as auth from "../../utils/auth";
-import { processServerResponse } from "../../utils/utils";
 // here I want to export it in the same line it was made
 // if i can't seem to do that export it normally
 
 // pass in arguments for events in register = ()
-const Register = ({ handleCloseModal, onClick, onRegister }) => {
+const Register = ({ handleCloseModal, onClick }) => {
+  const history = useHistory();
+
   const [values, setValues] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    avatar: "",
   });
+  // confirmPassword: "",
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+    console.log(values);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (values.password === values.confirmPassword) {
-      auth.register(values);
-    }
+    auth
+      .register(values)
+      .then((res) => {
+        history.push("/login");
+      })
+      .catch((err) => console.log(err));
   };
-  // removed from handle submit
-  // .then((res) => res.json())
-  // .then((data) => console.log(data))
-  // .catch(console.log);
 
   return (
     // add events to the form inside of the <> on ModalWithForm
     <ModalWithForm
-      title="Register"
+      title="Sign up"
       onClose={handleCloseModal}
       onClick={onClick}
-      // onSubmit={handleSubmit}
+      buttonText={
+        <div onClick={handleSubmit} className="register__profile-link">
+          Next
+        </div>
+      }
     >
       <div className="register">
-        <p className="register__welcome">Please register.</p>
-        <form className="register__form">
-          <label>
-            {"UserName: "}
-            <input
-              name="name"
-              type="text"
-              value={values.name}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            {"Email: "}
-            <input
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            {"Password: "}
-            <input
-              name="password"
-              type="password"
-              value={values.password}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            {"Confirm Password: "}
-            <input
-              name="confirmPassword"
-              type="password"
-              value={values.confirmPassword}
-              onChange={handleChange}
-            />
-          </label>
-        </form>
-        <div className="register__button-container">
-          <button onClick={handleSubmit} className="register__link">
-            Sign Up
-          </button>
+        <div className="register__form">
+          <label>{"Name "}</label>
+          <input
+            required
+            className="register__form-input"
+            name="name"
+            type="text"
+            value={values.name}
+            onChange={handleChange}
+          />
+          <label>{"Email "}</label>
+          <input
+            required
+            className="register__form-input"
+            name="email"
+            type="email"
+            value={values.email}
+            onChange={handleChange}
+          />
+          <label>{"Password "}</label>
+          <input
+            required
+            className="register__form-input"
+            name="password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+          />
+          <label>{"Avatar URL "}</label>
+          <input
+            required
+            className="register__form-input"
+            name="avatar"
+            type="URL"
+            value={values.avatar}
+            onChange={handleChange}
+          />
         </div>
         <div className="register__signin">
-          <p>Already a member?</p>
           <Link to="login" className="register__login-link">
-            Log in here
+            or Log in
           </Link>
         </div>
       </div>
@@ -105,4 +105,20 @@ export default Register;
 //       .then((res) => console.log(res))
 //       .catch(console.log);
 //   }
+// if (values.password === values.confirmPassword) {
+//   onRegister(values);
+// }
 // };
+
+// removed for use later
+{
+  /* <label>
+            {"Confirm Password: "}
+            <input
+              name="confirmPassword"
+              type="password"
+              value={values.confirmPassword}
+              onChange={handleChange}
+            />
+          </label> */
+}

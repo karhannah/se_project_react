@@ -5,4 +5,4 @@ const CurrentUserContext = React.createContext({
   isLoggedIn: () => {},
 });
 
-export { CurrentUserContext }; // errors
+export { CurrentUserContext };
