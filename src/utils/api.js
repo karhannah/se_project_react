@@ -18,11 +18,12 @@ export function getItems() {
 
 // POST https://localhost:3001/items
 
-export function postItems(values) {
+export function postItems(values, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(values),
   }).then(processServerResponse);
@@ -30,11 +31,12 @@ export function postItems(values) {
 
 // DELETE https://localhost:3001/items/:id
 
-export function deleteItems(id) {
+export function deleteItems(id, token) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
 }

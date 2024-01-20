@@ -1,7 +1,4 @@
-import { processServerResponse } from "./utils";
 import { baseUrl } from "./api";
-import { useHistory } from "react-router-dom";
-// const BASE_URL = "https://register.localhost:3001";
 // project 14 registration
 export const register = ({ name, email, password, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
