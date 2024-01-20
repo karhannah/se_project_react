@@ -27,7 +27,7 @@ import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { authorize, register } from "../../utils/auth";
+// import { authorize, register } from "../../utils/auth";
 
 // create request ot get current user
 
@@ -38,7 +38,9 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+
   const [isLoggedIn, setLoggedIn] = React.useState(false);
+
   const [currentUser, setCurrentUser] = React.useState({});
 
   const handleCreateModal = () => {
@@ -75,9 +77,7 @@ function App() {
   const onAddItem = async (values) => {
     try {
       const res = await postItems(values);
-      // console.log(res);
       setClothingItems((prevItems) => [res, ...prevItems]);
-      // console.log(res);
       handleCloseModal();
     } catch (error) {
       console.error("Error on add item:", error);
@@ -93,12 +93,6 @@ function App() {
   //   } catch (error) {
   //     console.log(error);
   //   }
-  // };
-
-  // for registration
-  // const onRegister = async (values) => {
-  //   register(values);
-  //   handleCloseModal();
   // };
 
   const handleToggleSwitchChange = () => {
@@ -156,12 +150,12 @@ function App() {
   }, []);
 
   return (
-    <CurrentTemperatureUnitContext.Provider
-      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    <CurrentUserContext.Provider
+      value={{ currentUser, isLoggedIn }}
+      path="/profile"
     >
-      <CurrentUserContext.Provider
-        value={{ currentUser, isLoggedIn }}
-        path="/profile"
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
           onCreate={handleCreateModal}
@@ -173,15 +167,16 @@ function App() {
             <Register
               onClose={handleCloseModal}
               onClick={handleRegisterModal}
-              // onRegister={onRegister}
             />
           </Route>
+
           <Route path="/login">
             <Login
               handleCloseModal={handleCloseModal}
               setLoggedIn={true}
             ></Login>
           </Route>
+
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
             <Profile
               onSelectCard={handleSelectedCard}
@@ -219,8 +214,8 @@ function App() {
             deleteCard={handleDeleteCard}
           />
         )}
-      </CurrentUserContext.Provider>
-    </CurrentTemperatureUnitContext.Provider>
+      </CurrentTemperatureUnitContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 export default App;

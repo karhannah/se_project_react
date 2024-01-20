@@ -1,10 +1,11 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as auth from "../../utils/auth";
 import "./LoginModal.css";
 
 const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
+  const history = useHistory();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -16,10 +17,6 @@ const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const setIsLoggedIn = (e) => {
-    setLoggedIn(true);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!values.email || !values.password) {
@@ -27,25 +24,30 @@ const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
     }
     auth
       .authorize(values.email, values.password)
+      .then((data) => {
+        useState({ email: "", password: "" }, () => {
+          if (data.jwt) {
+          }
+        });
+      })
       .then((res) => {
-        // console.log(res);
-        setIsLoggedIn(res);
+        history.push("/profile");
       })
       .catch(console.log);
   };
+  // removed from submit
+  // .then((res) => {
+  //   setLoggedIn(true);
+  // })
   return (
     <ModalWithForm
       title="Log in"
       onClose={handleCloseModal}
       onClick={onClick}
       buttonText={
-        <Link
-          to="profile"
-          onClick={handleSubmit}
-          className="login__button-login"
-        >
+        <div onClick={handleSubmit} className="login__button-login">
           Log in
-        </Link>
+        </div>
       }
     >
       <div className="login">
