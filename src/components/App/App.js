@@ -191,6 +191,7 @@ function App() {
             <Register
               onClose={handleCloseModal}
               onClick={handleRegisterModal}
+              setLoggedIn={setLoggedIn}
             />
           </Route>
           <Route path="/login">
@@ -200,15 +201,11 @@ function App() {
             ></Login>
           </Route>
           <Route exact path="/">
-            {isLoggedIn ? (
-              <Main
-                weatherTemp={temp}
-                onSelectCard={handleSelectedCard}
-                setClothingItems={clothingItems}
-              />
-            ) : (
-              <Redirect to="/login" />
-            )}
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              setClothingItems={clothingItems}
+            />
           </Route>
         </Switch>
 
@@ -283,3 +280,15 @@ export default App;
             component={MyProfile}
           /> */
 }
+
+// code that makes it impossible to see anything but the login modal
+// if not authorized
+// {isLoggedIn ? (
+//   <Main
+//     weatherTemp={temp}
+//     onSelectCard={handleSelectedCard}
+//     setClothingItems={clothingItems}
+//   />
+// ) : (
+//   <Redirect to="/login" />
+// )}

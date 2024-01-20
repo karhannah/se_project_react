@@ -7,7 +7,7 @@ import * as auth from "../../utils/auth";
 // if i can't seem to do that export it normally
 
 // pass in arguments for events in register = ()
-const Register = ({ handleCloseModal, onClick }) => {
+const Register = ({ setLoggedIn, handleCloseModal, onClick }) => {
   const history = useHistory();
 
   const [values, setValues] = useState({
@@ -29,7 +29,8 @@ const Register = ({ handleCloseModal, onClick }) => {
     auth
       .register(values)
       .then((res) => {
-        history.push("/login");
+        setLoggedIn(true);
+        history.push("/profile");
       })
       .catch((err) => console.log(err));
   };
