@@ -24,21 +24,19 @@ const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
     }
     auth
       .authorize(values.email, values.password)
-      .then((data) => {
-        useState({ email: "", password: "" }, () => {
-          if (data.jwt) {
-          }
-        });
-      })
-      .then((res) => {
+      .then(() => {
+        setLoggedIn(true);
         history.push("/profile");
       })
-      .catch(console.log);
+      .catch((error) => {
+        if (error) {
+          console.log(error);
+          history.push("/register");
+        } else {
+          console.error(error.message);
+        }
+      });
   };
-  // removed from submit
-  // .then((res) => {
-  //   setLoggedIn(true);
-  // })
   return (
     <ModalWithForm
       title="Log in"

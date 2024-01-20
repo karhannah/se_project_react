@@ -11,7 +11,7 @@ import {
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
@@ -64,7 +64,6 @@ function App() {
     try {
       await deleteItems(selectedcard._id);
       console.log(selectedcard._id);
-      // Update the state to remove the deleted item
       setClothingItems((prevItems) =>
         prevItems.filter((item) => item._id !== selectedcard._id)
       );
@@ -84,17 +83,6 @@ function App() {
     }
   };
 
-  // work on function below to get the current user id
-  // for login
-  // const getCurrentUserId = async () => {
-  //   try {
-  //     const userId = await getCurrentUser(currentUser._id);
-  //     console.log(userId);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -103,6 +91,35 @@ function App() {
     month: "long",
     day: "numeric",
   });
+
+  // work on function below to get the user token
+  // for login
+  // inside of App.js
+
+  // tokenCheck() {
+  //   // if the user has a token in localStorage,
+  //   // this function will check that the user has a valid token
+  //   const jwt = localStorage.getItem('jwt');
+  //   if (jwt) {
+  //     // we'll verify the token
+  //     auth.getContent(jwt).then((res) => {
+  //       if (res) {
+  //         // we can get the user data here!
+  //         const userData = {
+  //           username: res.username,
+  //           email: res.email
+  //         }
+  //         // let's put it in the state inside App.js
+  //         this.setState({
+  //           loggedIn: true,
+  //           userData
+  //         }, () => {
+  //           this.props.history.push('/ducks');
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
 
   useEffect(() => {
     if (!activeModal) return;
@@ -163,20 +180,6 @@ function App() {
           currentDate={currentDate}
         />
         <Switch>
-          <Route path="/register">
-            <Register
-              onClose={handleCloseModal}
-              onClick={handleRegisterModal}
-            />
-          </Route>
-
-          <Route path="/login">
-            <Login
-              handleCloseModal={handleCloseModal}
-              setLoggedIn={true}
-            ></Login>
-          </Route>
-
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
             <Profile
               onSelectCard={handleSelectedCard}
@@ -184,12 +187,28 @@ function App() {
               onCreate={handleCreateModal}
             ></Profile>
           </ProtectedRoute>
-          <Route path="/">
-            <Main
-              weatherTemp={temp}
-              onSelectCard={handleSelectedCard}
-              setClothingItems={clothingItems}
+          <Route path="/register">
+            <Register
+              onClose={handleCloseModal}
+              onClick={handleRegisterModal}
             />
+          </Route>
+          <Route path="/login">
+            <Login
+              handleCloseModal={handleCloseModal}
+              setLoggedIn={setLoggedIn}
+            ></Login>
+          </Route>
+          <Route exact path="/">
+            {isLoggedIn ? (
+              <Main
+                weatherTemp={temp}
+                onSelectCard={handleSelectedCard}
+                setClothingItems={clothingItems}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
         </Switch>
 
@@ -218,6 +237,7 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
+// withRouter(App)
 export default App;
 
 // const [isLoading, setIsLoading] = React.useState(false);
@@ -236,3 +256,30 @@ export default App;
 // });
 // .then(setLoggedIn(true));
 // console.log(res); // undefined
+
+//  maybe maybe not use for login
+// const getCurrentUserId = async () => {
+//   try {
+//     const userId = await getCurrentUser(currentUser._id);
+//     console.log(userId);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// recomend taking a look at
+{
+  /* // our protected routes should look like this // notice that we're
+          passing userData to the second route
+          <ProtectedRoute
+            path="/ducks"
+            loggedIn={this.state.loggedIn}
+            component={Ducks}
+          />
+          <ProtectedRoute
+            path="/my-profile"
+            loggedIn={this.state.loggedIn}
+            userData={this.state.userData}
+            component={MyProfile}
+          /> */
+}

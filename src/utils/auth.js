@@ -1,7 +1,7 @@
 import { processServerResponse } from "./utils";
 import { baseUrl } from "./api";
+import { useHistory } from "react-router-dom";
 // const BASE_URL = "https://register.localhost:3001";
-
 // project 14 registration
 export const register = ({ name, email, password, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
@@ -31,14 +31,15 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then(processServerResponse)
+    .then((res) => res.json())
     .then((data) => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         return data;
+      } else {
+        throw new Error(data.message);
       }
-    })
-    .catch((err) => console.log(err));
+    });
 };
 
 export const checkToken = (token) => {
