@@ -1,8 +1,5 @@
 import React from "react";
 
-const CurrentUserContext = React.createContext({
-  currentUserId: "",
-  isLoggedIn: () => {},
-});
+const CurrentUserContext = React.createContext();
 
 export { CurrentUserContext };

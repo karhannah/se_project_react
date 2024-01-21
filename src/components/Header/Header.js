@@ -3,8 +3,14 @@ import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
 import { Link } from "react-router-dom";
 import "./Header.css";
+// import the context
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React from "react";
 
-const Header = ({ onCreate, city, currentDate }) => {
+const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
+  const { currentUser } = React.useContext(CurrentUserContext);
+  console.log(currentUser);
+  console.log(setLoggedIn);
   return (
     <header className="header">
       <div className="header__logo">
@@ -29,9 +35,13 @@ const Header = ({ onCreate, city, currentDate }) => {
             + Add Clothes
           </button>
         </div>
-        <Link to="/profile" className="header__user-name">
-          Terrence Tegegne
-        </Link>
+        {setLoggedIn ? (
+          <Link to="/profile" className="header__user-name">
+            {currentUser.name}
+          </Link>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
         <div>
           <img src={AvatarLogo} alt="Avatar" />
         </div>

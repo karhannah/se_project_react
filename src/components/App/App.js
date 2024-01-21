@@ -2,7 +2,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   getWeatherAndLocation,
   locationData,
@@ -15,21 +15,15 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
-import {
-  getItems,
-  postItems,
-  deleteItems,
-  getCurrentUser,
-} from "../../utils/api";
+import { getItems, postItems, deleteItems } from "../../utils/api";
 
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-// import { authorize, register } from "../../utils/auth";
 
-// create request ot get current user
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { authorize, register } from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -38,10 +32,15 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-
   const [isLoggedIn, setLoggedIn] = React.useState(false);
+  // change setLoggedIn to isLoggedIn eventually
 
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({ name: "" });
+  // email: "",
+  // password: "",
+  // avatar: "",
+
+  // change use state on current user to null instead of {}
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -92,35 +91,6 @@ function App() {
     day: "numeric",
   });
 
-  // work on function below to get the user token
-  // for login
-  // inside of App.js
-
-  // tokenCheck() {
-  //   // if the user has a token in localStorage,
-  //   // this function will check that the user has a valid token
-  //   const jwt = localStorage.getItem('jwt');
-  //   if (jwt) {
-  //     // we'll verify the token
-  //     auth.getContent(jwt).then((res) => {
-  //       if (res) {
-  //         // we can get the user data here!
-  //         const userData = {
-  //           username: res.username,
-  //           email: res.email
-  //         }
-  //         // let's put it in the state inside App.js
-  //         this.setState({
-  //           loggedIn: true,
-  //           userData
-  //         }, () => {
-  //           this.props.history.push('/ducks');
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-
   useEffect(() => {
     if (!activeModal) return;
     const handleEscClose = (e) => {
@@ -168,8 +138,9 @@ function App() {
 
   return (
     <CurrentUserContext.Provider
-      value={{ currentUser, isLoggedIn }}
+      value={{ setCurrentUser, currentUser }}
       path="/profile"
+      // setLoggedIn={setLoggedIn}
     >
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -178,7 +149,10 @@ function App() {
           onCreate={handleCreateModal}
           city={city}
           currentDate={currentDate}
+          // setCurrentUser={currentUser}
+          setLoggedIn={isLoggedIn}
         />
+
         <Switch>
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
             <Profile
@@ -187,6 +161,7 @@ function App() {
               onCreate={handleCreateModal}
             ></Profile>
           </ProtectedRoute>
+
           <Route path="/register">
             <Register
               onClose={handleCloseModal}
@@ -194,12 +169,15 @@ function App() {
               setLoggedIn={setLoggedIn}
             />
           </Route>
+
           <Route path="/login">
             <Login
               handleCloseModal={handleCloseModal}
               setLoggedIn={setLoggedIn}
+              setCurrentUser={setCurrentUser}
             ></Login>
           </Route>
+
           <Route exact path="/">
             <Main
               weatherTemp={temp}
@@ -236,59 +214,3 @@ function App() {
 }
 // withRouter(App)
 export default App;
-
-// const [isLoading, setIsLoading] = React.useState(false);
-// ^^ add later for better code
-
-// old code for register
-// register(values).then(setCurrentUser(currentUser));
-
-// try {
-//   const res = await register(values);
-// } catch (error) {
-//   console.log(error);
-// }
-// .then(() => {
-//   setCurrentUser(currentUser);
-// });
-// .then(setLoggedIn(true));
-// console.log(res); // undefined
-
-//  maybe maybe not use for login
-// const getCurrentUserId = async () => {
-//   try {
-//     const userId = await getCurrentUser(currentUser._id);
-//     console.log(userId);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// recomend taking a look at
-{
-  /* // our protected routes should look like this // notice that we're
-          passing userData to the second route
-          <ProtectedRoute
-            path="/ducks"
-            loggedIn={this.state.loggedIn}
-            component={Ducks}
-          />
-          <ProtectedRoute
-            path="/my-profile"
-            loggedIn={this.state.loggedIn}
-            userData={this.state.userData}
-            component={MyProfile}
-          /> */
-}
-
-// code that makes it impossible to see anything but the login modal
-// if not authorized
-// {isLoggedIn ? (
-//   <Main
-//     weatherTemp={temp}
-//     onSelectCard={handleSelectedCard}
-//     setClothingItems={clothingItems}
-//   />
-// ) : (
-//   <Redirect to="/login" />
-// )}

@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as auth from "../../utils/auth";
 import "./LoginModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { checkToken } from "../../utils/auth";
 
-const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
+const Login = ({ setCurrentUser, setLoggedIn, handleCloseModal, onClick }) => {
+  const { currentUser } = React.useContext(CurrentUserContext);
+
   const history = useHistory();
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
-  // experimental
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -24,6 +27,15 @@ const Login = ({ setLoggedIn, handleCloseModal, onClick }) => {
     }
     auth
       .authorize(values.email, values.password)
+      .then((res) => {
+        debugger;
+        console.log(res);
+        checkToken(res);
+      })
+      .then((data) => {
+        console.log(data);
+        setCurrentUser(currentUser);
+      })
       .then(() => {
         setLoggedIn(true);
         history.push("/profile");

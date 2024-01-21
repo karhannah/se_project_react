@@ -42,11 +42,19 @@ export function deleteItems(id, token) {
 }
 
 // create function for getting the current user
-export function getCurrentUser(userId) {
-  return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    body: JSON.stringify(userId),
-  }).then(processServerResponse);
-}
+// export function getCurrentUser(token) {
+//   return fetch(`${baseUrl}/users/me`, {
+//     method: "GET",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((data) => data)
+//     .catch((error) => console.error(error));
+// }
+// getCurrentUser is the same as checkToken
 
 // start db.json with this > json-server --watch db.json --id _id --port 3001
