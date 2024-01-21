@@ -9,6 +9,7 @@ import React from "react";
 
 const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
+
   console.log(currentUser);
   console.log(setLoggedIn);
   return (

@@ -36,9 +36,6 @@ function App() {
   // change setLoggedIn to isLoggedIn eventually
 
   const [currentUser, setCurrentUser] = React.useState({ name: "" });
-  // email: "",
-  // password: "",
-  // avatar: "",
 
   // change use state on current user to null instead of {}
 
