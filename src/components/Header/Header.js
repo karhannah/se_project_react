@@ -3,6 +3,7 @@ import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import "../UserPlaceHolder/UserPlaceHolder.css";
 // import the context
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
@@ -10,8 +11,7 @@ import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  const user = currentUser;
-  console.log(user.data);
+  console.log(currentUser);
 
   return (
     <header className="header">
@@ -39,25 +39,28 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
         </div>
         {isLoggedIn ? (
           <p to="/profile" className="header__user-name">
-            {user.data.name}
+            {currentUser.name}
           </p>
         ) : (
           <Link to="/register" className="header__sign">
             Sign Up
           </Link>
         )}
+
         <div>
           {isLoggedIn ? (
-            user.data.avatar ? (
-              <img
-                src={user.data.avatar}
-                className="header__avatar"
-                alt="Avatar"
-              />
-            ) : (
-              <UserPlaceHolder name={user.data.name} />
-            )
-          ) : null}
+            <img
+              src={currentUser.avatar}
+              className="header__avatar"
+              alt="Avatar"
+            />
+          ) : currentUser.avatar ? (
+            <UserPlaceHolder />
+          ) : (
+            <Link to="/login" className="header__sign">
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </header>
@@ -77,3 +80,15 @@ export default Header;
 //     Log in
 //   </Link>
 // )}
+
+{
+  /* {isLoggedIn ? (
+          <p to="/profile" className="header__user-name">
+            {currentUser.name}
+          </p>
+        ) : (
+          <Link to="/register" className="header__sign">
+            Sign Up
+          </Link>
+        )} */
+}

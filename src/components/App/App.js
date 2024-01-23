@@ -149,7 +149,6 @@ function App() {
     <CurrentUserContext.Provider
       value={{ setCurrentUser, currentUser }}
       path="/profile"
-      // isLoggedIn={isLoggedIn}
     >
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}

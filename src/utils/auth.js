@@ -10,11 +10,11 @@ export const register = ({ name, email, password, avatar }) => {
     body: JSON.stringify({ name, email, password, avatar }),
   })
     .then((res) => res.json())
-    .then((data) => {
-      if (data.message) {
-        throw new Error(data.message);
+    .then((userData) => {
+      if (userData.message) {
+        throw new Error(userData.message);
       }
-      console.log(data.message);
+      console.log(userData.message);
     });
 };
 
@@ -29,14 +29,14 @@ export const authorize = (email, password) => {
     body: JSON.stringify({ email, password }),
   })
     .then((res) => res.json())
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        console.log(data.token);
-        return data.token;
+    .then((userData) => {
+      if (userData.token) {
+        localStorage.setItem("token", userData.token);
+        console.log(userData.token);
+        return userData.token;
       } else {
-        console.log(data);
-        throw new Error(data.message);
+        console.log(userData);
+        throw new Error(userData.message);
       }
     });
 };
@@ -51,11 +51,8 @@ export const checkToken = (token) => {
     },
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      return data;
+    .then((userData) => {
+      console.log(userData);
+      return userData.data;
     });
 };
-
-// const user = JSON.parse(localStorage.getItem(data));
-// console.log(user);
