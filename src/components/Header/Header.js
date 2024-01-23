@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
+const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const user = currentUser;
   console.log(user.data);
@@ -37,7 +37,7 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
             + Add Clothes
           </button>
         </div>
-        {setLoggedIn ? (
+        {isLoggedIn ? (
           <p to="/profile" className="header__user-name">
             {user.data.name}
           </p>
@@ -47,7 +47,7 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
           </Link>
         )}
         <div>
-          {setLoggedIn ? (
+          {isLoggedIn ? (
             user.data.avatar ? (
               <img
                 src={user.data.avatar}
@@ -66,7 +66,7 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
 
 export default Header;
 
-// {setLoggedIn ? (
+// {isLoggedIn ? (
 //   <img
 //     src={user.data.avatar}
 //     className="header__avatar"

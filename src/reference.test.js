@@ -93,7 +93,7 @@
 // .then(() => {
 //   setCurrentUser(currentUser);
 // });
-// .then(setLoggedIn(true));
+// .then(isLoggedIn(true));
 // console.log(res); // undefined
 
 //  maybe maybe not use for login
@@ -125,7 +125,7 @@
 // code that makes it impossible to see anything but the login modal
 // if not authorized
 {
-  isLoggedIn ? (
+  loggedIn ? (
     <Main
       weatherTemp={temp}
       onSelectCard={handleSelectedCard}

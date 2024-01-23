@@ -32,7 +32,7 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [isLoggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, isLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   // name: ""
   // change use state on current user to null instead of {}
@@ -133,7 +133,7 @@ function App() {
           console.log(error);
         });
     }
-  }, [isLoggedIn]);
+  }, [loggedIn]);
 
   useEffect(() => {
     getItems()
@@ -149,7 +149,7 @@ function App() {
     <CurrentUserContext.Provider
       value={{ setCurrentUser, currentUser }}
       path="/profile"
-      // setLoggedIn={setLoggedIn}
+      // isLoggedIn={isLoggedIn}
     >
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -159,11 +159,11 @@ function App() {
           city={city}
           currentDate={currentDate}
           setCurrentUser={currentUser}
-          setLoggedIn={isLoggedIn}
+          isLoggedIn={loggedIn}
         ></Header>
 
         <Switch>
-          <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
+          <ProtectedRoute loggedIn={loggedIn} path="/profile">
             <Profile
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
@@ -175,14 +175,14 @@ function App() {
             <Register
               onClose={handleCloseModal}
               onClick={handleRegisterModal}
-              setLoggedIn={setLoggedIn}
+              isLoggedIn={isLoggedIn}
             />
           </Route>
 
           <Route path="/login">
             <Login
               handleCloseModal={handleCloseModal}
-              setLoggedIn={setLoggedIn}
+              isLoggedIn={isLoggedIn}
               setCurrentUser={setCurrentUser}
             ></Login>
           </Route>

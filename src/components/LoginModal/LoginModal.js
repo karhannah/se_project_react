@@ -5,7 +5,7 @@ import * as auth from "../../utils/auth";
 import "./LoginModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Login = ({ setCurrentUser, setLoggedIn, handleCloseModal, onClick }) => {
+const Login = ({ setCurrentUser, isLoggedIn, handleCloseModal, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
 
   const history = useHistory();
@@ -27,7 +27,7 @@ const Login = ({ setCurrentUser, setLoggedIn, handleCloseModal, onClick }) => {
     auth
       .authorize(values.email, values.password)
       .then(() => {
-        setLoggedIn(true);
+        isLoggedIn(true);
         history.push("/profile");
       })
       .catch((error) => {

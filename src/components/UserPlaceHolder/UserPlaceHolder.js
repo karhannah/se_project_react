@@ -1,7 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./UserPlaceHolder.css";
-const UserPlaceHolder = ({ setLoggedIn }) => {
+const UserPlaceHolder = ({ isLoggedIn }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const user = currentUser;
 
