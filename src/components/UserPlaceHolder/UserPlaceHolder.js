@@ -9,7 +9,15 @@ const UserPlaceHolder = ({ isLoggedIn }) => {
   const initial = Array.from(userStr)[1];
   console.log(initial);
 
-  return <div className="user__avatar-placeholder">{initial}</div>;
+  const avatarClassname = `user__avatar-placeholder ${
+    isLoggedIn
+      ? "user__avatar-placeholder_visible"
+      : "user__avatar-placeholder_hidden"
+  }`;
+
+  return <div className={avatarClassname}>{initial}</div>;
 };
 
 export default UserPlaceHolder;
+
+// {initial}

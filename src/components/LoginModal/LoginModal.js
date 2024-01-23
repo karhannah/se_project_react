@@ -5,9 +5,7 @@ import * as auth from "../../utils/auth";
 import "./LoginModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Login = ({ setCurrentUser, isLoggedIn, handleCloseModal, onClick }) => {
-  const { currentUser } = React.useContext(CurrentUserContext);
-
+const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
   const history = useHistory();
   const [values, setValues] = useState({
     email: "",

@@ -55,7 +55,7 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
               alt="Avatar"
             />
           ) : currentUser.avatar ? (
-            <UserPlaceHolder />
+            <UserPlaceHolder isLoggedIn={isLoggedIn} />
           ) : (
             <Link to="/login" className="header__sign">
               Log in
