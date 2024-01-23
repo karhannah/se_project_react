@@ -10,8 +10,8 @@ import React from "react";
 const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
 
-  console.log(currentUser);
-  console.log(setLoggedIn);
+  // console.log(currentUser);
+  // console.log(setLoggedIn);
   return (
     <header className="header">
       <div className="header__logo">
@@ -38,7 +38,7 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
         </div>
         {setLoggedIn ? (
           <Link to="/profile" className="header__user-name">
-            {currentUser.name}
+            name
           </Link>
         ) : (
           <Link to="/login">Login</Link>

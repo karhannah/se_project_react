@@ -27,7 +27,6 @@ const Login = ({ setCurrentUser, setLoggedIn, handleCloseModal, onClick }) => {
     auth
       .authorize(values.email, values.password)
       .then(() => {
-        setCurrentUser(currentUser);
         setLoggedIn(true);
         history.push("/profile");
       })

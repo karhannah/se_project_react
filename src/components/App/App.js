@@ -23,8 +23,7 @@ import Login from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-// import { authorize, register } from "../../utils/auth";
-
+import * as auth from "../../utils/auth";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
@@ -34,9 +33,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setLoggedIn] = React.useState(false);
   // change setLoggedIn to isLoggedIn eventually
-
-  const [currentUser, setCurrentUser] = React.useState({ name: "" });
-
+  const [currentUser, setCurrentUser] = React.useState({});
+  // name: ""
   // change use state on current user to null instead of {}
 
   const handleCreateModal = () => {
@@ -122,6 +120,20 @@ function App() {
         console.error("Error: An error occurred", error);
       });
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((userData) => {
+          setCurrentUser(userData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     getItems()
