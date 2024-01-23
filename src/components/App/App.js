@@ -24,6 +24,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as auth from "../../utils/auth";
+import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
@@ -32,7 +33,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setLoggedIn] = React.useState(false);
-  // change setLoggedIn to isLoggedIn eventually
   const [currentUser, setCurrentUser] = React.useState({});
   // name: ""
   // change use state on current user to null instead of {}
@@ -158,9 +158,9 @@ function App() {
           onCreate={handleCreateModal}
           city={city}
           currentDate={currentDate}
-          // setCurrentUser={currentUser}
+          setCurrentUser={currentUser}
           setLoggedIn={isLoggedIn}
-        />
+        ></Header>
 
         <Switch>
           <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">

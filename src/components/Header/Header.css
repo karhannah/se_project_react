@@ -69,3 +69,14 @@
   align-items: center;
   gap: 10px;
 }
+
+.header__avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.header__sign {
+  text-decoration: none;
+  color: #000;
+}

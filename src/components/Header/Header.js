@@ -6,12 +6,13 @@ import "./Header.css";
 // import the context
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
+import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
+  const user = currentUser;
+  console.log(user.data);
 
-  // console.log(currentUser);
-  // console.log(setLoggedIn);
   return (
     <header className="header">
       <div className="header__logo">
@@ -37,14 +38,26 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
           </button>
         </div>
         {setLoggedIn ? (
-          <Link to="/profile" className="header__user-name">
-            name
-          </Link>
+          <p to="/profile" className="header__user-name">
+            {user.data.name}
+          </p>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/register" className="header__sign">
+            Sign Up
+          </Link>
         )}
         <div>
-          <img src={AvatarLogo} alt="Avatar" />
+          {setLoggedIn ? (
+            user.data.avatar ? (
+              <img
+                src={user.data.avatar}
+                className="header__avatar"
+                alt="Avatar"
+              />
+            ) : (
+              <UserPlaceHolder name={user.data.name} />
+            )
+          ) : null}
         </div>
       </div>
     </header>
@@ -52,3 +65,15 @@ const Header = ({ setLoggedIn, onCreate, city, currentDate }) => {
 };
 
 export default Header;
+
+// {setLoggedIn ? (
+//   <img
+//     src={user.data.avatar}
+//     className="header__avatar"
+//     alt="Avatar"
+//   />
+// ) : (
+//   <Link to="/login" className="header__sign">
+//     Log in
+//   </Link>
+// )}
