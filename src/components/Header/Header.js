@@ -49,13 +49,15 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
 
         <div>
           {isLoggedIn ? (
-            <img
-              src={currentUser.avatar}
-              className="header__avatar"
-              alt="Avatar"
-            />
-          ) : currentUser.avatar ? (
-            <UserPlaceHolder isLoggedIn={isLoggedIn} />
+            currentUser.avatar ? (
+              <img
+                src={currentUser.avatar}
+                className="header__avatar"
+                alt="Avatar"
+              />
+            ) : (
+              <UserPlaceHolder isLoggedIn={isLoggedIn} />
+            )
           ) : (
             <Link to="/login" className="header__sign">
               Log in
