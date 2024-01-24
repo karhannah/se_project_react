@@ -34,6 +34,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, isLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const token = localStorage.getItem("token");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -54,8 +55,7 @@ function App() {
 
   const handleDeleteCard = async () => {
     try {
-      await deleteItems(selectedcard._id);
-      console.log(selectedcard._id);
+      await deleteItems(selectedcard._id, token);
       setClothingItems((prevItems) =>
         prevItems.filter((item) => item._id !== selectedcard._id)
       );
@@ -65,13 +65,13 @@ function App() {
     }
   };
 
-  const onAddItem = async (values, token) => {
+  const onAddItem = async (values) => {
     try {
       const res = await postItems(values, token);
       setClothingItems((prevItems) => [res, ...prevItems]);
       handleCloseModal();
     } catch (error) {
-      console.error("Error on add item:", error);
+      console.error(error.message);
     }
   };
 
@@ -120,8 +120,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
     if (token) {
       auth
         .checkToken(token)
