@@ -11,7 +11,7 @@ import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <header className="header">
