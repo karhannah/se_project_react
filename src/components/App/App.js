@@ -35,8 +35,6 @@ function App() {
   const [loggedIn, isLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
 
-  const token = localStorage.getItem("token");
-
   const handleCreateModal = () => {
     setActiveModal("create");
   };
@@ -67,9 +65,9 @@ function App() {
     }
   };
 
-  const onAddItem = async (values) => {
+  const onAddItem = async (values, token) => {
     try {
-      const res = await postItems(values);
+      const res = await postItems(values, token);
       setClothingItems((prevItems) => [res, ...prevItems]);
       handleCloseModal();
     } catch (error) {
@@ -122,6 +120,8 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     if (token) {
       auth
         .checkToken(token)
