@@ -1,5 +1,4 @@
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import AvatarLogo from "../../images/headerAvatar.svg";
 import avatarImage from "../../images/headerLogo.svg";
 import { Link } from "react-router-dom";
 import "./Header.css";
@@ -11,7 +10,6 @@ import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  // console.log(currentUser);
 
   return (
     <header className="header">

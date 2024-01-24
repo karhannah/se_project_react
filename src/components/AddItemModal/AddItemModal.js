@@ -1,29 +1,17 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 const AddItemModal = ({
-  isLoggedIn,
+  loggedIn,
   handleCloseModal,
   setActiveModal,
   onAddItem,
 }) => {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({ name: "", link: "", weatherType: "" });
 
-  const [name, setName] = useState("");
-  const handleNameChange = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
     console.log(e.target.value);
-    setName(e.target.value);
-  };
-
-  const [link, setUrl] = useState("");
-  const handleUrlChange = (e) => {
-    console.log(e.target.value);
-    setUrl(e.target.value);
-  };
-
-  const [weatherType, setWeatherType] = useState("");
-  const handleRadioChange = (e) => {
-    console.log(e.target.value);
-    setWeatherType(e.target.value);
   };
 
   const generateUniqueId = () => {
@@ -33,15 +21,15 @@ const AddItemModal = ({
     return `${timestamp}-${randomNum}`;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onAddItem({
-      _id: generateUniqueId(),
-      name,
-      imageUrl: link,
-      weather: weatherType,
-    });
-  };
+  const handleSubmit = (e) => {};
+
+  // e.preventDefault();
+  // onAddItem({
+  //   _id: generateUniqueId(),
+  //   name,
+  //   imageUrl: link,
+  //   weather: weatherType,
+  // });
   return (
     <ModalWithForm
       title="New garment"
@@ -60,8 +48,8 @@ const AddItemModal = ({
             minLength="2"
             maxLength="30"
             placeholder="Name"
-            value={name}
-            onChange={handleNameChange}
+            value={values.name}
+            onChange={handleChange}
           />
         </label>
 
@@ -74,8 +62,8 @@ const AddItemModal = ({
             name="link"
             minLength="2"
             placeholder="Image URL"
-            value={link}
-            onChange={handleUrlChange}
+            value={values.link}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -88,7 +76,7 @@ const AddItemModal = ({
               name="weatherType"
               id="hot"
               value="hot"
-              onChange={handleRadioChange}
+              onChange={handleChange}
             />
             Hot
           </label>
@@ -100,7 +88,7 @@ const AddItemModal = ({
               name="weatherType"
               id="warm"
               value="warm"
-              onChange={handleRadioChange}
+              onChange={handleChange}
             />
             Warm
           </label>
@@ -112,7 +100,7 @@ const AddItemModal = ({
               name="weatherType"
               id="cold"
               value="cold"
-              onChange={handleRadioChange}
+              onChange={handleChange}
             />
             Cold
           </label>
