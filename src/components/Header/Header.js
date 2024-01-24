@@ -70,27 +70,3 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
 };
 
 export default Header;
-
-// {isLoggedIn ? (
-//   <img
-//     src={user.data.avatar}
-//     className="header__avatar"
-//     alt="Avatar"
-//   />
-// ) : (
-//   <Link to="/login" className="header__sign">
-//     Log in
-//   </Link>
-// )}
-
-{
-  /* {isLoggedIn ? (
-          <p to="/profile" className="header__user-name">
-            {currentUser.name}
-          </p>
-        ) : (
-          <Link to="/register" className="header__sign">
-            Sign Up
-          </Link>
-        )} */
-}

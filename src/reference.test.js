@@ -165,3 +165,122 @@
 //     });
 //   }
 // }
+
+import { createContext, useContext, useState, useEffect } from "react";
+/**
+ * auth = getAuth()
+ * provider = new GoogleAuthProvider()
+ */
+import { auth, provider } from "providers/firebase";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut as firebaseSignOut,
+} from "firebase/auth";
+import { api } from "providers/axios";
+import { useLoading } from "providers/loading";
+
+const UserContext = createContext(null);
+export const useAuth = () => useContext(UserContext);
+
+const verifyToken = (token) =>
+  api({
+    method: "post",
+    url: "/user/auth",
+    headers: {
+      token,
+    },
+  });
+
+const UserProvider = (props) => {
+  const [user, setUser] = useState(null);
+  const { loading, setLoading } = useLoading();
+
+  const signIn = async () => {
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log("auth signInWithPopup", result.user.email);
+    } catch (e) {
+      setUser(null);
+      console.error(e);
+      setLoading(false);
+    }
+  };
+
+  const signOut = async () => {
+    let userSigningOut = user;
+    try {
+      await firebaseSignOut(auth);
+      setUser(null);
+      console.log("signed out");
+    } catch (e) {
+      console.error(e);
+    } finally {
+      return (userSigningOut = null);
+    }
+  };
+
+  const verifyUser = async (user) => {
+    try {
+      if (!user) {
+        throw "no user";
+      }
+
+      const token = await getAuth().currentUser.getIdToken(true);
+      if (!token) {
+        throw "no token";
+      }
+
+      const jwt = await getAuth().currentUser.getIdTokenResult();
+      if (!jwt) {
+        throw "no jwt";
+      }
+
+      const verifyTokenResponse = await verifyToken(token);
+      if (verifyTokenResponse.data.role !== jwt.claims.role) {
+        throw "role level claims mismatch";
+      } else {
+        user.verifiedToken = verifyTokenResponse.data;
+        console.log(`User ${user.uid} verified`);
+        setUser(user);
+      }
+    } catch (e) {
+      signOut();
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setLoading(true);
+      try {
+        if (user) {
+          console.log("onAuthStateChanged", user?.email);
+          await verifyUser(user);
+        } else {
+          throw "no user";
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  return (
+    <UserContext.Provider
+      value={{
+        signIn,
+        signOut,
+        user,
+      }}
+    >
+      {props.children}
+    </UserContext.Provider>
+  );
+};
+export default UserProvider;

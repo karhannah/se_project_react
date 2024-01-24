@@ -34,8 +34,11 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, isLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
-  // name: ""
-  // change use state on current user to null instead of {}
+
+  const token = localStorage.getItem("token");
+  const currentUserToken = { currentUser, token };
+
+  console.log(currentUserToken.token);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -68,6 +71,9 @@ function App() {
   };
 
   const onAddItem = async (values) => {
+    const userToken = JSON.stringify(currentUserToken.token);
+    console.log(userToken);
+
     try {
       const res = await postItems(values);
       setClothingItems((prevItems) => [res, ...prevItems]);
@@ -76,6 +82,29 @@ function App() {
       console.error("Error on add item:", error);
     }
   };
+
+  // removed from onAdditem
+  // try {
+  //   const res = await postItems(values);
+  //   setClothingItems((prevItems) => [res, ...prevItems]);
+  //   handleCloseModal();
+  // } catch (error) {
+  //   console.error("Error on add item:", error);
+  // }
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     auth
+  //       .checkToken(token)
+  //       .then((userData) => {
+  //         setCurrentUser(userData);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }, [loggedIn]);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -201,6 +230,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             setActiveModal={activeModal === "create"}
             onAddItem={onAddItem}
+            // isLoggedIn={loggedIn}
           />
         )}
         {activeModal === "preview" && (

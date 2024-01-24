@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
-  // const { values, handleChange, setValues } = UseForm({});
-  // come back to this to improve code
-
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
