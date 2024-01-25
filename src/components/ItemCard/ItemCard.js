@@ -1,9 +1,14 @@
 import "./ItemCard.css";
+import heartButton from "../../images/heartButton.svg";
 
 const ItemCard = ({ item, onSelectCard, onCardLike }) => {
   const handleLike = () => {
     onCardLike({ id: item._id, isLiked: !item.isLiked });
   };
+
+  const likeButtonClassName = `card_like ${
+    item.isLiked ? "card_like-visible" : "card_like-hidden"
+  }`;
 
   return (
     <div>
@@ -15,11 +20,12 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
           alt={item.name}
         />
       </div>
-      <div className="card_name">{item.name}</div>
-
-      <button className="card_name" onClick={handleLike}>
-        like button
-      </button>
+      <div className="card_name">{item.name} </div>
+      <img
+        className={likeButtonClassName}
+        src={heartButton}
+        onClick={handleLike}
+      />
     </div>
   );
 };

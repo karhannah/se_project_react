@@ -38,7 +38,6 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, isLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [like, isLiked] = useState([]);
 
   const token = localStorage.getItem("token");
 
