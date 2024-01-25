@@ -71,7 +71,7 @@ function App() {
         const cardToUpdate = clothingItems.find((c) => c._id === id);
 
         if (cardToUpdate) {
-          const { data, ...props } = await likeRemove(id, token, isLiked);
+          const { data, ...props } = await likeRemove(id, token);
           updatedCard = { ...data, ...props, isLiked: false };
         } else {
           console.error(`Card with id ${id} not found in clothingItems.`);
