@@ -71,4 +71,20 @@ export function likeRemove(id, token) {
     });
 }
 
+// export function likeRemove(id, token, isLiked) {
+//   return fetch(`${baseUrl}/items:id/likes`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({ isLiked }),
+//   })
+//     .then(processServerResponse)
+//     .catch((error) => {
+//       console.error("Error removing like:", error);
+//       throw error; // Re-throw the error for further handling
+//     });
+// }
+
 // start db.json with this > json-server --watch db.json --id _id --port 3001

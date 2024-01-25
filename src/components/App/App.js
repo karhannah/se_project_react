@@ -60,19 +60,22 @@ function App() {
 
   const handleCardLike = async ({ id, isLiked }) => {
     try {
+      let updatedCard;
+      console.log({ id, token });
+
       if (isLiked) {
-        const updatedCard = await likeCard(id, token);
-        // setClothingItems((cards) =>
-        //   cards.map((c) => (c._id === id ? updatedCard : c))
-        // );
-        console.log(updatedCard);
+        updatedCard = await likeCard(id, token);
+        updatedCard.isLiked = true;
       } else {
-        const updatedCard = await likeRemove(id, token);
-        // setClothingItems((cards) =>
-        //   cards.map((c) => (c._id === id ? updatedCard : c))
-        // );
-        console.log(updatedCard);
+        await likeRemove(id, token);
+        updatedCard = { ...clothingItems.find((c) => c._id === id) };
+        updatedCard.isLiked = false;
       }
+
+      setClothingItems((cards) =>
+        cards.map((c) => (c._id === id ? updatedCard : c))
+      );
+      console.log(updatedCard);
     } catch (err) {
       console.error(err);
     }

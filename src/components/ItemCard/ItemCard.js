@@ -16,6 +16,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike }) => {
         />
       </div>
       <div className="card_name">{item.name}</div>
+
       <button className="card_name" onClick={handleLike}>
         like button
       </button>
