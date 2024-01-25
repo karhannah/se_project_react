@@ -1,6 +1,10 @@
 import "./ItemCard.css";
 
-const ItemCard = ({ item, onSelectCard }) => {
+const ItemCard = ({ item, onSelectCard, onCardLike }) => {
+  const handleLike = () => {
+    onCardLike({ id: item._id, isLiked: !item.isLiked });
+  };
+
   return (
     <div>
       <div>
@@ -12,6 +16,9 @@ const ItemCard = ({ item, onSelectCard }) => {
         />
       </div>
       <div className="card_name">{item.name}</div>
+      <button className="card_name" onClick={handleLike}>
+        like button
+      </button>
     </div>
   );
 };

@@ -4,7 +4,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { useContext } from "react";
 import "./Main.css";
 
-function Main({ weatherTemp, onSelectCard, setClothingItems }) {
+function Main({ weatherTemp, onSelectCard, setClothingItems, onCardLike }) {
+  console.log(onCardLike);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 85;
   const getWeatherType = () => {
@@ -48,7 +49,8 @@ function Main({ weatherTemp, onSelectCard, setClothingItems }) {
               img={item.imageUrl}
               onSelectCard={onSelectCard}
               key={item._id}
-            />
+              onCardLike={onCardLike}
+            ></ItemCard>
           ))}
         </div>
       </section>

@@ -2,7 +2,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getWeatherAndLocation,
   locationData,
@@ -11,20 +11,24 @@ import {
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 import "./App.css";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
-import { getItems, postItems, deleteItems } from "../../utils/api";
+import {
+  getItems,
+  postItems,
+  deleteItems,
+  likeCard,
+  likeRemove,
+} from "../../utils/api";
 
 // import login and register modals here
 import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as auth from "../../utils/auth";
-import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
@@ -32,8 +36,9 @@ function App() {
   const [city, setCity] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [loggedIn, isLoggedIn] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [loggedIn, isLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
   const token = localStorage.getItem("token");
 
   const handleCreateModal = () => {
@@ -51,6 +56,26 @@ function App() {
   };
   const handleRegisterModal = () => {
     setActiveModal("register");
+  };
+
+  const handleCardLike = async ({ id, isLiked }) => {
+    try {
+      if (isLiked) {
+        const updatedCard = await likeCard(id, token);
+        // setClothingItems((cards) =>
+        //   cards.map((c) => (c._id === id ? updatedCard : c))
+        // );
+        console.log(updatedCard);
+      } else {
+        const updatedCard = await likeRemove(id, token);
+        // setClothingItems((cards) =>
+        //   cards.map((c) => (c._id === id ? updatedCard : c))
+        // );
+        console.log(updatedCard);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleDeleteCard = async () => {
@@ -164,6 +189,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
               onCreate={handleCreateModal}
+              onCardLike={handleCardLike}
             ></Profile>
           </ProtectedRoute>
 
@@ -187,6 +213,7 @@ function App() {
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
               setClothingItems={clothingItems}
+              onCardLike={handleCardLike}
             />
           </Route>
         </Switch>

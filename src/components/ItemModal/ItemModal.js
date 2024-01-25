@@ -1,4 +1,6 @@
 const ItemModal = ({ selectedCard, onClose, onClick }) => {
+  // maybe pass in item to itemModal instead
+
   return (
     <div className="modal__overlay">
       <div className={`modal`}>

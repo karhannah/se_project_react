@@ -1,5 +1,4 @@
 import { processServerResponse } from "./utils";
-import * as auth from "./auth";
 
 export const baseUrl = "http://localhost:3001";
 
@@ -39,6 +38,37 @@ export function deleteItems(id, token) {
       Authorization: `Bearer ${token}`,
     },
   }).then(processServerResponse);
+}
+
+// PUT
+export function likeCard(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(processServerResponse)
+    .catch((error) => {
+      console.error("Error removing like:", error);
+      throw error; // Re-throw the error for further handling
+    });
+}
+
+export function likeRemove(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(processServerResponse)
+    .catch((error) => {
+      console.error("Error removing like:", error);
+      throw error; // Re-throw the error for further handling
+    });
 }
 
 // start db.json with this > json-server --watch db.json --id _id --port 3001
