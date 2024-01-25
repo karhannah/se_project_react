@@ -38,6 +38,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, isLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [like, isLiked] = useState([]);
 
   const token = localStorage.getItem("token");
 
@@ -61,21 +62,27 @@ function App() {
   const handleCardLike = async ({ id, isLiked }) => {
     try {
       let updatedCard;
-      console.log({ id, token });
-
+      // destucture inner card values
       if (isLiked) {
-        updatedCard = await likeCard(id, token);
-        updatedCard.isLiked = true;
+        const { data, ...props } = await likeCard(id, token);
+        updatedCard = { ...data, ...props, isLiked: true };
       } else {
         await likeRemove(id, token);
-        updatedCard = { ...clothingItems.find((c) => c._id === id) };
-        updatedCard.isLiked = false;
+        const cardToUpdate = clothingItems.find((c) => c._id === id);
+
+        if (cardToUpdate) {
+          const { data, ...props } = await likeRemove(id, token, isLiked);
+          updatedCard = { ...data, ...props, isLiked: false };
+        } else {
+          console.error(`Card with id ${id} not found in clothingItems.`);
+          return;
+        }
       }
 
       setClothingItems((cards) =>
         cards.map((c) => (c._id === id ? updatedCard : c))
       );
-      console.log(updatedCard);
+      console.log({ updatedCard });
     } catch (err) {
       console.error(err);
     }
