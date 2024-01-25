@@ -81,7 +81,6 @@ function App() {
       setClothingItems((cards) =>
         cards.map((c) => (c._id === id ? updatedCard : c))
       );
-      console.log({ updatedCard });
     } catch (err) {
       console.error(err);
     }
@@ -241,6 +240,7 @@ function App() {
             selectedCard={selectedcard}
             onClose={handleCloseModal}
             onClick={handleDeleteOpenModal}
+            currentUser={currentUser}
           />
         )}
         {activeModal === "delete" && (

@@ -190,6 +190,22 @@
   line-height: 24px;
   cursor: pointer;
 }
+
+.modal__delete-button_visible {
+  color: #ff4d00;
+  background: none;
+  border: none;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.modal_delete-button_hidden {
+  /* display: none; */
+}
+
 /* Delete modal css */
 .delete__modal-container {
   background-color: rgba(0, 0, 0, 0.5);

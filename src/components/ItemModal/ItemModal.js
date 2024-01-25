@@ -1,5 +1,12 @@
-const ItemModal = ({ selectedCard, onClose, onClick }) => {
-  // maybe pass in item to itemModal instead
+const ItemModal = ({ currentUser, selectedCard, onClose, onClick }) => {
+  const isOwn = selectedCard.owner === currentUser._id;
+  console.log(selectedCard.owner);
+  console.log(currentUser._id);
+  console.log(isOwn);
+
+  const itemDeleteButtonClassName = `modal__delete-button ${
+    isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"
+  }`;
 
   return (
     <div className="modal__overlay">
@@ -20,7 +27,7 @@ const ItemModal = ({ selectedCard, onClose, onClick }) => {
             <div>weather type: {selectedCard.weather}</div>
           </div>
           <div className="modal__delete-button_container">
-            <button className="modal__delete-button" onClick={onClick}>
+            <button className={itemDeleteButtonClassName} onClick={onClick}>
               Delete Item
             </button>
           </div>

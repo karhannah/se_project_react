@@ -35,7 +35,6 @@ export const authorize = (email, password) => {
         console.log(userData.token);
         return userData.token;
       } else {
-        console.log(userData);
         throw new Error(userData.message);
       }
     });
@@ -52,7 +51,6 @@ export const checkToken = (token) => {
   })
     .then((res) => res.json())
     .then((userData) => {
-      console.log(userData);
       return userData.data;
     });
 };
