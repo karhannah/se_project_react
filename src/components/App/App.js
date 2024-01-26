@@ -29,6 +29,7 @@ import Login from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as auth from "../../utils/auth";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
@@ -44,9 +45,7 @@ function App() {
   const handleCreateModal = () => {
     setActiveModal("create");
   };
-  const handleCloseModal = () => {
-    setActiveModal("");
-  };
+
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -56,6 +55,13 @@ function App() {
   };
   const handleRegisterModal = () => {
     setActiveModal("register");
+  };
+  const handleEditProfileModal = () => {
+    setActiveModal("edit");
+  };
+
+  const handleCloseModal = () => {
+    setActiveModal("");
   };
 
   const handleCardLike = async ({ id, isLiked }) => {
@@ -248,6 +254,9 @@ function App() {
             onClose={handleCloseModal}
             deleteCard={handleDeleteCard}
           />
+        )}
+        {activeModal === "edit" && (
+          <EditProfileModal onClick={handleEditProfileModal} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </CurrentUserContext.Provider>

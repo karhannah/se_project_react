@@ -1,3 +1,4 @@
+import "../ModalWithForm/ModalWithForm.css";
 const ItemModal = ({ currentUser, selectedCard, onClose, onClick }) => {
   const isOwn = selectedCard.owner === currentUser._id;
   console.log(selectedCard.owner);
