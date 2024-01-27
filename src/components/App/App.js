@@ -55,14 +55,8 @@ function App() {
   const handleDeleteOpenModal = () => {
     setActiveModal("delete");
   };
-  const handleOpenRegisterModal = () => {
-    setActiveModal("register");
-  };
   const handleOpenEditModal = () => {
     setActiveModal("edit");
-  };
-  const handleOpenLoginModal = () => {
-    setActiveModal("login");
   };
   const handleOpenModal = (modalType) => {
     setActiveModal(modalType);
