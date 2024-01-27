@@ -11,7 +11,7 @@ const Profile = ({
 }) => {
   return (
     <div className="profile">
-      <SideBar onClick={onClick} onClose={onClose} />
+      <SideBar onClick={onClick} />
       <div className="profile__items-container">
         <div className="profile__items-text">
           Your Items

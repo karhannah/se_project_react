@@ -71,14 +71,14 @@ export function likeRemove(id, token) {
     });
 }
 
-export function editProfile(name, avatar, token) {
-  return fetch(`${baseUrl}/users/me`, {
+export function editProfile(values, token) {
+  console.log(values);
+  return fetch(`${baseUrl}/users/me/`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatar }),
   })
     .then(processServerResponse)
     .catch((error) => {

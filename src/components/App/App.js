@@ -21,6 +21,7 @@ import {
   deleteItems,
   likeCard,
   likeRemove,
+  editProfile,
 } from "../../utils/api";
 
 // import login and register modals here
@@ -111,6 +112,15 @@ function App() {
       handleCloseModal();
     } catch (error) {
       console.error(error.message);
+    }
+  };
+
+  const onEditSave = async (values) => {
+    try {
+      const res = await editProfile(values, token);
+      console.log(res);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -205,7 +215,6 @@ function App() {
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
               onClick={handleOpenEditModal}
-              onClose={handleCloseModal}
             ></Profile>
           </ProtectedRoute>
 
@@ -240,7 +249,6 @@ function App() {
             handleCloseModal={handleCloseModal}
             setActiveModal={activeModal === "create"}
             onAddItem={onAddItem}
-            loggedIn={loggedIn}
           />
         )}
         {activeModal === "preview" && (
@@ -259,9 +267,9 @@ function App() {
         )}
         {activeModal === "edit" && (
           <EditProfileModal
-            onClick={handleOpenEditModal}
             onClose={handleCloseModal}
             currentUser={currentUser}
+            onEditSave={onEditSave}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
