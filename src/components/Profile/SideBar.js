@@ -1,6 +1,5 @@
 import avatarLogo from "../../images/headerAvatar.svg";
 import { useHistory } from "react-router-dom";
-import * as api from "../../utils/api";
 
 const SideBar = ({ onClick, logout, handleOpenModal }) => {
   const history = useHistory();
