@@ -71,6 +71,22 @@ export function likeRemove(id, token) {
     });
 }
 
+export function editProfile(name, avatar, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  })
+    .then(processServerResponse)
+    .catch((error) => {
+      console.log("Error updating Profile:", error);
+      throw error;
+    });
+}
+
 // 3. Add the editing profile logic
 // Add the EditProfileModal component for editing user data. The modal windows should be opened when
 // the user clicks the “Edit profile” button on the profile page.

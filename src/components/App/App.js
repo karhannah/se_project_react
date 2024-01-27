@@ -56,7 +56,7 @@ function App() {
   const handleRegisterModal = () => {
     setActiveModal("register");
   };
-  const handleEditProfileModal = () => {
+  const handleOpenEditModal = () => {
     setActiveModal("edit");
   };
 
@@ -204,6 +204,8 @@ function App() {
               clothingItems={clothingItems}
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
+              onClick={handleOpenEditModal}
+              onClose={handleCloseModal}
             ></Profile>
           </ProtectedRoute>
 
@@ -256,7 +258,11 @@ function App() {
           />
         )}
         {activeModal === "edit" && (
-          <EditProfileModal onClick={handleEditProfileModal} />
+          <EditProfileModal
+            onClick={handleOpenEditModal}
+            onClose={handleCloseModal}
+            currentUser={currentUser}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </CurrentUserContext.Provider>

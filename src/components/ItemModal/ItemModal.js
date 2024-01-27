@@ -1,9 +1,6 @@
 import "../ModalWithForm/ModalWithForm.css";
 const ItemModal = ({ currentUser, selectedCard, onClose, onClick }) => {
   const isOwn = selectedCard.owner === currentUser._id;
-  console.log(selectedCard.owner);
-  console.log(currentUser._id);
-  console.log(isOwn);
 
   const itemDeleteButtonClassName = `modal__delete-button ${
     isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"

@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-const AddItemModal = ({
-  loggedIn,
-  handleCloseModal,
-  setActiveModal,
-  onAddItem,
-}) => {
+const AddItemModal = ({ handleCloseModal, setActiveModal, onAddItem }) => {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [weatherType, setWeatherType] = useState("");

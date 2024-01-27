@@ -1,10 +1,17 @@
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import "./Profile.css";
-const Profile = ({ onCreate, clothingItems, onSelectCard, onCardLike }) => {
+const Profile = ({
+  onClose,
+  onClick,
+  onCreate,
+  clothingItems,
+  onSelectCard,
+  onCardLike,
+}) => {
   return (
     <div className="profile">
-      <SideBar />
+      <SideBar onClick={onClick} onClose={onClose} />
       <div className="profile__items-container">
         <div className="profile__items-text">
           Your Items
