@@ -1,6 +1,6 @@
 import "../ModalWithForm/ModalWithForm.css";
 import closeButton from "../../images/grey-x-button.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as api from "../../utils/api";
 
@@ -12,10 +12,14 @@ const EditProfileModal = ({ currentUser, onClose }) => {
     avatar: currentUser.avatar,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-    console.log(values);
+  const handleChange = async (e) => {
+    try {
+      const { name, value } = e.target;
+      setValues({ ...values, [name]: value });
+      console.log(values);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const onEditSave = async () => {
@@ -33,6 +37,7 @@ const EditProfileModal = ({ currentUser, onClose }) => {
     try {
       const newInfo = await onEditSave();
       setValues(newInfo);
+      onClose(onClose);
       return newInfo;
     } catch (error) {
       console.log("Error updating profile:", error);

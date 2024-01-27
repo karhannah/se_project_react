@@ -40,7 +40,6 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
     <ModalWithForm
       title="Log in"
       onClose={handleCloseModal}
-      onClick={onClick}
       buttonText={
         <div onClick={handleSubmit} className="login__button-login">
           Log in
@@ -70,7 +69,11 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
           <div className="login__button-container"></div>
         </div>
         <div className="login__signup">
-          <Link to="/register" className="signup__link">
+          <Link
+            to="/register"
+            onClick={() => onClick("register")}
+            className="signup__link"
+          >
             or Register
           </Link>
         </div>

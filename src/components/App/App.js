@@ -31,6 +31,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import * as auth from "../../utils/auth";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedcard, setSelectedCard] = useState({});
@@ -54,11 +55,17 @@ function App() {
   const handleDeleteOpenModal = () => {
     setActiveModal("delete");
   };
-  const handleRegisterModal = () => {
+  const handleOpenRegisterModal = () => {
     setActiveModal("register");
   };
   const handleOpenEditModal = () => {
     setActiveModal("edit");
+  };
+  const handleOpenLoginModal = () => {
+    setActiveModal("login");
+  };
+  const handleOpenModal = (modalType) => {
+    setActiveModal(modalType);
   };
 
   const handleCloseModal = () => {
@@ -123,6 +130,10 @@ function App() {
     month: "long",
     day: "numeric",
   });
+
+  const logout = () => {
+    isLoggedIn({ loggedIn: false });
+  };
 
   useEffect(() => {
     if (!activeModal) return;
@@ -196,6 +207,7 @@ function App() {
           currentDate={currentDate}
           setCurrentUser={currentUser}
           isLoggedIn={loggedIn}
+          onClick={handleOpenModal}
         ></Header>
 
         <Switch>
@@ -206,23 +218,30 @@ function App() {
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
               onClick={handleOpenEditModal}
+              logout={logout}
+              handleOpenModal={handleOpenModal}
             ></Profile>
           </ProtectedRoute>
 
-          <Route path="/register">
-            <Register
-              onClose={handleCloseModal}
-              onClick={handleRegisterModal}
-              isLoggedIn={isLoggedIn}
-            />
-          </Route>
+          {activeModal === "register" && (
+            <Route path="/register">
+              <Register
+                handleCloseModal={handleCloseModal}
+                isLoggedIn={isLoggedIn}
+                onClick={handleOpenModal}
+              />
+            </Route>
+          )}
 
-          <Route path="/login">
-            <Login
-              handleCloseModal={handleCloseModal}
-              isLoggedIn={isLoggedIn}
-            ></Login>
-          </Route>
+          {activeModal === "login" && (
+            <Route path="/login">
+              <Login
+                handleCloseModal={handleCloseModal}
+                isLoggedIn={isLoggedIn}
+                onClick={handleOpenModal}
+              />
+            </Route>
+          )}
 
           <Route exact path="/">
             <Main
@@ -238,7 +257,7 @@ function App() {
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
-            setActiveModal={activeModal === "create"}
+            setActiveModal={handleCreateModal}
             onAddItem={onAddItem}
           />
         )}
@@ -260,7 +279,6 @@ function App() {
           <EditProfileModal
             onClose={handleCloseModal}
             currentUser={currentUser}
-            // onEditSave={onEditSave}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

@@ -40,7 +40,6 @@ const Register = ({ isLoggedIn, handleCloseModal, onClick }) => {
     <ModalWithForm
       title="Sign up"
       onClose={handleCloseModal}
-      onClick={onClick}
       buttonText={
         <div onClick={handleSubmit} className="register__profile-link">
           Next
@@ -87,7 +86,11 @@ const Register = ({ isLoggedIn, handleCloseModal, onClick }) => {
           />
         </div>
         <div className="register__signin">
-          <Link to="login" className="register__login-link">
+          <Link
+            to="login"
+            onClick={() => onClick("login")}
+            className="register__login-link"
+          >
             or Log in
           </Link>
         </div>

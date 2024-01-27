@@ -8,8 +8,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
+const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
+  console.log(onClick);
 
   return (
     <header className="header">
@@ -40,7 +41,11 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
             {currentUser.name}
           </p>
         ) : (
-          <Link to="/register" className="header__sign">
+          <Link
+            to="/register"
+            onClick={() => onClick("register")}
+            className="header__sign"
+          >
             Sign Up
           </Link>
         )}
@@ -59,7 +64,11 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate }) => {
               <UserPlaceHolder isLoggedIn={isLoggedIn} />
             )
           ) : (
-            <Link to="/login" className="header__sign">
+            <Link
+              to="/login"
+              onClick={() => onClick("login")}
+              className="header__sign"
+            >
               Log in
             </Link>
           )}

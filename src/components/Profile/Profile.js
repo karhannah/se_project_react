@@ -2,16 +2,21 @@ import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import "./Profile.css";
 const Profile = ({
-  onClose,
   onClick,
   onCreate,
   clothingItems,
   onSelectCard,
   onCardLike,
+  logout,
+  handleOpenModal,
 }) => {
   return (
     <div className="profile">
-      <SideBar onClick={onClick} />
+      <SideBar
+        onClick={onClick}
+        logout={logout}
+        handleOpenModal={handleOpenModal}
+      />
       <div className="profile__items-container">
         <div className="profile__items-text">
           Your Items
