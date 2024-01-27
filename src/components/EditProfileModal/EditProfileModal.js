@@ -1,10 +1,10 @@
 import "../ModalWithForm/ModalWithForm.css";
 import closeButton from "../../images/grey-x-button.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as api from "../../utils/api";
 
-const EditProfileModal = ({ currentUser, onClose, onEditSave }) => {
+const EditProfileModal = ({ currentUser, onClose }) => {
   const history = useHistory();
 
   const [values, setValues] = useState({
@@ -16,6 +16,27 @@ const EditProfileModal = ({ currentUser, onClose, onEditSave }) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
     console.log(values);
+  };
+
+  const onEditSave = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await api.editProfile(values, token);
+      return res.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newInfo = await onEditSave();
+      setValues(newInfo);
+      return newInfo;
+    } catch (error) {
+      console.log("Error updating profile:", error);
+    }
   };
 
   return (
@@ -49,7 +70,7 @@ const EditProfileModal = ({ currentUser, onClose, onEditSave }) => {
             />
           </div>
           <div className="profile__modal-options">
-            <button className="profile__modal-save" onClick={onEditSave}>
+            <button className="profile__modal-save" onClick={handleSubmit}>
               Save Changes
             </button>
           </div>

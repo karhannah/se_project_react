@@ -79,6 +79,7 @@ export function editProfile(values, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify(values),
   })
     .then(processServerResponse)
     .catch((error) => {

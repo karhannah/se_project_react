@@ -115,15 +115,6 @@ function App() {
     }
   };
 
-  const onEditSave = async (values) => {
-    try {
-      const res = await editProfile(values, token);
-      console.log(res);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
@@ -269,7 +260,7 @@ function App() {
           <EditProfileModal
             onClose={handleCloseModal}
             currentUser={currentUser}
-            onEditSave={onEditSave}
+            // onEditSave={onEditSave}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
