@@ -6,8 +6,6 @@ const SideBar = ({ onClick, logout, handleOpenModal }) => {
   const history = useHistory();
 
   const handleLogout = async () => {
-    console.log("logged out fired");
-    console.log(logout);
     try {
       logout(logout);
       localStorage.removeItem("token");
