@@ -226,7 +226,7 @@ function App() {
               loggedIn={loggedIn}
             />
             {activeModal === "register" && (
-              <Route path="/">
+              <Route path="/register">
                 <Register
                   handleCloseModal={handleCloseModal}
                   isLoggedIn={isLoggedIn}
@@ -235,7 +235,7 @@ function App() {
               </Route>
             )}
             {activeModal === "login" && (
-              <Route path="/">
+              <Route path="/login">
                 <Login
                   handleCloseModal={handleCloseModal}
                   isLoggedIn={isLoggedIn}

@@ -44,7 +44,7 @@ const Header = ({ loggedIn, onCreate, city, currentDate, onClick }) => {
           </p>
         ) : (
           <Link
-            to="/"
+            to="/register"
             onClick={() => onClick("register")}
             className="header__sign"
           >
@@ -67,7 +67,7 @@ const Header = ({ loggedIn, onCreate, city, currentDate, onClick }) => {
             )
           ) : (
             <Link
-              to="/"
+              to="/login"
               onClick={() => onClick("login")}
               className="header__sign"
             >
