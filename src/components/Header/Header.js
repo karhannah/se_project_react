@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
+const Header = ({ loggedIn, onCreate, city, currentDate, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   return (
     <header className="header">
@@ -26,15 +26,19 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
       <div className="header__avatar-logo">
         <ToggleSwitch />
         <div>
-          <button
-            className="header__button-add-clothes"
-            onClick={onCreate}
-            type="button"
-          >
-            + Add Clothes
-          </button>
+          {loggedIn ? (
+            <button
+              className="header__button-add-clothes"
+              onClick={onCreate}
+              type="button"
+            >
+              + Add Clothes
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
-        {isLoggedIn ? (
+        {loggedIn ? (
           <p to="/profile" className="header__user-name">
             {currentUser.name}
           </p>
@@ -49,7 +53,7 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
         )}
 
         <div>
-          {isLoggedIn ? (
+          {loggedIn ? (
             currentUser.avatar ? (
               <Link to="/profile">
                 <img
@@ -59,7 +63,7 @@ const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
                 />
               </Link>
             ) : (
-              <UserPlaceHolder isLoggedIn={isLoggedIn} />
+              <UserPlaceHolder loggedIn={loggedIn} />
             )
           ) : (
             <Link
