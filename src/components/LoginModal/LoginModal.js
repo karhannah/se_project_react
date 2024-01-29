@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import * as auth from "../../utils/auth";
 import "./LoginModal.css";
@@ -16,8 +16,7 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (!values.email || !values.password) {
       return;
     }
@@ -36,6 +35,20 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
         }
       });
   };
+
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter Key was pressed");
+        handleSubmit();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [handleSubmit]);
+
   return (
     <ModalWithForm
       title="Log in"
