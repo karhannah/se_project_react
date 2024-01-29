@@ -217,27 +217,7 @@ function App() {
             ></Profile>
           </ProtectedRoute>
 
-          {activeModal === "register" && (
-            <Route path="/register">
-              <Register
-                handleCloseModal={handleCloseModal}
-                isLoggedIn={isLoggedIn}
-                onClick={handleOpenModal}
-              />
-            </Route>
-          )}
-
-          {activeModal === "login" && (
-            <Route path="/login">
-              <Login
-                handleCloseModal={handleCloseModal}
-                isLoggedIn={isLoggedIn}
-                onClick={handleOpenModal}
-              />
-            </Route>
-          )}
-
-          <Route exact path="/">
+          <Route path="/">
             <Main
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
@@ -245,6 +225,24 @@ function App() {
               onCardLike={handleCardLike}
               loggedIn={loggedIn}
             />
+            {activeModal === "register" && (
+              <Route path="/">
+                <Register
+                  handleCloseModal={handleCloseModal}
+                  isLoggedIn={isLoggedIn}
+                  onClick={handleOpenModal}
+                />
+              </Route>
+            )}
+            {activeModal === "login" && (
+              <Route path="/">
+                <Login
+                  handleCloseModal={handleCloseModal}
+                  isLoggedIn={isLoggedIn}
+                  onClick={handleOpenModal}
+                />
+              </Route>
+            )}
           </Route>
         </Switch>
 
