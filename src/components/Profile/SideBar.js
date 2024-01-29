@@ -1,14 +1,14 @@
 import avatarLogo from "../../images/headerAvatar.svg";
 import { useHistory } from "react-router-dom";
 
-const SideBar = ({ onClick, logout, handleOpenModal }) => {
+const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
   const history = useHistory();
 
   const handleLogout = async () => {
     try {
-      logout(logout);
       localStorage.removeItem("token");
-      history.push("/login");
+      isLoggedIn(false);
+      history.push("/");
       handleOpenModal(() => handleOpenModal("login"));
     } catch (error) {
       console.log("error on log out");

@@ -125,10 +125,6 @@ function App() {
     day: "numeric",
   });
 
-  const logout = () => {
-    isLoggedIn({ loggedIn: false });
-  };
-
   useEffect(() => {
     if (!activeModal) return;
     const handleEscClose = (e) => {
@@ -212,7 +208,7 @@ function App() {
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
               onClick={handleOpenEditModal}
-              logout={logout}
+              isLoggedIn={isLoggedIn}
               handleOpenModal={handleOpenModal}
             ></Profile>
           </ProtectedRoute>

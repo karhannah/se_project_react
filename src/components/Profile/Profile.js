@@ -7,14 +7,14 @@ const Profile = ({
   clothingItems,
   onSelectCard,
   onCardLike,
-  logout,
+  isLoggedIn,
   handleOpenModal,
 }) => {
   return (
     <div className="profile">
       <SideBar
         onClick={onClick}
-        logout={logout}
+        isLoggedIn={isLoggedIn}
         handleOpenModal={handleOpenModal}
       />
       <div className="profile__items-container">
