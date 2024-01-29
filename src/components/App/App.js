@@ -243,6 +243,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               setClothingItems={clothingItems}
               onCardLike={handleCardLike}
+              loggedIn={loggedIn}
             />
           </Route>
         </Switch>

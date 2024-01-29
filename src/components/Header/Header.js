@@ -10,8 +10,6 @@ import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
 const Header = ({ isLoggedIn, onCreate, city, currentDate, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  console.log(onClick);
-
   return (
     <header className="header">
       <div className="header__logo">
