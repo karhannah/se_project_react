@@ -17,3 +17,14 @@
 .weather_image {
   width: 100%;
 }
+
+@media screen and (max-width: 320px) {
+  .weather_info {
+    top: -8px;
+    left: 6px;
+    font-size: 15px;
+  }
+  .weather_image {
+    width: 100%;
+  }
+}
