@@ -1,7 +1,12 @@
 import avatarLogo from "../../images/headerAvatar.svg";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
+  const { currentUser } = React.useContext(CurrentUserContext);
   const history = useHistory();
 
   const handleLogout = async () => {
@@ -17,8 +22,20 @@ const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
   return (
     <div className="profile__container">
       <div className="profile__logo">
-        <img className="profile__avatar-logo" src={avatarLogo} alt="Avatar" />
-        <p className="profile__user-name">Terrence Tegegne</p>
+        {isLoggedIn ? (
+          currentUser.avatar ? (
+            <img
+              className="profile__avatar-logo"
+              src={currentUser.avatar}
+              alt="Avatar"
+            />
+          ) : (
+            <UserPlaceHolder isLoggedIn={isLoggedIn}></UserPlaceHolder>
+          )
+        ) : (
+          <></>
+        )}
+        <p className="profile__user-name">{currentUser.name}</p>
       </div>
       <button className="profile__change-data" onClick={onClick}>
         Change Profile Data
