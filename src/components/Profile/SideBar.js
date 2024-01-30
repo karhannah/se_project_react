@@ -16,6 +16,7 @@ const SideBar = ({ onClick, isLoggedIn }) => {
       console.log("error on log out");
     }
   };
+
   return (
     <div className="profile__container">
       <div className="profile__logo">

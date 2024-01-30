@@ -2,7 +2,7 @@ import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./UserPlaceHolder.css";
 
-const UserPlaceHolder = async ({ isLoggedIn }) => {
+const UserPlaceHolder = ({ isLoggedIn }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
 
   if (!currentUser || !currentUser.name) {

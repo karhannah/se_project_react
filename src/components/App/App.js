@@ -193,6 +193,7 @@ function App() {
           currentDate={currentDate}
           setCurrentUser={currentUser}
           loggedIn={loggedIn}
+          isLoggedIn={loggedIn}
           onClick={handleOpenModal}
         ></Header>
 
