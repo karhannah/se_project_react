@@ -3,13 +3,14 @@ import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const SideBar = ({ onClick, isLoggedIn }) => {
+const SideBar = ({ onClick, isLoggedIn, setCurrentUser }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const history = useHistory();
 
   const handleLogout = async () => {
     try {
       localStorage.removeItem("token");
+      setCurrentUser(null);
       isLoggedIn(false);
       history.push("/");
     } catch (error) {
