@@ -17,7 +17,6 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     if (!values.email || !values.password) {
       return;
     }

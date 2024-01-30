@@ -7,7 +7,12 @@ import * as auth from "../../utils/auth";
 // if i can't seem to do that export it normally
 
 // pass in arguments for events in register = ()
-const Register = ({ isLoggedIn, handleCloseModal, onClick }) => {
+const Register = ({
+  isLoggedIn,
+  handleCloseModal,
+  onClick,
+  setCurrentUser,
+}) => {
   const history = useHistory();
 
   const [values, setValues] = useState({
@@ -24,15 +29,21 @@ const Register = ({ isLoggedIn, handleCloseModal, onClick }) => {
     console.log(values);
   };
 
-  const handleSubmit = (e) => {
+  // Register.js
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    auth
-      .register(values)
-      .then((res) => {
-        isLoggedIn(true);
-        history.push("/profile");
-      })
-      .catch((err) => console.log(err));
+    console.log("Values before registration:", values);
+    try {
+      const userData = await auth.register(values);
+      console.log("UserData received after registration:", userData);
+
+      setCurrentUser(userData);
+      isLoggedIn(true);
+      const email = values.email;
+      history.push(`/profile/${email}`);
+    } catch (err) {
+      console.error("Error during registration: ", err);
+    }
   };
 
   return (

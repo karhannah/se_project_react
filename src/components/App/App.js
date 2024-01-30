@@ -234,6 +234,7 @@ function App() {
                   handleCloseModal={handleCloseModal}
                   isLoggedIn={isLoggedIn}
                   onClick={handleOpenModal}
+                  setCurrentUser={setCurrentUser}
                 />
               </Route>
             )}

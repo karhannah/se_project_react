@@ -6,7 +6,7 @@ import * as api from "../../utils/api";
 
 const EditProfileModal = ({ currentUser, onEdit, onClose }) => {
   const history = useHistory();
-
+  console.log(currentUser);
   const [values, setValues] = useState({
     name: currentUser.name,
     avatar: currentUser.avatar,

@@ -1,19 +1,30 @@
 import { baseUrl } from "./api";
 // project 14 registration
+// auth.js
 export const register = async ({ name, email, password, avatar }) => {
-  const res = await fetch(`${baseUrl}/signup`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email, password, avatar }),
-  });
-  const userData = await res.json();
-  if (!userData) {
-    throw new Error("Error from register: ", userData);
+  try {
+    const res = await fetch(`${baseUrl}/signup`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password, avatar }),
+    });
+
+    const userData = await res.json();
+    console.log("Full response from server:", res);
+    console.log("User data received after registration:", userData);
+
+    if (!userData) {
+      throw new Error("Error from register");
+    }
+
+    return userData;
+  } catch (error) {
+    console.error("Error from register: ", error);
+    throw error;
   }
-  console.log(userData);
 };
 
 // project 14 login
