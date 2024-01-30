@@ -88,8 +88,8 @@ export function editProfile(values, token) {
     });
 }
 
-export async function setUserInfo(data, token) {
-  console.log(data);
+export async function setUserInfo(values, token) {
+  console.log(values);
   try {
     const res = await fetch(`${baseUrl}/users/me/`, {
       method: "PUT",
@@ -97,7 +97,7 @@ export async function setUserInfo(data, token) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(values),
     });
     return processServerResponse(res);
   } catch (error) {

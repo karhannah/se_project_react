@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as api from "../../utils/api";
 
-const EditProfileModal = ({ currentUser, onClose, onEdit }) => {
+const EditProfileModal = ({ currentUser, onEdit, onClose }) => {
   const history = useHistory();
 
   const [values, setValues] = useState({
@@ -37,6 +37,7 @@ const EditProfileModal = ({ currentUser, onClose, onEdit }) => {
     try {
       const newInfo = await onEditSave();
       setValues(newInfo);
+      onEdit(onEdit);
       onClose(onClose);
       return newInfo;
     } catch (error) {

@@ -123,23 +123,15 @@ function App() {
     }
   };
 
-  // const onEdit = (values) => {
-  //   setUserInfo(values).then((res) => {
-  //     setCurrentUser(values);
-  //   });
-  // };
-
-  // create new function for handling edit changes
-  // pass to EditProfileModal inside of handleSubmit
-  const onEdit = (data) => {
-    // Make fetch request. Looks like you still need to define this function
-    setUserInfo(data)
-      .then((res) => {
-        // set the currentUser value
-        setCurrentUser(res);
-        // close modals
-      })
-      .catch(console.error);
+  const onEdit = async (values) => {
+    console.log(values);
+    try {
+      const res = await setUserInfo(values, token);
+      setCurrentUser(res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Error from onEdit: ", error);
+    }
   };
 
   useEffect(() => {
@@ -282,6 +274,7 @@ function App() {
           <EditProfileModal
             currentUser={currentUser}
             onClose={handleCloseModal}
+            setCurrentUser={setCurrentUser}
             onEdit={onEdit}
           />
         )}

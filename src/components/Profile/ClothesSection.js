@@ -7,11 +7,9 @@ const ClothesSection = ({
   onCardLike,
 }) => {
   const isOwn = currentUser._id;
-  console.log(isOwn);
 
   const filteredCards = clothingItems.filter((item) => {
     // return item.weather;
-    console.log(item.owner);
     return item.owner === isOwn;
   });
 
