@@ -42,6 +42,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const token = localStorage.getItem("token");
 
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+
   const handleOpenModal = (modalType) => {
     setActiveModal(modalType);
   };
@@ -117,10 +122,6 @@ function App() {
     }
   };
 
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-  });
   useEffect(() => {
     if (!activeModal) return;
     const handleEscClose = (e) => {
