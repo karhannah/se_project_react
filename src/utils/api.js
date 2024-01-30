@@ -88,4 +88,22 @@ export function editProfile(values, token) {
     });
 }
 
+export async function setUserInfo(data, token) {
+  console.log(data);
+  try {
+    const res = await fetch(`${baseUrl}/users/me/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    return processServerResponse(res);
+  } catch (error) {
+    console.log("Error from setUserInfo: ", error);
+    throw error;
+  }
+}
+
 // start db.json with this > json-server --watch db.json --id _id --port 3001

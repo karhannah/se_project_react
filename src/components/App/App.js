@@ -21,6 +21,7 @@ import {
   deleteItems,
   likeCard,
   likeRemove,
+  setUserInfo,
 } from "../../utils/api";
 
 // import login and register modals here
@@ -120,6 +121,25 @@ function App() {
     } catch (error) {
       console.error("Error from toggle switch: ", error);
     }
+  };
+
+  // const onEdit = (values) => {
+  //   setUserInfo(values).then((res) => {
+  //     setCurrentUser(values);
+  //   });
+  // };
+
+  // create new function for handling edit changes
+  // pass to EditProfileModal inside of handleSubmit
+  const onEdit = (data) => {
+    // Make fetch request. Looks like you still need to define this function
+    setUserInfo(data)
+      .then((res) => {
+        // set the currentUser value
+        setCurrentUser(res);
+        // close modals
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -262,6 +282,7 @@ function App() {
           <EditProfileModal
             currentUser={currentUser}
             onClose={handleCloseModal}
+            onEdit={onEdit}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
