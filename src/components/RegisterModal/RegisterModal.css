@@ -1,0 +1,29 @@
+.register__profile-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.register__form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register__form-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  margin: 0 0 10px 0;
+}
+
+.register__signin {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 61px;
+  right: 80px;
+}
+
+.register__login-link {
+  text-decoration: none;
+  color: grey;
+}

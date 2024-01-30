@@ -1,0 +1,53 @@
+.card_section {
+  margin-top: 20px;
+}
+
+.card_name {
+  display: inline-block;
+  padding: 2px 12px;
+  position: relative;
+  bottom: 90%;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+.card_like {
+  position: relative;
+  bottom: 89%;
+  left: 3%;
+  width: 17px;
+  height: 15px;
+  border-image: radial-gradient(var(--c) 69%, #0000 70%) 84.5%/50%;
+  clip-path: polygon(-42% 0, 50% 91%, 142% 0);
+}
+
+.card_like-visible {
+  --c: black;
+}
+
+.card_like-hidden {
+  background-color: transparent;
+}
+
+.card_image {
+  width: 328px;
+  height: 328px;
+  border-radius: 20px;
+}
+
+.card_image:hover {
+  cursor: pointer;
+}
+
+.card_items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+}

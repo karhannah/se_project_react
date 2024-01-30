@@ -1,0 +1,29 @@
+.login__form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  margin: 0 0 10px 0;
+}
+
+.login__signup {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 61px;
+  right: 80px;
+}
+
+.signup__link {
+  text-decoration: none;
+  color: grey;
+}
+
+.login__button-login {
+  color: #fff;
+  text-decoration: none;
+}
