@@ -16,7 +16,8 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!values.email || !values.password) {
       return;
     }
@@ -40,6 +41,7 @@ const Login = ({ isLoggedIn, handleCloseModal, onClick }) => {
     const listener = (event) => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         console.log("Enter Key was pressed");
+        event.preventDefault();
         handleSubmit();
       }
     };
