@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
+const SideBar = ({ onClick, isLoggedIn }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const history = useHistory();
 
@@ -12,7 +12,6 @@ const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
       localStorage.removeItem("token");
       isLoggedIn(false);
       history.push("/");
-      handleOpenModal(() => handleOpenModal("login"));
     } catch (error) {
       console.log("error on log out");
     }

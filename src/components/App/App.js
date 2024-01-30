@@ -44,13 +44,13 @@ function App() {
 
   const token = localStorage.getItem("token");
 
+  const handleOpenModal = (modalType) => {
+    setActiveModal(modalType);
+  };
+
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  };
-
-  const handleOpenModal = (modalType) => {
-    setActiveModal(modalType);
   };
 
   const handleCloseModal = () => {
@@ -194,10 +194,9 @@ function App() {
           <ProtectedRoute loggedIn={loggedIn} path="/profile">
             <Profile
               clothingItems={clothingItems}
-              onSelectCard={handleSelectedCard}
               onCardLike={handleCardLike}
               isLoggedIn={isLoggedIn}
-              handleOpenModal={handleOpenModal}
+              onSelectCard={handleSelectedCard}
               onClick={handleOpenModal}
             ></Profile>
           </ProtectedRoute>
