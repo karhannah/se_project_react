@@ -1,9 +1,7 @@
-import avatarLogo from "../../images/headerAvatar.svg";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
-import { Link } from "react-router-dom";
 
 const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -37,7 +35,7 @@ const SideBar = ({ onClick, isLoggedIn, handleOpenModal }) => {
         )}
         <p className="profile__user-name">{currentUser.name}</p>
       </div>
-      <button className="profile__change-data" onClick={onClick}>
+      <button className="profile__change-data" onClick={() => onClick("edit")}>
         Change Profile Data
       </button>
       <button className="profile__log-out" onClick={handleLogout}>

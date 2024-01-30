@@ -47,7 +47,6 @@ function App() {
   const handleCreateModal = () => {
     setActiveModal("create");
   };
-
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -206,7 +205,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
-              onClick={handleOpenEditModal}
+              onClick={handleOpenModal}
               isLoggedIn={isLoggedIn}
               handleOpenModal={handleOpenModal}
             ></Profile>

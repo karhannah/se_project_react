@@ -13,7 +13,7 @@ const Profile = ({
   return (
     <div className="profile">
       <SideBar
-        onClick={onClick}
+        onClick={() => onClick("edit")}
         isLoggedIn={isLoggedIn}
         handleOpenModal={handleOpenModal}
       />
