@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ setCurrentUser, isLoggedIn, city, currentDate, onClick }) => {
+const Header = ({ isLoggedIn, city, currentDate, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   return (
     <header className="header">

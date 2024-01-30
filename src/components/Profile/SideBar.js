@@ -10,7 +10,7 @@ const SideBar = ({ onClick, isLoggedIn, setCurrentUser }) => {
   const handleLogout = async () => {
     try {
       localStorage.removeItem("token");
-      setCurrentUser(null);
+      setCurrentUser({});
       isLoggedIn(false);
       history.push("/");
     } catch (error) {

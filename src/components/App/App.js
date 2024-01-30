@@ -203,7 +203,7 @@ function App() {
         <Header
           city={city}
           currentDate={currentDate}
-          setCurrentUser={currentUser}
+          // setCurrentUser={currentUser}
           isLoggedIn={loggedIn}
           onClick={handleOpenModal}
         ></Header>
