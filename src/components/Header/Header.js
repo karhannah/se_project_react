@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React from "react";
 import UserPlaceHolder from "../UserPlaceHolder/UserPlaceHolder";
 
-const Header = ({ loggedIn, onCreate, city, currentDate, onClick }) => {
+const Header = ({ loggedIn, city, currentDate, onClick }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   return (
     <header className="header">
@@ -29,7 +29,7 @@ const Header = ({ loggedIn, onCreate, city, currentDate, onClick }) => {
           {loggedIn ? (
             <button
               className="header__button-add-clothes"
-              onClick={onCreate}
+              onClick={() => onClick("create")}
               type="button"
             >
               + Add Clothes

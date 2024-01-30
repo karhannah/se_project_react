@@ -192,7 +192,6 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
-          onCreate={handleCreateModal}
           city={city}
           currentDate={currentDate}
           setCurrentUser={currentUser}
@@ -203,8 +202,8 @@ function App() {
         <Switch>
           <ProtectedRoute loggedIn={loggedIn} path="/profile">
             <Profile
-              onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
+              onSelectCard={handleSelectedCard}
               onCreate={handleCreateModal}
               onCardLike={handleCardLike}
               onClick={handleOpenEditModal}
