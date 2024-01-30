@@ -3,7 +3,6 @@ import ClothesSection from "./ClothesSection";
 import "./Profile.css";
 const Profile = ({
   onClick,
-  onCreate,
   clothingItems,
   onSelectCard,
   onCardLike,
@@ -22,7 +21,7 @@ const Profile = ({
           Your Items
           <button
             className="profile__add-button"
-            onClick={onCreate}
+            onClick={() => onClick("create")}
             type="button"
           >
             + Add new
