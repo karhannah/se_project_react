@@ -2,90 +2,90 @@ import { processServerResponse } from "./utils";
 
 export const baseUrl = "http://localhost:3001";
 
-export function request(url, options) {
-  return fetch(url, options).then(processServerResponse);
+export async function request(url, options) {
+  const res = await fetch(url, options);
+  return processServerResponse(res);
 }
 
-export function getItems() {
-  return fetch(`${baseUrl}/items`, {
+export async function getItems() {
+  const res = await fetch(`${baseUrl}/items`, {
     headers: {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${localStorage.getItem("")}
     },
-  }).then(processServerResponse);
+  });
+  return processServerResponse(res);
 }
 
-// POST https://localhost:3001/items
-
-export function postItems(values, token) {
-  return fetch(`${baseUrl}/items`, {
+export async function postItems(values, token) {
+  const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(values),
-  }).then(processServerResponse);
+  });
+  return processServerResponse(res);
 }
 
-// DELETE https://localhost:3001/items/:id
-
-export function deleteItems(id, token) {
-  return fetch(`${baseUrl}/items/${id}`, {
+export async function deleteItems(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(processServerResponse);
+  });
+  return processServerResponse(res);
 }
 
-// PUT
-export function likeCard(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then(processServerResponse)
-    .catch((error) => {
-      console.error("Error adding like:", error);
-      throw error; // Re-throw the error for further handling
+export async function likeCard(id, token) {
+  try {
+    const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
+    return processServerResponse(res);
+  } catch (error) {
+    console.error("Error adding like:", error);
+    throw error;
+  }
 }
 
-export function likeRemove(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then(processServerResponse)
-    .catch((error) => {
-      console.error("Error removing like:", error);
-      throw error; // Re-throw the error for further handling
+export async function likeRemove(id, token) {
+  try {
+    const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
+    return processServerResponse(res);
+  } catch (error) {
+    console.error("Error removing like:", error);
+    throw error;
+  }
 }
 
-export function editProfile(values, token) {
-  console.log(values);
-  return fetch(`${baseUrl}/users/me/`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(values),
-  })
-    .then(processServerResponse)
-    .catch((error) => {
-      console.log("Error updating Profile:", error);
-      throw error;
+export async function editProfile(values, token) {
+  try {
+    const res = await fetch(`${baseUrl}/users/me/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(values),
     });
+    return processServerResponse(res);
+  } catch (error) {
+    console.log("Error updating Profile:", error);
+    throw error;
+  }
 }
 
 export async function setUserInfo(values, token) {
