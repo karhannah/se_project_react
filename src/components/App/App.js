@@ -21,7 +21,6 @@ import {
   deleteItems,
   likeCard,
   likeRemove,
-  editProfile,
 } from "../../utils/api";
 
 // import login and register modals here
@@ -41,7 +40,6 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, isLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
   const token = localStorage.getItem("token");
 
   const handleOpenModal = (modalType) => {
@@ -261,5 +259,5 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
-// withRouter(App)
-export default App;
+
+export default withRouter(App);
