@@ -51,12 +51,7 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  const handleDeleteOpenModal = () => {
-    setActiveModal("delete");
-  };
-  const handleOpenEditModal = () => {
-    setActiveModal("edit");
-  };
+
   const handleOpenModal = (modalType) => {
     setActiveModal(modalType);
   };
@@ -250,10 +245,10 @@ function App() {
         )}
         {activeModal === "preview" && (
           <ItemModal
+            currentUser={currentUser}
             selectedCard={selectedcard}
             onClose={handleCloseModal}
-            onClick={handleDeleteOpenModal}
-            currentUser={currentUser}
+            onClick={handleOpenModal}
           />
         )}
         {activeModal === "delete" && (
@@ -264,8 +259,8 @@ function App() {
         )}
         {activeModal === "edit" && (
           <EditProfileModal
-            onClose={handleCloseModal}
             currentUser={currentUser}
+            onClose={handleCloseModal}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
