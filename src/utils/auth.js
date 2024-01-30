@@ -1,55 +1,49 @@
 import { baseUrl } from "./api";
 // project 14 registration
-export const register = ({ name, email, password, avatar }) => {
-  return fetch(`${baseUrl}/signup`, {
+export const register = async ({ name, email, password, avatar }) => {
+  const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, email, password, avatar }),
-  })
-    .then((res) => res.json())
-    .then((userData) => {
-      if (userData.message) {
-        throw new Error(userData.message);
-      }
-      console.log(userData.message);
-    });
+  });
+  const userData = await res.json();
+  if (!userData) {
+    throw new Error("Error from register: ", userData);
+  }
+  console.log(userData);
 };
 
 // project 14 login
-export const authorize = (email, password) => {
-  return fetch(`${baseUrl}/signin`, {
+export const authorize = async (email, password) => {
+  const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => res.json())
-    .then((userData) => {
-      if (userData.token) {
-        localStorage.setItem("token", userData.token);
-        return userData.token;
-      } else {
-        throw new Error(userData.message);
-      }
-    });
+  });
+  const userData = await res.json();
+  if (userData.token) {
+    localStorage.setItem("token", userData.token);
+    return userData.token;
+  } else {
+    throw new Error("Error from authorize: ", userData);
+  }
 };
 
-export const checkToken = (token) => {
-  return fetch(`${baseUrl}/users/me`, {
+export const checkToken = async (token) => {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => res.json())
-    .then((userData) => {
-      return userData.data;
-    });
+  });
+  const userData = await res.json();
+  return userData.data;
 };
