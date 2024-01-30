@@ -199,6 +199,7 @@ function App() {
         <Switch>
           <ProtectedRoute loggedIn={loggedIn} path="/profile">
             <Profile
+              currentUser={currentUser}
               clothingItems={clothingItems}
               onCardLike={handleCardLike}
               isLoggedIn={isLoggedIn}

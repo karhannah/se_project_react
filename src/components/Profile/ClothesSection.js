@@ -1,9 +1,20 @@
 import ItemCard from "../ItemCard/ItemCard";
+// conditionally render based on current owner
+const ClothesSection = ({
+  currentUser,
+  onSelectCard,
+  clothingItems,
+  onCardLike,
+}) => {
+  const isOwn = currentUser._id;
+  console.log(isOwn);
 
-const ClothesSection = ({ onSelectCard, clothingItems, onCardLike }) => {
   const filteredCards = clothingItems.filter((item) => {
-    return item.weather;
+    // return item.weather;
+    console.log(item.owner);
+    return item.owner === isOwn;
   });
+
   return (
     <div className="profile__card-items">
       {filteredCards.map((item) => (
