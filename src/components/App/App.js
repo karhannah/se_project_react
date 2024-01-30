@@ -105,15 +105,22 @@ function App() {
     }
   };
 
-  const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+  const handleToggleSwitchChange = async () => {
+    try {
+      if (currentTemperatureUnit === "C") {
+        setCurrentTemperatureUnit("F");
+      } else {
+        setCurrentTemperatureUnit("C");
+      }
+    } catch (error) {
+      console.error("Error from toggle switch: ", error);
+    }
   };
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
   useEffect(() => {
     if (!activeModal) return;
     const handleEscClose = (e) => {
