@@ -89,7 +89,6 @@ export function editProfile(values, token) {
 }
 
 export async function setUserInfo(values, token) {
-  console.log(values);
   try {
     const res = await fetch(`${baseUrl}/users/me/`, {
       method: "PUT",
