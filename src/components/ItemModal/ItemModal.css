@@ -1,0 +1,65 @@
+.modal__content_type_image > .modal__close {
+	background: url("../../assets/close_button_itemmodal.svg");
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	width: 16px;
+	height: 16px;
+	border: none;
+	z-index: 1;
+}
+
+.modal__content_type_image {
+	background-color: #FFF;
+	position: relative;
+	box-sizing: border-box;
+	width: 498px;
+	border-radius: 16px;
+	border: none;
+	padding-top: 498px;
+}
+
+.modal__content_type_image > .modal__image {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 498px;
+	height: 498px;
+	border: 0;
+	outline: 0;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+}
+
+.modal__content_type_image > .modal__footer > .modal__caption {
+	margin: 20px 0 12px 32px;
+
+	font-family: CabinetGrotesk-Bold;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 24px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
+}
+
+.modal__content_type_image > .modal__footer > .modal__weather {
+	margin: 0 0 32px 32px;
+	
+	font-family: CabinetGrotesk-Bold;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 24px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
+}
+
+.modal__content_type_image > .modal__footer {
+	padding: 0;
+	gap: 12px;
+}

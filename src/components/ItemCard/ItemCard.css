@@ -1,16 +1,31 @@
 .card {
-width: 323px;
-position: relative;
-display: flex;
-justify-content: center;
+	width: 323px;
+	position: relative;
+	display: flex;
+	justify-content: center;
 }
 
 .card__name {
-    position: absolute;
-    top: 15px;
-    margin: 0;
+	position: absolute;
+	top: 15px;
+	margin: 0;
+
+	border-radius: 4px;
+
+	padding: 2px 12px;
+	background-color: white;
+	font-family: CabinetGrotesk-Bold;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
 }
 
 .card__image {
-    width: 100%;
+	width: 100%;
+	border: 1px solid #0000004D;
+	border-radius: 19px;
 }
