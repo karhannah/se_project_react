@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './Footer.css'
 
-function Footer() {
-	return (
-		<>
+// function Footer() {
+// 	return (
+// 		<>
 			
-		</>
-	)
-}
+// 		</>
+// 	)
+// }
 
 export default Footer
