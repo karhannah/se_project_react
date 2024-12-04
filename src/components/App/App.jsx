@@ -50,6 +50,7 @@ function App() {
 						   buttonText = "Add Garment"
 						   activeModal = { activeModal }
 						   onClose = { closeActiveModal }
+						   isOpen = { activeModal === "add-garment" }
 			>
 				<label htmlFor="name" className="modal__label">Name{" "}
 					<input type="text" className="modal__input" id="name" placeholder="Name" />
