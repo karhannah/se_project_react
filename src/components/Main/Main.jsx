@@ -1,18 +1,21 @@
 import './Main.css';
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants.js";
+// import { defaultClothingItems } from "../../utils/constants.js";
+import { CurrentTemperatureUnitContext } from '../Contexts/CurrentTemperatureUnitContext.jsx';
+import React, { useContext, useState } from "react";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
+	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
 	return (
 		<main>
 			<WeatherCard weatherData = { weatherData }/>
 			<section className = "cards">
 				<p className = "cards__text">
-					Today is { weatherData.temp.F } &deg; F / you may want to wear:
+					Today is { currentTemperatureUnit === 'F' ? weatherData.temp.F : weatherData.temp.C } &deg; { currentTemperatureUnit === 'F' ? 'F' : 'C' } / you may want to wear:
 				</p>
 				<ul className = "cards__list">
-					{ defaultClothingItems.filter((item) => {
+					{ clothingItems.filter((item) => {
 						return item.weather === weatherData.type;
 					}).map((item) => {
 						return (<ItemCard key = { item._id }

@@ -27,7 +27,8 @@ export const filterWeatherData = ( data ) => {
 	const result = {
 		city: data.name,
 		temp: {
-			F: data.main.temp
+			F: `${Math.round(data.main.temp)}`,
+			C: `${Math.round((data.main.temp - 32) * (5.0/9.0))}`
 		},
 		type: getWeatherType(data.main.temp),
 		condition: data.weather[0].main.toLowerCase(),
@@ -35,6 +36,6 @@ export const filterWeatherData = ( data ) => {
 	};
 
 	console.log(result);
-
+	
 	return result;
 };
