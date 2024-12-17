@@ -34,8 +34,6 @@ export const filterWeatherData = ( data ) => {
 		condition: data.weather[0].main.toLowerCase(),
 		isDay: isDay(data.sys, Date.now()),
 	};
-
-	console.log(result);
 	
 	return result;
 };

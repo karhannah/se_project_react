@@ -34,7 +34,7 @@
 }
 
 .modal__content_type_image > .modal__footer > .modal__caption {
-	margin: 20px 0 12px 32px;
+	margin: 20px 32px 12px 32px;
 
 	font-family: CabinetGrotesk-Bold;
 	font-size: 20px;
@@ -44,6 +44,31 @@
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 
+}
+
+.modal__content_type_image > .modal__footer > .modal__footer-subcontainer > .modal__caption {
+	margin: 20px 32px 12px 32px;
+
+	font-family: CabinetGrotesk-Bold;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 24px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+
+}
+
+.modal__delete {
+	background: none;
+	border: none;
+	outline: none;
+	padding: none;
+	color: red;
+}
+
+.modal__delete:hover {
+	color: #BB0000;
 }
 
 .modal__content_type_image > .modal__footer > .modal__weather {
@@ -62,4 +87,10 @@
 .modal__content_type_image > .modal__footer {
 	padding: 0;
 	gap: 12px;
+}
+
+.modal__footer-subcontainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }

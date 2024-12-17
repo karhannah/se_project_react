@@ -12,7 +12,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { getItems } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
 function App() {
 	const [ weatherData, setWeatherData ] = useState({
@@ -35,13 +35,34 @@ function App() {
 		setActiveModal("add-garment");
 	}
 
+	const handleDeleteClick = () => {
+		closeActiveModal();
+		document.getElementById(`card__${ selectedCard._id }`).remove();
+		deleteItem(selectedCard._id);
+	}
+
 	const closeActiveModal = () => {
 		setActiveModal("");
 	}
 
 	const onAddItem = (values) => {
-		console.log(values);
-		
+		let cardId;
+		addItem(values).then((data) => {
+			console.log(data);
+			cardId = data._id;
+		});
+		// TODO: make it so that it appears without refreshing
+		if (document.getElementsByClassName("clothes-section__items") === null) {
+			document.getElementsByClassName("cards")
+				.prependChild(document.createElement(<ItemCard key = { cardId }
+															   cardId = { cardId }
+															   item = { { name: values.name,
+																		  imageUrl: values.imageUrl,
+																		  _id: cardId,
+																		  weather: values.weather } }
+																			
+															   onCardClick = { handleCardClick } />));
+		}
 	}
 
 	const handleToggleSwitchChange = () => {
@@ -58,7 +79,6 @@ function App() {
 
 	useEffect(() => {
 		getItems().then((data) => {
-			console.log(data);
 			// Set the clothing items
 			setClothingItems(data);
 		}).catch(console.error);
@@ -87,12 +107,13 @@ function App() {
 			</div>
 				<AddItemModal activeModal = { activeModal }
 				              onClose = { closeActiveModal }
-							  onadditem = { onAddItem }
+							  onAddItem = { onAddItem }
 				/>
 
 				<ItemModal activeModal = { activeModal  }
 						   card = { selectedCard }
-						   onClose = { closeActiveModal } />
+						   onClose = { closeActiveModal }
+						   onDeleteItem = { handleDeleteClick } />
 
 			</CurrentTemperatureUnitContext.Provider>
 
