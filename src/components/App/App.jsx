@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import ItemCard from "../ItemCard/ItemCard.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherAPI";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
@@ -45,24 +46,28 @@ function App() {
 		setActiveModal("");
 	}
 
+	const showNewCard = (card) => {
+		const temp = document.getElementsByClassName("newcard")[0];
+		
+		let clone = temp.getElementsByTagName("li")[0].cloneNode(true);
+
+		clone.classList.remove("newcard");
+		clone.getElementsByClassName("card__image")[0].src = card.imageUrl;
+		clone.getElementsByClassName("card__name")[0].textContent = card.name;
+		clone.addEventListener("click", () => { handleCardClick(card) });
+		clone.setAttribute("id", `card__${card._id}`);
+
+		let container = document.getElementsByClassName("card__container")[0];
+		container.appendChild(clone);
+	}
+	
 	const onAddItem = (values) => {
 		let cardId;
 		addItem(values).then((data) => {
-			console.log(data);
 			cardId = data._id;
+			showNewCard( { _id: cardId, name: values.name, imageUrl: values.imageUrl, weather: values.weather } );
 		});
-		// TODO: make it so that it appears without refreshing
-		if (document.getElementsByClassName("clothes-section__items") === null) {
-			document.getElementsByClassName("cards")
-				.prependChild(document.createElement(<ItemCard key = { cardId }
-															   cardId = { cardId }
-															   item = { { name: values.name,
-																		  imageUrl: values.imageUrl,
-																		  _id: cardId,
-																		  weather: values.weather } }
-																			
-															   onCardClick = { handleCardClick } />));
-		}
+		closeActiveModal();
 	}
 
 	const handleToggleSwitchChange = () => {
@@ -87,7 +92,7 @@ function App() {
 	return (
 		<div className="page">
 			<CurrentTemperatureUnitContext.Provider value = {{currentTemperatureUnit, handleToggleSwitchChange}} >
-			<div className="page__content">
+    			<div className="page__content">
 				<Header handleAddClick = { handleAddClick } weatherData = { weatherData } />
 
 				<Routes>                         
@@ -98,13 +103,15 @@ function App() {
 							         clothingItems = { clothingItems } />
 						   } />
 					<Route path = "/profile" element = {
-							   <Profile onCardClick = { handleCardClick }
+							   <Profile handleAddClick = { handleAddClick }
+										onCardClick = { handleCardClick }
 							            clothingItems = { clothingItems } />
 						   } />
 				</Routes>
 				
 				<Footer />
 			</div>
+				
 				<AddItemModal activeModal = { activeModal }
 				              onClose = { closeActiveModal }
 							  onAddItem = { onAddItem }
@@ -115,10 +122,10 @@ function App() {
 						   onClose = { closeActiveModal }
 						   onDeleteItem = { handleDeleteClick } />
 
+			
 			</CurrentTemperatureUnitContext.Provider>
-
 		</div>
-	);
+    );
 }
 
 export default App;

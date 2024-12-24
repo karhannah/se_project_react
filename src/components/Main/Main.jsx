@@ -13,7 +13,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
 				<p className = "cards__text">
 					Today is { currentTemperatureUnit === 'F' ? weatherData.temp.F : weatherData.temp.C } &deg; { currentTemperatureUnit === 'F' ? 'F' : 'C' } / you may want to wear:
 				</p>
-				<ul className = "cards__list">
+				<ul className = "cards__list card__container">					
 					{ clothingItems.filter((item) => {
 						return item.weather === weatherData.type;
 					}).map((item) => {
@@ -23,6 +23,14 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
 										  onCardClick = { handleCardClick }
 								/>);
 					} ) }
+
+					<div className = "newcard">
+						<ItemCard key = { -1 }
+								  cardId = { -1 }
+								  item = { { _id: -1, imageUrl: "", name: "", weather: "" } }
+								  onCardClick = { handleCardClick }
+						/>
+					</div>
 				</ul>
 			</section>
 		</main>

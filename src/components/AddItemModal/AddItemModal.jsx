@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx"
 
 const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
-	const [name, setName] = useState();
-	const [imageUrl, setUrl] = useState();
+	const [name, setName] = useState("");
+	const [imageUrl, setUrl] = useState("");
 	const [weather, setWeather] = useState();
 
 	const handleNameChange = (e) => {
@@ -31,11 +31,11 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 	 				   isOpen = { activeModal === "add-garment" }
 					   onSubmit = { handleSubmit }
 	 	>
-	 		<label htmlFor="name" className="modal__label">Name{" "}
+			<label htmlFor="name" className="modal__label">Name{" "}
 	 			<input type="text"
 					   className="modal__input"
 					   id="name"
-g					   placeholder="Name"
+					   placeholder="Name"
 					   value = { name }
 					   onChange = { handleNameChange } />
 	 		</label>
