@@ -6,6 +6,7 @@ import React, { useContext, useState } from "react";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
 	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
+	
 	return (
 		<main>
 			<WeatherCard weatherData = { weatherData }/>
@@ -16,21 +17,13 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
 				<ul className = "cards__list card__container">					
 					{ clothingItems.filter((item) => {
 						return item.weather === weatherData.type;
-					}).map((item) => {
+					} ).reverse().map((item) => {
 						return (<ItemCard key = { item._id }
 										  cardId = { item._id }
 										  item = { item }
 										  onCardClick = { handleCardClick }
 								/>);
 					} ) }
-
-					<div className = "newcard">
-						<ItemCard key = { -1 }
-								  cardId = { -1 }
-								  item = { { _id: -1, imageUrl: "", name: "", weather: "" } }
-								  onCardClick = { handleCardClick }
-						/>
-					</div>
 				</ul>
 			</section>
 		</main>
