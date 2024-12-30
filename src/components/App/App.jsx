@@ -13,7 +13,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js~";
 
 function App() {
 	const [ weatherData, setWeatherData ] = useState({
@@ -25,7 +25,7 @@ function App() {
 	const [ activeModal, setActiveModal ] = useState("");
 	const [ selectedCard, setSelectedCard ] = useState({  });
 	const [ currentTemperatureUnit, setCurrentTemperatureUnit ] = useState('F');
-	const [ clothingItems, setClothingItems ] = useState([]);
+	const [ clothingItems, setClothingItems ] = useState([ ]);
 
 	const handleCardClick = (card) => {
 		setActiveModal("preview");
@@ -46,26 +46,17 @@ function App() {
 		setActiveModal("");
 	}
 
-	const showNewCard = (card) => {
-		const temp = document.getElementsByClassName("newcard")[0];
-		
-		let clone = temp.getElementsByTagName("li")[0].cloneNode(true);
-
-		clone.classList.remove("newcard");
-		clone.getElementsByClassName("card__image")[0].src = card.imageUrl;
-		clone.getElementsByClassName("card__name")[0].textContent = card.name;
-		clone.addEventListener("click", () => { handleCardClick(card) });
-		clone.setAttribute("id", `card__${card._id}`);
-
-		let container = document.getElementsByClassName("card__container")[0];
-		container.appendChild(clone);
+	const renderCards = (card) => {
+		getItems().then((data) => {
+			setClothingItems(data);
+		}).catch(console.error);
 	}
 	
 	const onAddItem = (values) => {
 		let cardId;
 		addItem(values).then((data) => {
 			cardId = data._id;
-			showNewCard( { _id: cardId, name: values.name, imageUrl: values.imageUrl, weather: values.weather } );
+			renderCards( { _id: cardId, name: values.name, imageUrl: values.imageUrl, weather: values.weather } );
 		});
 		closeActiveModal();
 	}
@@ -83,10 +74,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		getItems().then((data) => {
-			// Set the clothing items
-			setClothingItems(data);
-		}).catch(console.error);
+		renderCards();
 	}, []);
 	
 	return (
