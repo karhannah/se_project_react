@@ -13,7 +13,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js~";
 
 function App() {
 	const [ weatherData, setWeatherData ] = useState({
@@ -26,6 +26,7 @@ function App() {
 	const [ selectedCard, setSelectedCard ] = useState({  });
 	const [ currentTemperatureUnit, setCurrentTemperatureUnit ] = useState('F');
 	const [ clothingItems, setClothingItems ] = useState([ ]);
+	const cardArray = {};
 
 	const handleCardClick = (card) => {
 		setActiveModal("preview");
@@ -38,7 +39,7 @@ function App() {
 
 	const handleDeleteClick = () => {
 		closeActiveModal();
-		document.getElementById(`card__${ selectedCard._id }`).remove();
+		cardArray[selectedCard._id].cardRef.current.remove();
 		deleteItem(selectedCard._id);
 	}
 
@@ -49,15 +50,22 @@ function App() {
 	const renderCards = (card) => {
 		getItems().then((data) => {
 			setClothingItems(data);
+			cardArray["arr"] = data;
 		}).catch(console.error);
 	}
 	
 	const onAddItem = (values) => {
+		
 		let cardId;
 		addItem(values).then((data) => {
 			cardId = data._id;
-			renderCards( { _id: cardId, name: values.name, imageUrl: values.imageUrl, weather: values.weather } );
+
+			cardArray["arr"].push({_id: cardId, name: values.name, imageUrl: values.image, weather: values.weather })
+			
+			setClothingItems(cardArray["arr"]);
 		});
+		
+
 		closeActiveModal();
 	}
 
@@ -81,12 +89,18 @@ function App() {
 		<div className="page">
 			<CurrentTemperatureUnitContext.Provider value = {{currentTemperatureUnit, handleToggleSwitchChange}} >
     			<div className="page__content">
-				<Header handleAddClick = { handleAddClick } weatherData = { weatherData } />
+					<Header handleAddClick = { handleAddClick } weatherData = { weatherData } />
+
+					<button onClick = { () => {
+								console.log(cardArray);
+
+							} }>Testin</button>
 
 				<Routes>                         
 					<Route path = "" element = {
 							   // Pass clothingItems as a prop
-							   <Main weatherData = { weatherData }
+							   <Main cardArray = { cardArray }
+								     weatherData = { weatherData }
 									 handleCardClick = { handleCardClick }
 							         clothingItems = { clothingItems } />
 						   } />
