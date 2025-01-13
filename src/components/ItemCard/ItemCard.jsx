@@ -1,12 +1,12 @@
 import './ItemCard.css'
 
-function ItemCard({ cardId, item, onCardClick }) {	
+function ItemCard({ cardRef, cardId, item, onCardClick }) {	
 	const handleCardClick = () => {
 		onCardClick(item);
 	}
 	
 	return (
-		<li className = "card" id = { `card__${ item._id }` }>
+		<li ref = { cardRef } className = "card" id = { `card__${ item._id }` }>
 			<h2 className = "card__name">{ item.name }</h2>
 			<img onClick = { handleCardClick } 
 				 className = "card__image"
