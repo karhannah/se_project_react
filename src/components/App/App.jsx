@@ -13,7 +13,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { getItems, addItem, deleteItem } from "../../utils/api.js~";
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 
 function App() {
 	const [ weatherData, setWeatherData ] = useState({
