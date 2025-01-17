@@ -13,7 +13,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, addItem, deleteItem } from "../../utils/api.js~";
 
 function App() {
 	const [ weatherData, setWeatherData ] = useState({
@@ -38,9 +38,10 @@ function App() {
 	}
 
 	const handleDeleteClick = () => {
-		closeActiveModal();
 		cardArray[selectedCard._id].cardRef.current.remove();
-		deleteItem(selectedCard._id);
+		deleteItem(selectedCard._id).then(() => {
+			closeActiveModal();
+		}).catch(console.error);
 	}
 
 	const closeActiveModal = () => {
@@ -63,10 +64,12 @@ function App() {
 			cardArray["arr"].push({_id: cardId, name: values.name, imageUrl: values.image, weather: values.weather })
 			
 			setClothingItems(cardArray["arr"]);
-		});
+		}).then(() => {
+			closeActiveModal();
+		}).catch(console.error);
 		
 
-		closeActiveModal();
+		
 	}
 
 	const handleToggleSwitchChange = () => {
