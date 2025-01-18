@@ -1,36 +1,35 @@
-import './Main.css';
-import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { CurrentTemperatureUnitContext } from '../../utils/Contexts/CurrentTemperatureUnitContext.jsx';
-import React, { useContext, useState } from "react";
+import "./ClothesSection.css";
+import React from "react";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
-	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
+const ClothesSection = ({ handleAddClick, onCardClick, clothingItems }) => {
 	
 	return (
-		<main>
-			<WeatherCard weatherData = { weatherData }/>
-			<section className = "cards">
-				<p className = "cards__text">
-					Today is { currentTemperatureUnit === 'F' ? weatherData.temp.F : weatherData.temp.C } &deg; { currentTemperatureUnit === 'F' ? 'F' : 'C' } / you may want to wear:
-				</p>
-				<ul className = "cards__list card__container">					
+		<div className = "clothes-section">
+			<div className = "clothes-section__wrapper">
+				<div className = "section__controls">
+					<p className = "controls__label">Your Items</p>
+					<button className = "controls__add-new" onClick={ handleAddClick }>+ Add New</button>
+				</div>
+				<ul className="clothes-section__items card__container">
 					{ clothingItems.filter((item) => {
-						return item.weather === weatherData.type;
+						return true;
 					} ).reverse().map((item) => {
+
 						item.cardRef = React.createRef();
-						
-						return (<ItemCard cardRef = { item.cardRef }
-									      key = { item._id }
-										  cardId = { item._id }
-										  item = { item }
-										  onCardClick = { handleCardClick }
-								/>);
-					} ) }
+
+						return (
+							<ItemCard cardRef={ item.cardRef }
+								key={item._id}
+								cardId={item._id}
+								item={item}
+								onCardClick={onCardClick}
+							/>);
+					  } ) }
 				</ul>
-			</section>
-		</main>
+			</div>
+		</div>
 	);
 }
 
-export default Main;
+export default ClothesSection;
