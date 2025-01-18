@@ -26,7 +26,6 @@ function App() {
 	const [ selectedCard, setSelectedCard ] = useState({  });
 	const [ currentTemperatureUnit, setCurrentTemperatureUnit ] = useState('F');
 	const [ clothingItems, setClothingItems ] = useState([ ]);
-	const cardArray = {};
 
 	const handleCardClick = (card) => {
 		setActiveModal("preview");
@@ -38,7 +37,12 @@ function App() {
 	}
 
 	const handleDeleteClick = () => {
-		cardArray[selectedCard._id].cardRef.current.remove();
+		// Remove the card from the array
+		delete clothingItems[clothingItems.indexOf(clothingItems.filter((item) => {
+			return item._id === selectedCard._id;
+		})[0])];
+
+		// Remove the card from the database
 		deleteItem(selectedCard._id).then(() => {
 			closeActiveModal();
 		}).catch(console.error);
@@ -51,25 +55,15 @@ function App() {
 	const renderCards = (card) => {
 		getItems().then((data) => {
 			setClothingItems(data);
-			cardArray["arr"] = data;
 		}).catch(console.error);
 	}
 	
 	const onAddItem = (values) => {
-		
-		let cardId;
 		addItem(values).then((data) => {
-			cardId = data._id;
-
-			cardArray["arr"].push({_id: cardId, name: values.name, imageUrl: values.image, weather: values.weather })
-			
-			setClothingItems(cardArray["arr"]);
+			clothingItems.push({_id: data._id, name: values.name, imageUrl: values.imageUrl, weather: values.weather });
 		}).then(() => {
 			closeActiveModal();
 		}).catch(console.error);
-		
-
-		
 	}
 
 	const handleToggleSwitchChange = () => {
@@ -94,16 +88,10 @@ function App() {
     			<div className="page__content">
 					<Header handleAddClick = { handleAddClick } weatherData = { weatherData } />
 
-					<button onClick = { () => {
-								console.log(cardArray);
-
-							} }>Testin</button>
-
 				<Routes>                         
 					<Route path = "" element = {
 							   // Pass clothingItems as a prop
-							   <Main cardArray = { cardArray }
-								     weatherData = { weatherData }
+							   <Main weatherData = { weatherData }
 									 handleCardClick = { handleCardClick }
 							         clothingItems = { clothingItems } />
 						   } />
