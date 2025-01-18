@@ -4,10 +4,8 @@ import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from '../../utils/Contexts/CurrentTemperatureUnitContext.jsx';
 import React, { useContext, useState } from "react";
 
-function Main({ cardArray, weatherData, handleCardClick, clothingItems }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
 	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
-
-	cardArray["arr"] = [];
 	
 	return (
 		<main>
@@ -20,17 +18,9 @@ function Main({ cardArray, weatherData, handleCardClick, clothingItems }) {
 					{ clothingItems.filter((item) => {
 						return item.weather === weatherData.type;
 					} ).reverse().map((item) => {
-						let arrayItem = { cardRef: React.createRef() };
+						item.cardRef = React.createRef();
 						
-						cardArray[item._id] = arrayItem;
-
-						cardArray["arr"][item._id] = { _id: item._id,
-													   name: item.name,
-													   imageUrl: item.imageUrl,
-													   weather: item.weather
-													 }
-						
-						return (<ItemCard cardRef = { arrayItem.cardRef }
+						return (<ItemCard cardRef = { item.cardRef }
 									      key = { item._id }
 										  cardId = { item._id }
 										  item = { item }
