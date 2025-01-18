@@ -1,35 +1,36 @@
+import './Main.css';
+import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import "./ClothesSection.css";
-import React from "react";
+import { CurrentTemperatureUnitContext } from '../../utils/Contexts/CurrentTemperatureUnitContext.jsx';
+import React, { useContext, useState } from "react";
 
-const ClothesSection = ({ handleAddClick, onCardClick, clothingItems }) => {
+function Main({ weatherData, handleCardClick, clothingItems }) {
+	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
 	
 	return (
-		<div className = "clothes-section">
-			<div className = "clothes-section__wrapper">
-				<div className = "section__controls">
-					<p className = "controls__label">Your Items</p>
-					<button className = "controls__add-new" onClick={ handleAddClick }>+ Add New</button>
-				</div>
-				<ul className="clothes-section__items card__container">
+		<main>
+			<WeatherCard weatherData = { weatherData }/>
+			<section className = "cards">
+				<p className = "cards__text">
+					Today is { currentTemperatureUnit === 'F' ? weatherData.temp.F : weatherData.temp.C } &deg; { currentTemperatureUnit === 'F' ? 'F' : 'C' } / you may want to wear:
+				</p>
+				<ul className = "cards__list card__container">					
 					{ clothingItems.filter((item) => {
-						return true;
+						return item.weather === weatherData.type;
 					} ).reverse().map((item) => {
-
 						item.cardRef = React.createRef();
-
-						return (
-							<ItemCard cardRef={ item.cardRef }
-								key={item._id}
-								cardId={item._id}
-								item={item}
-								onCardClick={onCardClick}
-							/>);
-					  } ) }
+						
+						return (<ItemCard cardRef = { item.cardRef }
+									      key = { item._id }
+										  cardId = { item._id }
+										  item = { item }
+										  onCardClick = { handleCardClick }
+								/>);
+					} ) }
 				</ul>
-			</div>
-		</div>
+			</section>
+		</main>
 	);
 }
 
-export default ClothesSection;
+export default Main;
