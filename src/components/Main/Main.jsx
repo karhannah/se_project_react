@@ -17,7 +17,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
 				<ul className = "cards__list card__container">					
 					{ clothingItems.filter((item) => {
 						return item.weather === weatherData.type;
-					} ).reverse().map((item) => {
+					} ).map((item) => {
 						item.cardRef = React.createRef();
 						
 						return (<ItemCard cardRef = { item.cardRef }
