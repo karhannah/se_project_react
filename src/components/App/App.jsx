@@ -37,13 +37,12 @@ function App() {
 	}
 
 	const handleDeleteClick = () => {
-		// Remove the card from the array
-		delete clothingItems[clothingItems.indexOf(clothingItems.filter((item) => {
-			return item._id === selectedCard._id;
-		})[0])];
-
-		// Remove the card from the database
 		deleteItem(selectedCard._id).then(() => {
+			setClothingItems(
+				clothingItems.filter((item) => {
+					return item._id !== selectedCard._id;
+				})
+			)
 			closeActiveModal();
 		}).catch(console.error);
 	}
@@ -52,7 +51,7 @@ function App() {
 		setActiveModal("");
 	}
 
-	const renderCards = (card) => {
+	const renderCards = () => {
 		getItems().then((data) => {
 			setClothingItems(data);
 		}).catch(console.error);
@@ -60,8 +59,9 @@ function App() {
 	
 	const onAddItem = (values) => {
 		addItem(values).then((data) => {
-			clothingItems.push({_id: data._id, name: values.name, imageUrl: values.imageUrl, weather: values.weather });
-		}).then(() => {
+			setClothingItems(
+				[ { _id: data._id, name: values.name, imageUrl: values.imageUrl, weather: values.weather }, ...clothingItems ]
+			)
 			closeActiveModal();
 		}).catch(console.error);
 	}
