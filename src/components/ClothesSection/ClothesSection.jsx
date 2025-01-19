@@ -12,9 +12,7 @@ const ClothesSection = ({ handleAddClick, onCardClick, clothingItems }) => {
 					<button className = "controls__add-new" onClick={ handleAddClick }>+ Add New</button>
 				</div>
 				<ul className="clothes-section__items card__container">
-					{ clothingItems.filter((item) => {
-						return true;
-					} ).reverse().map((item) => {
+					{ clothingItems.map((item) => {
 
 						item.cardRef = React.createRef();
 
