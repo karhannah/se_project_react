@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx"
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import "./RegisterModal.css";
 
 const RegisterModal = ({ activeModal, onClose, onRegister }) => {
 	const [email, setEmail] = useState("");
