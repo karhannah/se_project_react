@@ -13,6 +13,7 @@ async function addItem({ name, imageUrl, weather }) {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			authorization: `Bearer ${ localStorage["jwt"] }`
 		},
 		body: JSON.stringify({
 			"name": name,
@@ -25,7 +26,28 @@ async function addItem({ name, imageUrl, weather }) {
 async function deleteItem(id) {
 	return fetch(`${ baseUrl }/items/${ id }`, {
 		method: "DELETE",
+		headers: {
+			authorization: `Bearer ${ localStorage["jwt"] }`
+		}
 	}).then(checkResponse);
 }
 
-export { getItems, addItem, deleteItem };
+async function likeItem(id) {
+	return fetch(`${ baseUrl }/items/${ id }/likes`, {
+		method: "PUT",
+		headers: {
+			authorization: `Bearer ${ localStorage["jwt"] }`
+		}
+	}).then(checkResponse);
+}
+
+async function dislikeItem(id) {
+	return fetch(`${ baseUrl }/items/${ id }/likes`, {
+		method: "DELETE",
+		headers: {
+			authorization: `Bearer ${ localStorage["jwt"] }`
+		}
+	}).then(checkResponse);
+}
+
+export { getItems, addItem, deleteItem, likeItem, dislikeItem };

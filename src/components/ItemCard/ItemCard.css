@@ -6,15 +6,13 @@
 }
 
 .card__name {
-	position: absolute;
-	top: 15px;
 	margin: 0;
 
 	border-radius: 4px;
 
 	padding: 2px 12px;
 	background-color: white;
-	font-family: CabinetGrotesk-Bold;
+	font-family: CabinetGrotesk-Bold; /* This isn't the like button, but note: get the solid like button from figma as well and implement */
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 20px;
@@ -22,6 +20,32 @@
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 
+}
+
+.card__info-container {
+	position: absolute;
+	display: flex;
+	top: 15px;
+}
+
+.card__like-empty {
+	background: url("../../assets/Like button.svg");
+	width: 20px;
+	height: 18px;
+
+	margin: 3px 0 0 10px;
+	
+	border: none;
+	outline: none;
+}
+
+.card__like-solid {
+	background: none;
+	margin: -2px 0 0 5px;
+	font-size: 20px;
+
+	border: none;
+	outline: none;
 }
 
 .card__image {

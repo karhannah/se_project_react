@@ -2,10 +2,12 @@ import './Main.css';
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from '../../utils/Contexts/CurrentTemperatureUnitContext.jsx';
+import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext.jsx";
 import React, { useContext, useState } from "react";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
 	const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(CurrentTemperatureUnitContext);
+	const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
 	
 	return (
 		<main>
@@ -25,6 +27,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
 										  cardId = { item._id }
 										  item = { item }
 										  onCardClick = { handleCardClick }
+										  onCardLike = { onCardLike }
 								/>);
 					} ) }
 				</ul>
