@@ -1,11 +1,15 @@
 import React from "react";
 
 const CurrentUserContext = React.createContext({
-	currentUser: {},
-	isLoggedIn: false,
+	currentUser: {
+		_id: "",
+		email: "",
+		name: "",
+		avatar: ""
+	},
 	handleUserChange: () => {
 		
 	}
 })
 
-export { CurrentUserContext }
+export { CurrentUserContext };

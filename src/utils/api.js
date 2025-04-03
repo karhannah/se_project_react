@@ -8,12 +8,12 @@ async function getItems() {
 	return fetch(`${ baseUrl }/items`).then(checkResponse);
 }
 
-async function addItem({ name, imageUrl, weather }) {
+async function addItem({ name, imageUrl, weather }, token) {
 	return fetch(`${ baseUrl }/items`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			authorization: `Bearer ${ localStorage["jwt"] }`
+			"authorization": `Bearer ${ token }`
 		},
 		body: JSON.stringify({
 			"name": name,
@@ -23,31 +23,31 @@ async function addItem({ name, imageUrl, weather }) {
 	} ).then(checkResponse);
 }
 
-async function deleteItem(id) {
+async function deleteItem(id, token) {
 	return fetch(`${ baseUrl }/items/${ id }`, {
 		method: "DELETE",
 		headers: {
-			authorization: `Bearer ${ localStorage["jwt"] }`
+			"authorization": `Bearer ${ token }`
 		}
 	}).then(checkResponse);
 }
 
-async function likeItem(id) {
+async function addCardLike(id, token) {
 	return fetch(`${ baseUrl }/items/${ id }/likes`, {
 		method: "PUT",
 		headers: {
-			authorization: `Bearer ${ localStorage["jwt"] }`
+			"authorization": `Bearer ${ token }`
 		}
 	}).then(checkResponse);
 }
 
-async function dislikeItem(id) {
+async function removeCardLike(id, token) {
 	return fetch(`${ baseUrl }/items/${ id }/likes`, {
 		method: "DELETE",
 		headers: {
-			authorization: `Bearer ${ localStorage["jwt"] }`
+			"authorization": `Bearer ${ token }`
 		}
 	}).then(checkResponse);
 }
 
-export { getItems, addItem, deleteItem, likeItem, dislikeItem };
+export { getItems, addItem, deleteItem, addCardLike, removeCardLike };

@@ -2,7 +2,7 @@ import './ItemCard.css';
 
 import { useContext } from 'react';
 
-import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext.jsx";
+import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext.js";
 
 function ItemCard({ cardRef, cardId, item, onCardClick, onCardLike }) {
 	const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
@@ -26,13 +26,12 @@ function ItemCard({ cardRef, cardId, item, onCardClick, onCardLike }) {
 			<div className = "card__info-container"> {/* This is going to contain &#10084; the two of these, change the positioning css to move it */}
 				<h2 className="card__name">{ item.name }</h2>
 				{
-					isLoggedIn && (
+					currentUser._id !== "" && (
 						isLiked ? 
 						( <button onClick={ handleLike } className="card__like-solid">&#10084;</button> )
 						:
 						( <button onClick={ handleLike } className="card__like-empty"></button> )
 					)
-					// A temporary test until I fully do the like button
 				}
 			</div>
 			

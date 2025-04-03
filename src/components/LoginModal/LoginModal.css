@@ -1,8 +1,8 @@
-.register__signin-btn {
+.login__signup-btn {
 	position: absolute;
 	font-family: CabinetGrotesk-Bold;
 	bottom: 44px;
-	left: 126px;
+	left: 113px;
 	color: #00000080;
 	border: none;
 	outline: none;

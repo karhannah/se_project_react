@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx"
+import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import "./LoginModal.css";
 
-const LoginModal = ({ activeModal, onClose, onLogin }) => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+const LoginModal = ({ activeModal, handleRegisterClick, onClose, onLogin }) => {
+	const [ email, setEmail ] = useState("");
+	const [ password, setPassword ] = useState("");
 
 	const handleEmailChange = (e) => {
 		setEmail(e.target.value);
@@ -17,33 +18,38 @@ const LoginModal = ({ activeModal, onClose, onLogin }) => {
 		e.preventDefault();
 		onLogin({ email, password });
 	}
+
+	const handleSignupClick = (e) => {
+		handleRegisterClick();
+	}
 	
 	return (
-	 	<ModalWithForm title = "Login"
-	 				   buttonText = "Login"
+	 	<ModalWithForm title = "Log In"
+	 				   buttonText = "Log In"
 	 				   activeModal = { activeModal }
 	 				   onClose = { onClose }
 	 				   isOpen = { activeModal === "login" }
 					   onSubmit = { handleSubmit }
-	 	>			
-	 		<label htmlFor="email" className="modal__label">Email{" "}
+	 	>
+			<label htmlFor="email" className="modal__label">Email{" "}
 	 			<input type="email"
 					   className="modal__input"
 					   id="email"
 					   placeholder="Email"
-				       value = { email }
-				       onChange = { handleEmailChange }/>
+					   value = { email }
+					   onChange = { handleEmailChange } />
 	 		</label>
-
-			<label htmlFor="password" className="modal__label">Password{" "}
+			
+	 		<label htmlFor="password" className="modal__label">Password{" "}
 	 			<input type="password"
 					   className="modal__input"
 					   id="password"
 					   placeholder="Password"
-					   value = { password }
-					   onChange = { handlePasswordChange } />
+				       value = { password }
+				       onChange = { handlePasswordChange }/>
 	 		</label>
-			
+
+			<button className = "login__signup-btn" onClick = { handleSignupClick }>or Sign Up</button>
 	 	</ModalWithForm>
 	);
 }

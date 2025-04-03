@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx"
 
-const EditProfileModal = ({ activeModal, onClose, onSubmit }) => {
+const ModifyProfileModal = ({ activeModal, onClose, onModifyProfile }) => {
 	const [name, setName] = useState("");
 	const [avatar, setAvatar] = useState("");
-	
+
 	const handleNameChange = (e) => {
 		setName(e.target.value);
 	}
@@ -15,37 +15,37 @@ const EditProfileModal = ({ activeModal, onClose, onSubmit }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		onSubmit({ name, avatar });
+		onModifyProfile({ name, avatar });
 	}
 	
 	return (
-	 	<ModalWithForm title = "Edit Profile"
-	 				   buttonText = "Save Changes"
+	 	<ModalWithForm title = "Modify Profile"
+	 				   buttonText = "Modify Profile"
 	 				   activeModal = { activeModal }
 	 				   onClose = { onClose }
 	 				   isOpen = { activeModal === "modify-profile" }
 					   onSubmit = { handleSubmit }
-	 	>			
-	 		<label htmlFor="name" className="modal__label">Username *{" "}
-	 			<input type="name"
+	 	>
+			<label htmlFor="name" className="modal__label">Name{" "}
+	 			<input type="text"
 					   className="modal__input"
 					   id="name"
-					   placeholder="Username"
-				       value = { name }
-				       onChange = { handleNameChange }/>
+					   placeholder="Name"
+					   value = { name }
+					   onChange = { handleNameChange } />
 	 		</label>
-
-			<label htmlFor="avatar" className="modal__label">Avatar *{" "}
-	 			<input type="avatar"
+			
+	 		<label htmlFor="avatar" className="modal__label">Avatar URL{" "}
+	 			<input type="text"
 					   className="modal__input"
 					   id="avatar"
-					   placeholder="Avatar"
-					   value = { avatar }
-					   onChange = { handleAvatarChange } />
+					   placeholder="Avatar URL"
+				       value = { avatar }
+				       onChange = { handleAvatarChange }/>
 	 		</label>
 			
 	 	</ModalWithForm>
 	);
 }
 
-export default EditProfileModal;
+export default ModifyProfileModal;

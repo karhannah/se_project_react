@@ -1,55 +1,47 @@
 .sidebar {
 	width: 229px;
 	display: flex;
-	gap: none;
 	flex-direction: column;
 }
 
-.sidebar__user-container {
+.sidebar__profile {
 	display: flex;
-	margin-bottom: 24px;
+	flex-direction: row;
+}
+
+.sidebar__button {
+	border: none;
+	outline: none;
+	background: none;
+	font-family: CabinetGrotesk-bold;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 24.8px;
+	text-align: left;
+	margin: 0 0 8px 0;
 }
 
 .sidebar__avatar {
 	width: 56px;
 	height: 56px;
-	background: gray;
-	border-radius: 28px;
-	color: white;
+	font-family: CabinetGrotesk-Bold;
 	font-size: 40px;
 	text-align: center;
-	font-family: CabinetGrotesk-Bold;
-	vertical-align: center;
+	background-color: #0080FF;
+	color: white;
+	border-radius: 28px;
+	margin-bottom: 24px;
 }
 
 .sidebar__username {
 	font-family: CabinetGrotesk-medium;
+	margin-left: 16px;
 	font-size: 20px;
 	font-weight: 700;
 	line-height: 24.8px;
-	margin-left: 16px;
 	text-align: left;
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 
 	margin-top: 16px;
-}
-
-.sidebar__modify-profile {
-	font-family: CabinetGrotesk-bold;
-	font-size: 20px;
-	border: none;
-	background: none;
-	outline: none;
-	text-align: left;
-	margin-bottom: 8px;
-}
-
-.sidebar__signout {
-	font-family: CabinetGrotesk-bold;
-	font-size: 20px;
-	border: none;
-	background: none;
-	outline: none;
-	text-align: left;
 }
