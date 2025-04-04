@@ -34,7 +34,7 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 			<label htmlFor="name" className="modal__label">Name{" "}
 	 			<input type="text"
 					   className="modal__input"
-					   id="name"
+					   id="add-item__name"
 					   placeholder="Name"
 					   value = { name }
 					   onChange = { handleNameChange } />
@@ -43,7 +43,7 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 	 		<label htmlFor="imageUrl" className="modal__label">Image{" "}
 	 			<input type="text"
 					   className="modal__input"
-					   id="imageUrl"
+					   id="add-item__imageUrl"
 					   placeholder="Image URL"
 				       value = { imageUrl }
 				       onChange = { handleUrlChange }/>
@@ -53,7 +53,7 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 	 			<legend className="modal__legend">Select the weather type:</legend>
 	 			<label htmlFor = "hot" className="modal__label modal__label_type_radio">
 	 				<input name = "weatherType"
-						   id="hot"
+						   id="add-item__hot"
 						   type="radio"
 						   value="hot"
 						   className="modal__radio-input"
@@ -62,7 +62,7 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 				
 	 			<label htmlFor = "warm" className="modal__label modal__label_type_radio">
 	 				<input name = "weatherType"
-						   id="warm"
+						   id="add-item__warm"
 						   type="radio"
 						   value="warm"
 						   className="modal__radio-input"
@@ -71,7 +71,7 @@ const AddItemModal = ({ activeModal, onClose, onAddItem }) => {
 				
 	 			<label htmlFor = "cold" className="modal__label modal__label_type_radio">
 	 				<input name = "weatherType"
-						   id="cold"
+						   id="add-item__cold"
 						   type="radio"
 						   value="cold"
 						   className="modal__radio-input"

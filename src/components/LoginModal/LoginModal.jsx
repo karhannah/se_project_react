@@ -34,7 +34,7 @@ const LoginModal = ({ activeModal, handleRegisterClick, onClose, onLogin }) => {
 			<label htmlFor="email" className="modal__label">Email{" "}
 	 			<input type="email"
 					   className="modal__input"
-					   id="email"
+					   id="login__email"
 					   placeholder="Email"
 					   value = { email }
 					   onChange = { handleEmailChange } />
@@ -43,13 +43,13 @@ const LoginModal = ({ activeModal, handleRegisterClick, onClose, onLogin }) => {
 	 		<label htmlFor="password" className="modal__label">Password{" "}
 	 			<input type="password"
 					   className="modal__input"
-					   id="password"
+					   id="login__password"
 					   placeholder="Password"
 				       value = { password }
 				       onChange = { handlePasswordChange }/>
 	 		</label>
 
-			<button className = "login__signup-btn" onClick = { handleSignupClick }>or Sign Up</button>
+			<button type = "button" className = "login__signup-btn" onClick = { handleSignupClick }>or Sign Up</button>
 	 	</ModalWithForm>
 	);
 }

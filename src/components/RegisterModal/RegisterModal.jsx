@@ -44,7 +44,7 @@ const RegisterModal = ({ activeModal, handleLoginClick, onClose, onRegister }) =
 			<label htmlFor="email" className="modal__label">Email *{" "}
 	 			<input type="email"
 					   className="modal__input"
-					   id="email"
+					   id="register__email"
 					   placeholder="Email"
 					   value = { email }
 					   onChange = { handleEmailChange } />
@@ -53,7 +53,7 @@ const RegisterModal = ({ activeModal, handleLoginClick, onClose, onRegister }) =
 	 		<label htmlFor="password" className="modal__label">Password *{" "}
 	 			<input type="password"
 					   className="modal__input"
-					   id="password"
+					   id="register__password"
 					   placeholder="Password"
 				       value = { password }
 				       onChange = { handlePasswordChange }/>
@@ -62,7 +62,7 @@ const RegisterModal = ({ activeModal, handleLoginClick, onClose, onRegister }) =
 			<label htmlFor="name" className="modal__label">Name *{" "}
 	 			<input type="text"
 					   className="modal__input"
-					   id="name"
+					   id="register__name"
 					   placeholder="Name"
 				       value = { name }
 				       onChange = { handleNameChange }/>
@@ -71,13 +71,13 @@ const RegisterModal = ({ activeModal, handleLoginClick, onClose, onRegister }) =
 			<label htmlFor="avatar" className="modal__label">Avatar URL *{" "}
 	 			<input type="text"
 					   className="modal__input"
-					   id="avatar"
+					   id="register__avatar"
 					   placeholder="Avatar URL"
 				       value = { avatar }
 				       onChange = { handleAvatarChange }/>
 	 		</label>
 
-			<button className = "register__signin-btn" onClick = { handleLoginbtnClick }>or Log In</button>
+			<button type = "button" className = "register__signin-btn" onClick = { handleLoginbtnClick }>or Log In</button>
 			
 	 	</ModalWithForm>
 	);
