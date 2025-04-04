@@ -22,11 +22,11 @@ const ClothesSection = ({ handleAddClick, onCardClick, onCardLike, clothingItems
 
 						return (
 							<ItemCard cardRef={ item.cardRef }
-								key={item._id}
-								cardId={item._id}
-								item={item}
-								onCardClick={onCardClick}
-								onCardLike = {onCardLike}
+								key = { item._id }
+								cardId = { item._id }
+								item = { item }
+								onCardClick = { onCardClick }
+								onCardLike = { onCardLike }
 							/>);
 					  } ) }
 				</ul>

@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:3001';
 
-const { request } = require('./api');
+import { request } from './api';
 
 async function signup({ name, avatar, email, password }) {
 	return request(`${ baseUrl }/signup`, {
