@@ -12,6 +12,7 @@ import { getWeather, filterWeatherData } from "../../utils/WeatherAPI.js";
 import Footer from "../Footer/Footer.jsx";
 import { CurrentTemperatureUnitContext } from "../../utils/Contexts/CurrentTemperatureUnitContext.jsx";
 import { CurrentUserContext } from "../../utils/Contexts/CurrentUserContext.js";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -211,16 +212,15 @@ function App() {
 							/>
 
 							<Route path="/profile" element={
-									   isLoggedIn ? 
-									(<Profile handleAddClick={handleAddClick}
+								<ProtectedRoute isLoggedIn={isLoggedIn}>
+									<Profile handleAddClick={handleAddClick}
 										onModifyProfileClick={handleModifyProfileClick}
 										onSignoutClick={handleSignoutClick}
 										onCardClick={handleCardClick}
 										onCardLike={handleCardLike}
 										clothingItems={clothingItems}
-									/>)
-									:
-									(<Navigate to="/" />)
+									/>
+								</ProtectedRoute>
 							}
 
 							/>

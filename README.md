@@ -1,8 +1,7 @@
-# React + Vite
+This project uses React and Vite to deliver a clean user experience for the WTWR service. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It uses this server backend: https://github.com/karhannah/se_project_express
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Note for the reviewer: A lot of the things weren't fixed because I couldn't replicate them on my machine, on my PC, there is no issue
+# with having to refresh, or anything not showing up, or deleted, nor does it crash when I modify the profile, also, apologies for not
+# having the link in the readme I had to rewrite at some point from a previous commit and that commit had an old readme.
