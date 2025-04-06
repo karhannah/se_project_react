@@ -72,6 +72,11 @@ function App() {
 			localStorage.setItem("jwt", data.token);
 			setIsLoggedIn(true);
 			closeActiveModal();
+			validateToken(localStorage["jwt"]).then((data) => {
+				setAuthToken(localStorage["jwt"]);
+				setCurrentUser(data);
+				setIsLoggedIn(true);
+			}).catch(console.error);
 		}).catch(console.error);
 	}
 	

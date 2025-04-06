@@ -22,8 +22,8 @@ const ModifyProfileModal = ({ activeModal, onClose, onModifyProfile }) => {
 
 	useEffect(() => {
 		setName(currentUser.name);
-		setAvatar(currentUser.name);
-	}, [])
+		setAvatar(currentUser.avatar);
+	}, [currentUser])
 	
 	return (
 	 	<ModalWithForm title = "Modify Profile"
@@ -33,7 +33,7 @@ const ModifyProfileModal = ({ activeModal, onClose, onModifyProfile }) => {
 	 				   isOpen = { activeModal === "modify-profile" }
 					   onSubmit = { handleSubmit }
 	 	>
-			<label htmlFor="name" className="modal__label">Name{" "}
+			<label className="modal__label">Name{" "}
 	 			<input type="text"
 					   className="modal__input"
 					   id="modify-profile__name"
@@ -42,7 +42,7 @@ const ModifyProfileModal = ({ activeModal, onClose, onModifyProfile }) => {
 					   onChange = { handleNameChange } />
 	 		</label>
 			
-	 		<label htmlFor="avatar" className="modal__label">Avatar URL{" "}
+	 		<label className="modal__label">Avatar URL{" "}
 	 			<input type="text"
 					   className="modal__input"
 					   id="modify-profile__avatar"
